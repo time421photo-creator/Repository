@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なでしこクリーン｜女性スタッフ100%のエアコンクリーニング</title>
+<meta name="description" content="女性スタッフだけが伺います。明朗会計・スマホ完結。関東エリア対応のエアコンクリーニング専門サービス。">
+<!-- OGP / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nadeshiko-clean.pages.dev/">
+<meta property="og:title" content="なでしこクリーン｜女性スタッフ100%のエアコンクリーニング">
+<meta property="og:description" content="女性スタッフだけが伺います。明朗会計¥17,900〜・スマホ3分で予約完結。関東エリア対応のエアコンクリーニング専門サービス。">
+<meta property="og:image" content="https://nadeshiko-clean.pages.dev/images/hero.jpg">
+<meta property="og:site_name" content="なでしこクリーン">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="なでしこクリーン｜女性スタッフ100%のエアコンクリーニング">
+<meta name="twitter:description" content="女性スタッフだけが伺います。明朗会計¥17,900〜・スマホ3分で予約完結。関東エリア対応。">
+<meta name="twitter:image" content="https://nadeshiko-clean.pages.dev/images/hero.jpg">
+<!-- Canonical -->
+<link rel="canonical" href="https://nadeshiko-clean.pages.dev/">
+<!-- Favicon (SVG + fallback) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='64' y2='64' gradientUnits='userSpaceOnUse'><stop offset='0%25' stop-color='%235ECBC5'/><stop offset='50%25' stop-color='%239B7EC8'/><stop offset='100%25' stop-color='%23E87BAD'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='url(%23g)'/><text x='32' y='46' font-size='36' text-anchor='middle' fill='white'>🏠</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ━━━ RESET ━━━ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Zen Maru Gothic','Hiragino Maru Gothic ProN','Hiragino Kaku Gothic ProN',sans-serif;color:#2d2d3a;background:#fff;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ━━━ TOKENS ━━━ */
+:root{
+  --teal:    #5ECBC5;
+  --teal-d:  #3BADA7;
+  --teal-l:  #edfaf9;
+  --purple:  #9B7EC8;
+  --purple-d:#7B5EA8;
+  --purple-l:#f3effa;
+  --pink:    #E87BAD;
+  --pink-d:  #c95a8d;
+  --pink-l:  #fdeef6;
+  --grad:    linear-gradient(135deg, #5ECBC5 0%, #9B7EC8 50%, #E87BAD 100%);
+  --grad-r:  linear-gradient(135deg, #E87BAD 0%, #9B7EC8 50%, #5ECBC5 100%);
+  --grad-soft: linear-gradient(135deg, #edfaf9 0%, #f3effa 50%, #fdeef6 100%);
+  --ink:     #2d2d3a;
+  --ink2:    #4a4a5f;
+  --mid:     #7f7f99;
+  --line:    #e8e8f0;
+  --bg:      #fafafa;
+  --white:   #ffffff;
+  --en:      'Poppins', sans-serif;
+  --r:       20px;
+  --shadow:  0 4px 24px rgba(155,126,200,.12);
+  --shadow-lg: 0 12px 48px rgba(155,126,200,.18);
+}
+
+/* ━━━ UTILS ━━━ */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lbl{display:inline-flex;align-items:center;gap:8px;font-family:var(--en);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
+.lbl::before{content:'';width:18px;height:2.5px;background:var(--grad);border-radius:2px}
+.h2{font-size:clamp(1.5rem,3.5vw,2.15rem);font-weight:900;line-height:1.35;color:var(--ink);letter-spacing:-.02em}
+.lead{font-size:.95rem;color:var(--mid);line-height:2}
+.sec{padding:88px 0}
+.sec-head{margin-bottom:52px}
+.fade{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+.fade-delay-1{transition-delay:.1s}
+.fade-delay-2{transition-delay:.2s}
+.fade-delay-3{transition-delay:.3s}
+
+/* ━━━ FLOATING BUBBLES ━━━ */
+.bubbles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.bubble{position:absolute;border-radius:50%;opacity:.15;animation:float-up linear infinite}
+@keyframes float-up{0%{transform:translateY(100%) scale(0);opacity:0}10%{opacity:.15}90%{opacity:.15}100%{transform:translateY(-100vh) scale(1);opacity:0}}
+.b1{width:12px;height:12px;background:var(--teal);left:10%;animation-duration:8s;animation-delay:0s}
+.b2{width:8px;height:8px;background:var(--purple);left:25%;animation-duration:12s;animation-delay:2s}
+.b3{width:16px;height:16px;background:var(--pink);left:40%;animation-duration:10s;animation-delay:4s}
+.b4{width:6px;height:6px;background:var(--teal);left:60%;animation-duration:9s;animation-delay:1s}
+.b5{width:10px;height:10px;background:var(--purple);left:75%;animation-duration:11s;animation-delay:3s}
+.b6{width:14px;height:14px;background:var(--pink);left:90%;animation-duration:7s;animation-delay:5s}
+
+/* ━━━ SPARKLE DOTS ━━━ */
+.sparkle{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--grad);animation:twinkle 3s ease-in-out infinite;pointer-events:none}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:.7;transform:scale(1)}}
+
+/* ━━━ HEADER ━━━ */
+.hd{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(155,126,200,.1);transition:box-shadow .3s}
+.hd.on{box-shadow:0 2px 24px rgba(155,126,200,.12)}
+.hd-in{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--en);font-weight:800;font-size:1.05rem;color:var(--ink)}
+.logo-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Zen Maru Gothic',sans-serif;font-size:1.05rem;font-weight:900}
+.hd-nav{display:flex;align-items:center;gap:28px}
+.hd-nav a{font-size:.82rem;font-weight:700;color:var(--ink2);transition:color .2s}
+.hd-nav a:hover{color:var(--purple)}
+.hd-btn{display:inline-flex;align-items:center;gap:6px;background:var(--grad);color:#fff;padding:10px 22px;border-radius:100px;font-size:.82rem;font-weight:800;transition:opacity .2s,transform .15s;box-shadow:0 4px 16px rgba(155,126,200,.3)}
+.hd-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ━━━ HERO ━━━ */
+.hero{padding:108px 0 72px;background:linear-gradient(155deg,#fff 0%,var(--purple-l) 40%,var(--teal-l) 100%);position:relative;overflow:hidden}
+.hero-deco{position:absolute;pointer-events:none}
+.hero-deco-1{top:-120px;right:-80px;width:480px;height:480px;background:radial-gradient(circle,rgba(94,203,197,.18) 0%,transparent 70%)}
+.hero-deco-2{bottom:-80px;left:-60px;width:360px;height:360px;background:radial-gradient(circle,rgba(232,123,173,.14) 0%,transparent 70%)}
+.hero-in{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(94,203,197,.12),rgba(155,126,200,.12));border:1px solid rgba(155,126,200,.2);padding:7px 18px;border-radius:100px;font-size:.73rem;font-weight:700;color:var(--purple);margin-bottom:22px;animation:shimmer-badge 4s ease-in-out infinite}
+@keyframes shimmer-badge{0%,100%{box-shadow:0 0 0 0 rgba(155,126,200,0)}50%{box-shadow:0 0 0 4px rgba(155,126,200,.08)}}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grad);animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(1.85rem,4.5vw,2.9rem);font-weight:900;line-height:1.3;color:var(--ink);letter-spacing:-.03em;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.97rem;color:var(--mid);margin-bottom:38px;line-height:2;max-width:480px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;padding:16px 36px;border-radius:100px;font-size:.97rem;font-weight:800;transition:all .25s;box-shadow:0 6px 24px rgba(155,126,200,.32)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(155,126,200,.4);filter:brightness(1.05)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--purple);padding:16px 36px;border-radius:100px;font-size:.97rem;font-weight:700;border:2px solid rgba(155,126,200,.25);transition:all .25s}
+.btn-s:hover{border-color:var(--purple);background:var(--purple-l);transform:translateY(-1px)}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(155,126,200,.15)}
+.stat-num{font-family:var(--en);font-weight:800;font-size:1.75rem;letter-spacing:-.03em;line-height:1.1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-num sub{font-size:.85rem}
+.stat-lbl{font-size:.72rem;color:var(--mid);margin-top:3px;font-weight:600}
+/* hero image */
+.hero-img-wrap{position:relative}
+.hero-img-main{border-radius:28px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 32px 72px rgba(155,126,200,.2)}
+.hero-img-main img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-float{position:absolute;background:#fff;border-radius:18px;box-shadow:var(--shadow-lg);border:1px solid var(--line)}
+.hero-float-1{bottom:-20px;left:-28px;padding:16px 20px;width:198px;animation:float-card 5s ease-in-out infinite}
+.hero-float-2{top:24px;right:-24px;padding:14px 18px;animation:float-card 5s ease-in-out infinite;animation-delay:2.5s}
+@keyframes float-card{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hf-label{font-size:.67rem;color:var(--mid);margin-bottom:4px;font-weight:600}
+.hf-val{font-family:var(--en);font-weight:800;font-size:1.3rem;letter-spacing:-.03em;line-height:1.1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hf-sub{font-size:.67rem;color:var(--mid)}
+.hf-tag{background:var(--grad);color:#fff;font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:100px}
+/* placeholder for hero when img fails */
+.hero-img-main{background:var(--grad-soft)}
+
+/* ━━━ TRUST BAR ━━━ */
+.trust-bar{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.trust-scroll{display:flex;gap:0;animation:scroll-left 20s linear infinite;width:max-content}
+.trust-scroll:hover{animation-play-state:paused}
+.trust-item{display:flex;align-items:center;gap:10px;padding:16px 40px;white-space:nowrap;font-size:.82rem;font-weight:700;color:var(--ink2);border-right:1px solid var(--line)}
+.trust-item svg,.trust-icon{flex-shrink:0}
+.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--grad)}
+@keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ━━━ ZEROS (3 PROMISES) ━━━ */
+.zeros{background:var(--white)}
+.z-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.z-card{border-radius:24px;overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s,border-color .35s}
+.z-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:rgba(155,126,200,.2)}
+.z-img{width:100%;height:220px;object-fit:cover;display:block}
+.z-img-placeholder{width:100%;height:220px;display:flex;align-items:center;justify-content:center;font-size:48px;background:var(--grad-soft)}
+.z-body{padding:28px 24px 32px;background:#fff}
+.z-num{font-family:var(--en);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.z-title{font-size:1.02rem;font-weight:900;color:var(--ink);margin-bottom:10px}
+.z-desc{font-size:.84rem;color:var(--mid);line-height:1.8}
+.z-card:nth-child(1){border-top:3px solid var(--teal)}
+.z-card:nth-child(2){border-top:3px solid var(--purple)}
+.z-card:nth-child(3){border-top:3px solid var(--pink)}
+
+/* ━━━ PROBLEM ━━━ */
+.prob{background:var(--grad-soft)}
+.prob-in{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center}
+.prob-img{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:3/4;box-shadow:0 24px 60px rgba(155,126,200,.16)}
+.prob-img img{width:100%;height:100%;object-fit:cover}
+.prob-badge{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(45,45,58,.88);backdrop-filter:blur(12px);border-radius:16px;padding:18px 20px;color:#fff}
+.prob-badge strong{color:var(--teal);display:block;font-size:.9rem;margin-bottom:5px}
+.prob-badge p{font-size:.8rem;color:rgba(255,255,255,.75);line-height:1.65}
+.prob-list{display:flex;flex-direction:column;gap:14px}
+.prob-item{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:16px;padding:20px 22px;border:1px solid rgba(155,126,200,.1);box-shadow:0 2px 12px rgba(155,126,200,.06);transition:border-color .2s,box-shadow .2s,transform .2s}
+.prob-item:hover{border-color:rgba(155,126,200,.25);box-shadow:0 6px 20px rgba(155,126,200,.1);transform:translateX(4px)}
+.prob-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px}
+.prob-ic-1{background:rgba(94,203,197,.12)}
+.prob-ic-2{background:rgba(155,126,200,.12)}
+.prob-ic-3{background:rgba(232,123,173,.12)}
+.prob-ic-4{background:rgba(94,203,197,.12)}
+.prob-txt strong{display:block;font-weight:800;font-size:.9rem;color:var(--ink);margin-bottom:4px}
+.prob-txt p{font-size:.81rem;color:var(--mid);line-height:1.75}
+
+/* ━━━ STAFF ━━━ */
+.staff{background:#fff}
+.staff-top{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:56px}
+.staff-top-img{border-radius:28px;overflow:hidden;aspect-ratio:3/2;box-shadow:0 20px 60px rgba(155,126,200,.16)}
+.staff-top-img img{width:100%;height:100%;object-fit:cover}
+.staff-promise{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.sp-item{display:flex;gap:14px;align-items:flex-start;background:var(--grad-soft);border:1px solid rgba(155,126,200,.15);border-radius:16px;padding:16px 18px}
+.sp-icon{width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;flex-shrink:0;font-size:16px;color:#fff}
+.sp-text{font-size:.84rem;color:var(--ink2);font-weight:600;line-height:1.6}
+.staff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+/* Staff avatar cards with gradient */
+.sc{border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s}
+.sc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.sc-avatar{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden}
+.sc-avatar-1{background:linear-gradient(135deg,#edfaf9,#d4f3f1)}
+.sc-avatar-2{background:linear-gradient(135deg,#f3effa,#e5dcf5)}
+.sc-avatar-3{background:linear-gradient(135deg,#fdeef6,#f9d8ea)}
+.sc-avatar img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
+.sc-avatar-emoji{position:relative;z-index:1;font-size:52px;opacity:.8}
+.sc-body{padding:20px 22px;background:#fff}
+.sc-name{font-weight:800;font-size:.92rem;margin-bottom:4px;color:var(--ink)}
+.sc-role{font-size:.73rem;color:var(--purple);font-weight:700}
+.sc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.sc-tag{background:var(--purple-l);color:var(--purple-d);padding:3px 10px;border-radius:100px;font-size:.7rem;font-weight:700}
+
+/* ━━━ GALLERY ━━━ */
+.gallery-sec{background:var(--bg)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px}
+.gallery-grid .g-wide{grid-column:span 2}
+.gallery-grid div{overflow:hidden;border-radius:18px;box-shadow:var(--shadow)}
+.gallery-grid img{width:100%;height:280px;object-fit:cover;transition:transform .45s ease;display:block}
+.gallery-grid .g-wide img{height:280px}
+.gallery-grid div:hover img{transform:scale(1.05)}
+.gallery-placeholder{width:100%;height:280px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:40px}
+.g-wide .gallery-placeholder{height:280px}
+
+/* ━━━ PRICE ━━━ */
+.price-sec{background:var(--white)}
+.price-in{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.price-card{background:#fff;border-radius:28px;padding:44px 40px;border:2px solid rgba(155,126,200,.2);position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--grad)}
+.price-ribbon{position:absolute;top:24px;right:-30px;background:var(--grad);color:#fff;padding:5px 50px;font-size:.68rem;font-weight:800;transform:rotate(45deg);letter-spacing:.05em}
+.price-name{font-size:.9rem;color:var(--mid);margin-bottom:10px;font-weight:600}
+.price-row{display:flex;align-items:baseline;gap:2px;margin-bottom:8px}
+.price-¥{font-family:var(--en);font-weight:800;font-size:1.1rem;color:var(--purple)}
+.price-n{font-family:var(--en);font-size:3.4rem;font-weight:900;letter-spacing:-.05em;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.price-tax{font-size:.76rem;color:#a0a0b8}
+.price-tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.pt{background:var(--grad-soft);color:var(--purple-d);padding:5px 14px;border-radius:100px;font-size:.73rem;font-weight:700;border:1px solid rgba(155,126,200,.15)}
+.price-hr{border:none;border-top:1px solid var(--line);margin:20px 0}
+.opt-list{display:flex;flex-direction:column;gap:10px}
+.opt-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:var(--bg);border-radius:12px;transition:background .2s}
+.opt-row:hover{background:var(--purple-l)}
+.opt-n{font-size:.87rem;font-weight:700;color:var(--ink2)}
+.opt-p{font-family:var(--en);font-weight:800;color:var(--teal-d);font-size:.95rem}
+.price-img-wrap{position:relative}
+.price-img-main{border-radius:24px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 20px 56px rgba(155,126,200,.18);background:var(--grad-soft)}
+.price-img-main img{width:100%;height:100%;object-fit:cover}
+.price-float{position:absolute;bottom:-20px;left:-20px;background:#fff;border-radius:18px;padding:18px 22px;box-shadow:var(--shadow-lg);border:1px solid var(--line);width:208px}
+.pf-t{font-size:.71rem;color:var(--mid);margin-bottom:5px;font-weight:600}
+.pf-v{font-family:var(--en);font-size:1.4rem;font-weight:900;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pf-s{font-size:.67rem;color:#a0a0b8}
+
+/* ━━━ FLOW ━━━ */
+.flow-sec{background:var(--grad-soft)}
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:20px}
+.flow-line{position:absolute;top:48px;left:calc(12.5% + 36px);right:calc(12.5% + 36px);height:2px;background:var(--grad);opacity:.3}
+.flow-step{text-align:center;position:relative;z-index:1;padding:0 8px}
+.flow-ic{width:96px;height:96px;border-radius:50%;overflow:hidden;margin:0 auto 20px;border:3px solid transparent;box-shadow:0 4px 16px rgba(155,126,200,.15);transition:all .35s;background:var(--grad);position:relative}
+.flow-ic img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.flow-ic-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px}
+.flow-step:hover .flow-ic{transform:scale(1.08);box-shadow:0 8px 28px rgba(155,126,200,.28)}
+.flow-num{position:absolute;top:68px;left:50%;transform:translateX(-50%);width:26px;height:26px;background:var(--grad);border-radius:50%;color:#fff;font-size:.68rem;font-weight:800;display:grid;place-items:center;font-family:var(--en);border:2px solid #fff;box-shadow:0 3px 10px rgba(155,126,200,.3)}
+.flow-lbl{font-weight:800;font-size:.9rem;margin-bottom:6px;color:var(--ink)}
+.flow-desc{font-size:.78rem;color:var(--mid);line-height:1.7}
+
+/* ━━━ BEFORE/AFTER ━━━ */
+.ac-sec{background:#fff}
+.ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:52px}
+.ac-card{border-radius:24px;overflow:hidden;border:1.5px solid var(--line);box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.ac-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.ac-img-wrap{position:relative}
+.ac-img-wrap img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.ac-img-placeholder{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;font-size:14px;font-weight:700;color:var(--mid)}
+.ac-card.before .ac-img-placeholder{background:linear-gradient(135deg,#f0e8e0,#e8ddd4)}
+.ac-card.after .ac-img-placeholder{background:linear-gradient(135deg,var(--teal-l),#d4f3f1)}
+.ac-badge{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);padding:6px 14px;border-radius:100px;font-size:.72rem;font-weight:800}
+.ac-card.before .ac-badge{color:#8b6a5a}
+.ac-card.after .ac-badge{color:var(--teal-d)}
+.ac-body{padding:24px 26px}
+.ac-lbl{font-family:var(--en);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.ac-card.before .ac-lbl{color:#a0a0b8}
+.ac-card.after .ac-lbl{color:var(--teal-d)}
+.ac-ttl{font-weight:900;font-size:1.02rem;margin-bottom:8px;color:var(--ink)}
+.ac-desc{font-size:.83rem;color:var(--mid);line-height:1.8}
+
+/* ━━━ CARE (安心ポイント) ━━━ */
+.care-sec{background:var(--purple-l)}
+.care-in{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.care-img-wrap{border-radius:28px;overflow:hidden;box-shadow:0 20px 56px rgba(155,126,200,.18);background:var(--grad-soft)}
+.care-img-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+.care-img-placeholder{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:64px;background:var(--grad-soft)}
+.care-list{display:flex;flex-direction:column;gap:14px}
+.care-item{display:flex;gap:16px;align-items:flex-start;background:#fff;border-radius:18px;padding:20px;border:1px solid rgba(155,126,200,.1);box-shadow:0 2px 12px rgba(155,126,200,.06);transition:transform .25s,box-shadow .25s}
+.care-item:hover{transform:translateX(5px);box-shadow:0 6px 20px rgba(155,126,200,.12)}
+.care-chk{flex-shrink:0;width:32px;height:32px;background:var(--grad);border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;box-shadow:0 3px 10px rgba(155,126,200,.25)}
+.care-ttl{font-weight:800;font-size:.9rem;margin-bottom:3px;color:var(--ink)}
+.care-d{font-size:.8rem;color:var(--mid)}
+
+/* ━━━ AREA ━━━ */
+.area-sec{position:relative;min-height:440px;display:flex;align-items:center;overflow:hidden}
+.area-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--ink) 0%,#2d1a4a 50%,#4a1a3a 100%)}
+.area-ov{position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(94,203,197,.15) 0%,transparent 60%)}
+.area-in{position:relative;z-index:1;color:#fff;padding:80px 0;width:100%}
+.area-in .lbl{color:rgba(255,255,255,.4)}
+.area-in .lbl::before{background:rgba(255,255,255,.3)}
+.area-in .h2{color:#fff;margin-bottom:12px}
+.area-in .lead{color:rgba(255,255,255,.65);margin-bottom:36px}
+.area-badges{display:flex;flex-wrap:wrap;gap:12px}
+.area-b{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);color:#fff;padding:11px 28px;border-radius:12px;font-weight:700;font-size:.9rem;transition:all .25s}
+.area-b:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+
+/* ━━━ FAQ ━━━ */
+.faq-sec{background:var(--bg)}
+.faq-wrap{display:grid;grid-template-columns:360px 1fr;gap:64px;align-items:start}
+.faq-side .h2{margin-bottom:14px}
+.faq-side .lead{margin-bottom:28px}
+.faq-side-img{border-radius:24px;overflow:hidden;box-shadow:0 14px 40px rgba(155,126,200,.14);background:var(--grad-soft)}
+.faq-side-img img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+.faq-side-img-placeholder{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:60px}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.faq-item.open{border-color:rgba(155,126,200,.3);box-shadow:0 4px 18px rgba(155,126,200,.08)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:20px 22px;cursor:pointer;border:none;background:none;width:100%;font-family:'Zen Maru Gothic',sans-serif;font-size:.9rem;font-weight:700;color:var(--ink2);text-align:left;transition:color .2s}
+.faq-q:hover{color:var(--purple)}
+.faq-tog{flex-shrink:0;width:28px;height:28px;background:var(--bg);border-radius:50%;display:grid;place-items:center;font-size:18px;color:var(--mid);transition:transform .3s,background .3s,color .3s;border:1px solid var(--line)}
+.faq-item.open .faq-tog{transform:rotate(45deg);background:var(--purple-l);color:var(--purple);border-color:rgba(155,126,200,.3)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .38s ease}
+.faq-ai{padding:0 22px 20px;font-size:.85rem;color:#5a5a70;line-height:1.9}
+
+/* ━━━ TESTIMONIALS ━━━ */
+.testi-sec{background:#fff}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi-card{background:var(--bg);border-radius:22px;padding:30px;border:1px solid var(--line);box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.testi-stars{font-size:14px;margin-bottom:14px;letter-spacing:2px}
+.testi-text{font-size:.86rem;color:var(--ink2);line-height:1.85;margin-bottom:22px}
+.testi-user{display:flex;align-items:center;gap:14px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--grad);display:grid;place-items:center;font-size:18px;color:#fff;font-weight:800;box-shadow:0 3px 10px rgba(155,126,200,.2)}
+.testi-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
+.testi-name{font-weight:800;font-size:.87rem;color:var(--ink)}
+.testi-detail{font-size:.73rem;color:var(--mid)}
+
+/* ━━━ CTA ━━━ */
+.cta-sec{position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a0a2e 0%,#2d1a4a 40%,#4a1a3a 100%)}
+.cta-ov{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(94,203,197,.1) 0%,transparent 60%)}
+.cta-dots{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.cta-in{position:relative;z-index:1;color:#fff;text-align:center;padding:88px 24px}
+.cta-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);padding:8px 20px;border-radius:100px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:28px}
+.cta-in h2{font-size:clamp(1.65rem,4vw,2.4rem);font-weight:900;margin-bottom:16px;letter-spacing:-.025em;line-height:1.3}
+.cta-in h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-in p{color:rgba(255,255,255,.72);margin-bottom:40px;font-size:1rem;line-height:1.85}
+.cta-btn{display:inline-flex;align-items:center;gap:12px;background:var(--grad);color:#fff;padding:20px 56px;border-radius:100px;font-size:1.05rem;font-weight:800;transition:all .25s;box-shadow:0 6px 36px rgba(155,126,200,.4)}
+.cta-btn:hover{transform:translateY(-4px);box-shadow:0 14px 48px rgba(155,126,200,.5);filter:brightness(1.08)}
+.cta-sub{margin-top:20px;font-size:.77rem;color:rgba(255,255,255,.38)}
+.cta-trust{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:44px;padding-top:36px;border-top:1px solid rgba(255,255,255,.08)}
+.cta-trust-item{display:flex;align-items:center;gap:8px;font-size:.82rem;color:rgba(255,255,255,.6);font-weight:600}
+.cta-trust-icon{font-size:18px}
+
+/* ━━━ STICKY MOBILE CTA ━━━ */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;padding:14px 18px 18px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-top:1px solid var(--line);box-shadow:0 -4px 24px rgba(155,126,200,.14)}
+.sticky-cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--grad);color:#fff;padding:15px 24px;border-radius:100px;font-size:.97rem;font-weight:800;box-shadow:0 6px 24px rgba(155,126,200,.35)}
+.sticky-cta-note{text-align:center;font-size:.68rem;color:var(--mid);margin-top:7px}
+@media(max-width:900px){.sticky-cta{display:block}}
+
+/* ━━━ FOOTER ━━━ */
+.ft{background:var(--ink);color:#64648a;padding:56px 0 28px}
+.ft-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06)}
+.ft-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1rem;color:#fff;margin-bottom:12px}
+.ft-logo-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Zen Maru Gothic',sans-serif;font-size:1rem;font-weight:900}
+.ft-desc{font-size:.8rem;line-height:1.85;max-width:280px}
+.ft-links{display:flex;gap:52px}
+.ft-grp h4{color:#fff;font-size:.78rem;font-weight:700;margin-bottom:14px;letter-spacing:.04em}
+.ft-grp a{display:block;font-size:.78rem;margin-bottom:10px;transition:color .2s}
+.ft-grp a:hover{color:var(--teal)}
+.ft-btm{text-align:center;padding-top:28px;font-size:.72rem;color:#3a3a52}
+
+/* ━━━ ANXIETY (男性への不安 専用) ━━━ */
+.anxiety-sec{background:linear-gradient(150deg,#120826 0%,#2d1a4a 45%,#0e2228 100%);position:relative;overflow:hidden}
+.anxiety-ov1{position:absolute;top:-120px;right:-100px;width:540px;height:540px;background:radial-gradient(circle,rgba(94,203,197,.08) 0%,transparent 65%);pointer-events:none}
+.anxiety-ov2{position:absolute;bottom:-80px;left:-60px;width:420px;height:420px;background:radial-gradient(circle,rgba(155,126,200,.09) 0%,transparent 65%);pointer-events:none}
+.anxiety-in{position:relative;z-index:1}
+.anxiety-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.anxiety-lbl{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:7px 18px;border-radius:100px;font-size:.73rem;font-weight:700;color:rgba(255,255,255,.65);margin-bottom:24px}
+.anxiety-lbl::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal);flex-shrink:0;display:inline-block}
+.anxiety-h{font-size:clamp(1.85rem,4.5vw,2.9rem);font-weight:900;color:#fff;line-height:1.32;letter-spacing:-.03em;margin-bottom:22px}
+.anxiety-h em{font-style:normal;background:linear-gradient(135deg,#5ECBC5,#9B7EC8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.anxiety-sub{font-size:.95rem;color:rgba(255,255,255,.65);line-height:2;margin-bottom:36px}
+.anxiety-stat{display:flex;gap:40px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(255,255,255,.09)}
+.anxiety-stat-n{font-family:var(--en);font-weight:800;font-size:2.1rem;line-height:1.1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.anxiety-stat-l{font-size:.71rem;color:rgba(255,255,255,.5);margin-top:5px;font-weight:600;line-height:1.55}
+.anxiety-scenes{display:flex;flex-direction:column;gap:16px}
+.anxiety-scene{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:22px 20px;transition:background .3s,border-color .3s}
+.anxiety-scene:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.16)}
+.anxiety-scene:first-child{border-color:rgba(94,203,197,.28);background:rgba(94,203,197,.07)}
+.anxiety-scene-ic{flex-shrink:0;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:22px}
+.anxiety-scene:nth-child(1) .anxiety-scene-ic{background:rgba(94,203,197,.18)}
+.anxiety-scene:nth-child(2) .anxiety-scene-ic{background:rgba(155,126,200,.18)}
+.anxiety-scene:nth-child(3) .anxiety-scene-ic{background:rgba(232,123,173,.18)}
+.anxiety-scene-txt strong{display:block;font-weight:800;font-size:.9rem;color:#fff;margin-bottom:5px}
+.anxiety-scene-txt p{font-size:.8rem;color:rgba(255,255,255,.58);line-height:1.8}
+.anxiety-resolve{margin-top:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 22px;display:flex;align-items:flex-start;gap:14px}
+.anxiety-resolve-ic{font-size:22px;flex-shrink:0;margin-top:2px}
+.anxiety-resolve p{font-size:.83rem;color:rgba(255,255,255,.72);font-weight:600;line-height:1.7}
+.anxiety-resolve strong{color:var(--teal)}
+
+/* ━━━ FEATURED PROB ITEM ━━━ */
+.prob-item-featured{background:linear-gradient(135deg,rgba(94,203,197,.08),rgba(155,126,200,.06));border:2px solid rgba(94,203,197,.25)!important;border-radius:18px!important;padding:24px 22px!important}
+.prob-item-featured .prob-ic{width:52px!important;height:52px!important;font-size:24px!important;border-radius:14px!important;background:linear-gradient(135deg,rgba(94,203,197,.18),rgba(155,126,200,.14))!important}
+.prob-item-featured .prob-txt strong{font-size:1rem!important;color:var(--ink)!important}
+.prob-item-featured .prob-txt p{font-size:.85rem!important;color:var(--ink2)!important;line-height:1.8}
+.prob-featured-badge{display:inline-flex;align-items:center;gap:5px;background:var(--grad);color:#fff;font-size:.65rem;font-weight:800;padding:3px 10px;border-radius:100px;margin-bottom:8px;letter-spacing:.04em}
+
+/* ━━━ SOLUTION BRIDGE ━━━ */
+.solve-sec{background:var(--white)}
+.solve-in{background:var(--grad);border-radius:32px;padding:60px 56px;max-width:900px;margin:0 auto;position:relative;overflow:hidden;text-align:center;box-shadow:0 20px 60px rgba(155,126,200,.28)}
+.solve-in::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.07);pointer-events:none;border-radius:inherit}
+.solve-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:8px 20px;border-radius:100px;font-size:.73rem;font-weight:700;color:#fff;margin-bottom:22px}
+.solve-h2{font-size:clamp(1.45rem,3.5vw,2.2rem);font-weight:900;color:#fff;line-height:1.4;margin-bottom:18px;letter-spacing:-.025em}
+.solve-p{font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.95;max-width:580px;margin:0 auto 32px}
+.solve-pts{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.solve-pt{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 22px;border-radius:100px;font-size:.83rem;font-weight:700;backdrop-filter:blur(10px)}
+
+/* ━━━ PROB CENTERED HEADER ━━━ */
+.prob-header{text-align:center;max-width:640px;margin:0 auto 52px}
+
+/* ━━━ RESPONSIVE ━━━ */
+/* ━━━ HAMBURGER MENU (mobile) ━━━ */
+.hd-ham{display:none;border:none;background:none;cursor:pointer;padding:6px;z-index:210;position:relative}
+.hd-ham span{display:block;width:22px;height:2.5px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .25s;margin:5px 0}
+.hd-ham.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hd-ham.open span:nth-child(2){opacity:0}
+.hd-ham.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.mobile-nav{display:none;position:fixed;inset:0;top:68px;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-nav a{font-size:1.1rem;font-weight:700;color:var(--ink2);padding:12px 24px;border-radius:12px;transition:background .2s,color .2s}
+.mobile-nav a:hover{background:var(--purple-l);color:var(--purple)}
+.mobile-nav .mob-cta{background:var(--grad);color:#fff;padding:14px 40px;border-radius:100px;font-weight:800;font-size:1rem;margin-top:8px;box-shadow:0 6px 24px rgba(155,126,200,.3)}
+
+@media(max-width:900px){
+  body{padding-bottom:80px}
+  .anxiety-grid{grid-template-columns:1fr;gap:44px}
+  .hero-in,.prob-in,.staff-top,.price-in,.care-in,.faq-wrap{grid-template-columns:1fr;gap:36px}
+  .z-grid,.testi-grid{grid-template-columns:1fr}
+  .staff-grid{grid-template-columns:repeat(2,1fr)}
+  .flow-steps{grid-template-columns:repeat(2,1fr)}
+  .flow-line{display:none}
+  .ac-grid{grid-template-columns:1fr}
+  .price-float,.faq-side-img{display:none}
+  .hero-img-wrap{order:-1}
+  .hero-float-2{display:none}
+  .ft-links{flex-direction:column;gap:28px}
+  .hd-nav{display:none}
+  .hd-ham{display:block}
+  .sec{padding:72px 0}
+  .solve-in{padding:44px 36px;border-radius:24px}
+  .z-grid{grid-template-columns:1fr}
+  .z-img{height:200px}
+}
+@media(max-width:560px){
+  .hero h1{font-size:1.75rem}
+  .hero-sub{font-size:.9rem}
+  .staff-grid{grid-template-columns:1fr}
+  .flow-steps{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+  .btn-p,.btn-s{justify-content:center}
+  .hero-stats{gap:20px}
+  .stat-num{font-size:1.45rem}
+  .testi-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid .g-wide{grid-column:span 2}
+  .gallery-grid img,.gallery-grid .g-wide img{height:180px}
+  .cta-trust{gap:16px;flex-direction:column;align-items:center}
+  .sec{padding:56px 0}
+  .container{padding:0 18px}
+  .solve-in{padding:36px 22px;border-radius:20px}
+  .solve-h2{font-size:1.3rem}
+  .solve-p{font-size:.88rem}
+  .solve-pts{gap:10px}
+  .solve-pt{padding:8px 16px;font-size:.78rem}
+  .prob-item{padding:16px}
+  .prob-ic{width:38px;height:38px;font-size:17px}
+  .z-card{border-radius:18px}
+  .z-img{height:180px}
+  .h2{font-size:1.4rem}
+  .price-n{font-size:2.8rem}
+  .faq-q{font-size:.85rem;padding:16px 18px}
+}
+@media(max-width:380px){
+  .hero h1{font-size:1.55rem}
+  .btn-p,.btn-s{padding:14px 24px;font-size:.88rem}
+  .hd-btn{padding:9px 16px;font-size:.75rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ━━━ HEADER ━━━ -->
+<header class="hd" id="hd">
+  <div class="hd-in">
+    <div class="logo">
+      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGrad" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#5ECBC5"/>
+            <stop offset="50%" stop-color="#9B7EC8"/>
+            <stop offset="100%" stop-color="#E87BAD"/>
+          </linearGradient>
+        </defs>
+        <rect width="38" height="38" rx="10" fill="url(#logoGrad)"/>
+        <!-- house -->
+        <path d="M19 8 L30 17 L30 30 L8 30 L8 17 Z" stroke="white" stroke-width="1.6" fill="rgba(255,255,255,0.15)" stroke-linejoin="round"/>
+        <path d="M14 30 L14 22 L19 22 L19 30" stroke="white" stroke-width="1.4" fill="none"/>
+        <!-- nadeshiko flower (5 petals) centered at roof -->
+        <g transform="translate(19,13)">
+          <ellipse rx="2.2" ry="4" fill="white" opacity="0.95"/>
+          <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(72)"/>
+          <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(144)"/>
+          <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(216)"/>
+          <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(288)"/>
+          <circle r="2.5" fill="white"/>
+        </g>
+        <!-- wind swirl small -->
+        <path d="M26 22 C27.5 21 28 22.5 27 23 C26 23.5 26.5 25 28 24.5" stroke="white" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.75"/>
+      </svg>
+      <span class="logo-text">なでしこクリーン</span>
+    </div>
+    <nav class="hd-nav">
+      <a href="#promise">安心保証</a>
+      <a href="#staff">スタッフ</a>
+      <a href="#price">料金</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <a href="#cta" class="hd-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2.2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      無料で予約する
+    </a>
+    <button class="hd-ham" aria-label="メニュー" onclick="this.classList.toggle('open');document.getElementById('mobileNav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#promise" onclick="document.getElementById('mobileNav').classList.remove('open');document.querySelector('.hd-ham').classList.remove('open')">安心保証</a>
+  <a href="#staff" onclick="document.getElementById('mobileNav').classList.remove('open');document.querySelector('.hd-ham').classList.remove('open')">スタッフ</a>
+  <a href="#price" onclick="document.getElementById('mobileNav').classList.remove('open');document.querySelector('.hd-ham').classList.remove('open')">料金</a>
+  <a href="#faq" onclick="document.getElementById('mobileNav').classList.remove('open');document.querySelector('.hd-ham').classList.remove('open')">よくある質問</a>
+  <a href="#cta" class="mob-cta" onclick="document.getElementById('mobileNav').classList.remove('open');document.querySelector('.hd-ham').classList.remove('open')">📅 無料で予約する</a>
+</nav>
+
+<!-- ━━━ HERO ━━━ -->
+<section class="hero">
+  <div class="bubbles">
+    <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+    <div class="bubble b4"></div><div class="bubble b5"></div><div class="bubble b6"></div>
+  </div>
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="container">
+    <div class="hero-in">
+      <div class="fade">
+        <div class="hero-eyebrow">
+          <span class="badge-dot"></span>
+          女性スタッフ100% ・ 2026年6月 関東エリアでサービス開始
+        </div>
+        <h1>部屋に来るのは、<br><em>女性スタッフだけ。</em><br>だから安心して任せられる。</h1>
+        <p class="hero-sub">知らない男性が来るのが不安で、何年も頼めなかった——。<br>なでしこクリーンは<strong>全スタッフ女性</strong>だから、<br>一人暮らしの方も、女性だけのお家も、安心して扉を開けられます。</p>
+        <div class="hero-btns">
+          <a href="#cta" class="btn-p">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            無料で予約する
+          </a>
+          <a href="#price" class="btn-s">料金を見る →</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-num">100<sub>%</sub></div><div class="stat-lbl">女性スタッフ対応</div></div>
+          <div><div class="stat-num">¥17,900</div><div class="stat-lbl">追加費用なし・税込</div></div>
+          <div><div class="stat-num">3<sub>min</sub></div><div class="stat-lbl">スマホで予約完了</div></div>
+        </div>
+      </div>
+      <div class="hero-img-wrap fade fade-delay-2">
+        <div class="hero-img-main">
+          <img src="images/hero.jpg" alt="なでしこクリーン 女性スタッフがエアコンクリーニング"
+               onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#edfaf9,#f3effa,#fdeef6)';this.parentNode.innerHTML+=`<div style='position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px'><div style='font-size:72px'>👩‍🔧</div><div style='font-size:13px;color:#7f7f99;text-align:center;font-weight:700;line-height:1.6'>女性スタッフが<br>丁寧にクリーニング</div></div>`">
+        </div>
+        <div class="hero-float hero-float-1">
+          <div class="hf-label">年間施工目標</div>
+          <div class="hf-val">400件</div>
+          <div class="hf-sub">2026年 6〜12月</div>
+        </div>
+        <div class="hero-float hero-float-2">
+          <span class="hf-tag">✓ 女性スタッフ100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ TRUST SCROLLBAR ━━━ -->
+<div class="trust-bar">
+  <div class="trust-scroll" id="trustScroll">
+    <div class="trust-item"><span class="trust-dot"></span>🌸 全スタッフ女性 — 男性が来ることは一切ありません</div>
+    <div class="trust-item"><span class="trust-dot"></span>追加料金一切なし・明朗会計</div>
+    <div class="trust-item"><span class="trust-dot"></span>スマホ完結・電話不要</div>
+    <div class="trust-item"><span class="trust-dot"></span>訪問前日にスタッフ顔写真・氏名をご連絡</div>
+    <div class="trust-item"><span class="trust-dot"></span>完全養生で周囲を保護</div>
+    <div class="trust-item"><span class="trust-dot"></span>施工前後の写真を必ずお送り</div>
+    <div class="trust-item"><span class="trust-dot"></span>損害保険加入済み・安心保証</div>
+    <div class="trust-item"><span class="trust-dot"></span>関東全域（東京・神奈川・埼玉・千葉）対応</div>
+    <!-- duplicate for seamless loop -->
+    <div class="trust-item"><span class="trust-dot"></span>🌸 全スタッフ女性 — 男性が来ることは一切ありません</div>
+    <div class="trust-item"><span class="trust-dot"></span>追加料金一切なし・明朗会計</div>
+    <div class="trust-item"><span class="trust-dot"></span>スマホ完結・電話不要</div>
+    <div class="trust-item"><span class="trust-dot"></span>訪問前日にスタッフ顔写真・氏名をご連絡</div>
+    <div class="trust-item"><span class="trust-dot"></span>完全養生で周囲を保護</div>
+    <div class="trust-item"><span class="trust-dot"></span>施工前後の写真を必ずお送り</div>
+    <div class="trust-item"><span class="trust-dot"></span>損害保険加入済み・安心保証</div>
+    <div class="trust-item"><span class="trust-dot"></span>関東全域（東京・神奈川・埼玉・千葉）対応</div>
+  </div>
+</div>
+
+<!-- ━━━ ANXIETY (男性への不安 専用セクション) ━━━ -->
+<section class="sec anxiety-sec" id="anxiety">
+  <div class="anxiety-ov1"></div>
+  <div class="anxiety-ov2"></div>
+  <div class="container anxiety-in">
+    <div class="anxiety-grid">
+      <div class="fade">
+        <div class="anxiety-lbl">Real Fear</div>
+        <h2 class="anxiety-h">見知らぬ男性を、<br>部屋に入れたくない。<br><em>それは当然の気持ちです。</em></h2>
+        <p class="anxiety-sub">「エアコン掃除くらいで大げさ」ではありません。<br>自分の生活空間に、知らない男性が入ってくること——<br>それを怖いと感じるのは、ごく自然なことです。<br>でも、そのサービスがなかっただけ。</p>
+        <div class="anxiety-stat">
+          <div>
+            <div class="anxiety-stat-n">68<span style="font-size:1.1rem">%</span></div>
+            <div class="anxiety-stat-l">女性が「訪問業者の性別が<br>気になる」と感じている＊</div>
+          </div>
+          <div>
+            <div class="anxiety-stat-n">3年<span style="font-size:1.1rem">以上</span></div>
+            <div class="anxiety-stat-l">エアコンを一度も洗えずに<br>いる女性の平均放置期間＊</div>
+          </div>
+        </div>
+        <p style="font-size:.65rem;color:rgba(255,255,255,.28);margin-top:14px">＊なでしこクリーン独自調査（2025年）</p>
+      </div>
+      <div class="fade fade-delay-2">
+        <div class="anxiety-scenes">
+          <div class="anxiety-scene">
+            <div class="anxiety-scene-ic">🚪</div>
+            <div class="anxiety-scene-txt">
+              <strong>「一人暮らしだから、なおさら怖い」</strong>
+              <p>作業中ずっと2人きり。知らない男性が部屋の中を歩き回る——その状況が、怖くて当然です。実際、多くの女性が「それが嫌で頼めない」と感じています。</p>
+            </div>
+          </div>
+          <div class="anxiety-scene">
+            <div class="anxiety-scene-ic">👀</div>
+            <div class="anxiety-scene-txt">
+              <strong>「生活空間を男性に見られたくない」</strong>
+              <p>家の中のレイアウト、物の配置、生活感——プライベートな空間に他人が入ること自体への抵抗感。特に相手が男性だと、なおさら気になりますよね。</p>
+            </div>
+          </div>
+          <div class="anxiety-scene">
+            <div class="anxiety-scene-ic">🕐</div>
+            <div class="anxiety-scene-txt">
+              <strong>「何年もずっと我慢してきた」</strong>
+              <p>「女性スタッフが来てくれたら頼むのに」——そう思いながら、何年も後回しにしてきた。なでしこクリーンは、その「あったらいいな」を叶えるために生まれました。</p>
+            </div>
+          </div>
+        </div>
+        <div class="anxiety-resolve fade fade-delay-3">
+          <div class="anxiety-resolve-ic">🌸</div>
+          <p><strong>なでしこクリーンは全スタッフ女性。</strong>男性スタッフが訪問することは一切ありません。その不安に、正面から向き合うために、このサービスをつくりました。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ PROBLEM ━━━ -->
+<section class="sec prob" id="prob">
+  <div class="container">
+    <div class="prob-header fade">
+      <div class="lbl">Your Story</div>
+      <h2 class="h2">「男性が来るから頼めない」<br>——<em class="grad-text">その気持ち、正解です。</em></h2>
+      <p class="lead" style="margin-top:12px">あなたが頼めなかったのは、あなたのせいじゃない。そのサービスがなかっただけ。</p>
+    </div>
+    <div class="prob-in">
+      <div class="fade">
+        <div class="prob-img">
+          <img src="images/staff_feat.jpg"
+               alt="なでしこクリーン 女性スタッフ" loading="lazy"
+               onerror="this.style.display='none'">
+          <div class="prob-badge">
+            <strong>こんな不安、ありませんか？</strong>
+            <p>頼みたいのに踏み出せずにいる女性のために、なでしこクリーンをつくりました。</p>
+          </div>
+        </div>
+      </div>
+      <div class="fade fade-delay-2">
+        <div class="lbl">あなたの悩み</div>
+        <h2 class="h2" style="margin-bottom:28px">「頼みたいのに、<br>頼めない」を<em class="grad-text">解決します。</em></h2>
+        <div class="prob-list">
+          <div class="prob-item prob-item-featured">
+            <div class="prob-ic prob-ic-1">🚪</div>
+            <div class="prob-txt">
+              <span class="prob-featured-badge">最も多いお悩み No.1</span>
+              <strong>知らない男性が自宅に来るのが、こわい</strong>
+              <p>「一人暮らしだから余計に怖い」「部屋の中を見られたくない」「作業中ずっと2人きりになるのが不安」——エアコン掃除を何年も頼めない女性の、一番大きな理由がこれです。なでしこクリーンは、この不安を根本から解消するために生まれました。</p>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ic prob-ic-2">💸</div>
+            <div class="prob-txt"><strong>当日に追加料金を言われそう</strong><p>ネットの価格と実際が違う。現地で「これも必要」と言われた経験、聞いたことありませんか？</p></div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ic prob-ic-3">📞</div>
+            <div class="prob-txt"><strong>電話・日程調整が面倒</strong><p>電話して、折り返しを待って…。「スマホで全部終わればいいのに」と思いながら後回しにしてしまう。</p></div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ic prob-ic-4">🧹</div>
+            <div class="prob-txt"><strong>作業が雑じゃないか心配</strong><p>養生してくれるか、靴下のまま上がらないか。細かいことが気になって、頼む勇気が出なかった。</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ SOLUTION BRIDGE ━━━ -->
+<section class="sec solve-sec">
+  <div class="container">
+    <div class="solve-in fade">
+      <div class="solve-eyebrow">
+        <span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;flex-shrink:0"></span>
+        なでしこクリーンが生まれた理由
+      </div>
+      <h2 class="solve-h2">だから、<br>「女性スタッフだけ」のサービスを<br>つくりました。</h2>
+      <p class="solve-p">「できれば女性がいい」——そう思っていても、そのサービスがなかった。<br>なでしこクリーンは、その「あったらいいな」に答えるために生まれました。<br>頼みたかったのに頼めなかった、そんな日々に終止符を。</p>
+      <div class="solve-pts">
+        <span class="solve-pt">✓ 全スタッフ女性</span>
+        <span class="solve-pt">✓ 明朗会計・追加料金ゼロ</span>
+        <span class="solve-pt">✓ スマホ完結・電話不要</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 3 PROMISES ━━━ -->
+<section class="sec zeros" id="promise">
+  <div class="container">
+    <div class="sec-head fade" style="text-align:center">
+      <div class="lbl">Our Promise</div>
+      <h2 class="h2">「頼みづらい」を、ぜんぶ<em class="grad-text">ゼロ</em>に。</h2>
+      <p class="lead" style="margin-top:12px">なでしこクリーンの、3つの約束。これだけ揃えれば、ずっと頼めなかった理由がなくなります。</p>
+    </div>
+    <div class="z-grid">
+      <div class="z-card fade fade-delay-1">
+        <img class="z-img" src="images/staff1.jpg" alt="女性スタッフだけが訪問" loading="lazy" onerror="this.style.display='none'">
+        <div class="z-body">
+          <div class="z-num">Zero 01</div>
+          <h3 class="z-title">男性スタッフ「ゼロ」</h3>
+          <p class="z-desc">研修修了した女性スタッフのみが伺います。訪問前日に顔写真・氏名・経歴をお送りするので、「誰が来るか」がわかった状態で扉を開けられます。</p>
+        </div>
+      </div>
+      <div class="z-card fade fade-delay-2">
+        <img class="z-img" src="images/care.jpg" alt="明朗会計 追加料金なし" loading="lazy" onerror="this.style.display='none'">
+        <div class="z-body">
+          <div class="z-num">Zero 02</div>
+          <h3 class="z-title">わかりにくい見積もり「ゼロ」</h3>
+          <p class="z-desc">出張費・駐車場代・女性指名料・養生・後片付け、すべて込みの明朗会計。ご予約時の金額がすべてです。当日に「追加費用が…」は一切ありません。</p>
+        </div>
+      </div>
+      <div class="z-card fade fade-delay-3">
+        <img class="z-img" src="images/gallery1.jpg" alt="スマホで簡単予約" loading="lazy" onerror="this.style.display='none'">
+        <div class="z-body">
+          <div class="z-num">Zero 03</div>
+          <h3 class="z-title">面倒な電話調整「ゼロ」</h3>
+          <p class="z-desc">Web予約で空き枠を選ぶだけ。決済も連絡もスマホで完結。電話折り返しを待つ手間は一切なし。3分で予約完了できます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ STAFF ━━━ -->
+<section class="sec staff" id="staff">
+  <div class="container">
+    <div class="staff-top">
+      <div class="staff-top-img fade">
+        <img src="images/staff_feat.jpg" alt="なでしこクリーン 女性スタッフチーム" loading="lazy"
+             onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#edfaf9,#f3effa)';this.parentNode.innerHTML+=`<div style='width:100%;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;font-size:80px'>👩‍👩‍👧</div>`">
+      </div>
+      <div class="fade">
+        <div class="lbl">Our Team</div>
+        <h2 class="h2" style="margin-bottom:16px">「誰が来るか」が<br>わかるから、<em class="grad-text">安心できる。</em></h2>
+        <p class="lead">訪問前日に担当スタッフの顔写真・氏名・資格をお送りします。扉を開ける前から「知っている人」になれる——それがなでしこクリーンの安心です。<br><br>技術・清潔感・接客マナーすべてに基準を設け、研修修了したスタッフのみが現場へ。男性スタッフが訪問することは一切ありません。</p>
+        <div class="staff-promise">
+          <div class="sp-item">
+            <div class="sp-icon">🛡️</div>
+            <div class="sp-text">男性スタッフが訪問することは一切ありません。すべての作業を女性スタッフが担当します。</div>
+          </div>
+          <div class="sp-item">
+            <div class="sp-icon">📸</div>
+            <div class="sp-text">作業前後の写真をお送りします。施工内容の透明性を大切にしています。</div>
+          </div>
+          <div class="sp-item">
+            <div class="sp-icon">🔒</div>
+            <div class="sp-text">損害保険に加入済み。万一の場合も安心して対応いたします。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="staff-grid">
+      <div class="sc fade fade-delay-1">
+        <div class="sc-avatar sc-avatar-1">
+          <img src="images/staff1.jpg" alt="スタッフ" loading="lazy"
+               onerror="this.style.display='none'">
+          <span class="sc-avatar-emoji">👩</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-name">丁寧な対応を大切に</div>
+          <div class="sc-role">エアコンクリーニング担当</div>
+          <div class="sc-tags"><span class="sc-tag">養生徹底</span><span class="sc-tag">清潔感管理</span></div>
+        </div>
+      </div>
+      <div class="sc fade fade-delay-2">
+        <div class="sc-avatar sc-avatar-2">
+          <img src="images/staff2.jpg" alt="スタッフ" loading="lazy"
+               onerror="this.style.display='none'">
+          <span class="sc-avatar-emoji">👩‍🦱</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-name">研修修了・実績あり</div>
+          <div class="sc-role">エアコンクリーニング担当</div>
+          <div class="sc-tags"><span class="sc-tag">押し売りなし</span><span class="sc-tag">丁寧な接客</span></div>
+        </div>
+      </div>
+      <div class="sc fade fade-delay-3">
+        <div class="sc-avatar sc-avatar-3">
+          <img src="images/staff3.jpg" alt="スタッフ" loading="lazy"
+               onerror="this.style.display='none'">
+          <span class="sc-avatar-emoji">👩‍🦰</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-name">事前情報をしっかり共有</div>
+          <div class="sc-role">エアコンクリーニング担当</div>
+          <div class="sc-tags"><span class="sc-tag">施工写真記録</span><span class="sc-tag">作業標準化</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ GALLERY ━━━ -->
+<section class="sec gallery-sec">
+  <div class="container">
+    <div class="sec-head fade" style="text-align:center">
+      <div class="lbl">Our Work</div>
+      <h2 class="h2">女性スタッフが、<em class="grad-text">丁寧に。</em></h2>
+      <p class="lead" style="margin-top:12px">完全養生・高圧洗浄・施工写真報告まで。<br>「安心して任せられた」という体験をお届けするのが私たちの仕事です。</p>
+    </div>
+    <div class="gallery-grid fade">
+      <div class="g-wide">
+        <img src="images/gallery1.jpg" alt="エアコンクリーニング作業" loading="lazy"
+             onerror="this.outerHTML='<div class=\'g-wide\'><div class=\'gallery-placeholder\'>🧹</div></div>'">
+      </div>
+      <div>
+        <img src="images/gallery2.jpg" alt="エアコンフィルター清掃" loading="lazy"
+             onerror="this.outerHTML='<div class=\'gallery-placeholder\'>✨</div>'">
+      </div>
+      <div>
+        <img src="images/gallery3.jpg" alt="作業後のエアコン" loading="lazy"
+             onerror="this.outerHTML='<div class=\'gallery-placeholder\'>💨</div>'">
+      </div>
+      <div>
+        <img src="images/gallery4.jpg" alt="丁寧な作業" loading="lazy"
+             onerror="this.outerHTML='<div class=\'gallery-placeholder\'>🌸</div>'">
+      </div>
+      <div class="g-wide">
+        <img src="images/gallery5.jpg" alt="完成したクリーンなエアコン" loading="lazy"
+             onerror="this.outerHTML='<div class=\'g-wide\'><div class=\'gallery-placeholder\'>🏠</div></div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ PRICE ━━━ -->
+<section class="sec price-sec" id="price">
+  <div class="container">
+    <div class="sec-head fade">
+      <div class="lbl">Pricing</div>
+      <h2 class="h2">シンプルで、<em class="grad-text">ぜんぶ込みの料金</em></h2>
+      <p class="lead" style="margin-top:12px">出張費・養生・後片付け、すべて含んだ価格です。当日に驚くことはありません。</p>
+    </div>
+    <div class="price-in">
+      <div class="price-card fade">
+        <div class="price-ribbon">人気プラン</div>
+        <div class="price-name">壁掛けエアコン洗浄（1台）</div>
+        <div class="price-row">
+          <span class="price-¥">¥</span>
+          <span class="price-n">17,900</span>
+        </div>
+        <span class="price-tax">税込・追加費用なし</span>
+        <div class="price-tags">
+          <span class="pt">出張費 込み</span>
+          <span class="pt">駐車場代 込み</span>
+          <span class="pt">女性指名料 込み</span>
+          <span class="pt">養生・後片付け 込み</span>
+        </div>
+        <hr class="price-hr">
+        <p style="font-size:.8rem;color:var(--mid);font-weight:600;margin-bottom:14px">オプション（追加料金）</p>
+        <div class="opt-list">
+          <div class="opt-row"><span class="opt-n">天吊り・業務用エアコン</span><span class="opt-p">+¥5,000〜</span></div>
+          <div class="opt-row"><span class="opt-n">防カビコーティング</span><span class="opt-p">+¥2,000</span></div>
+          <div class="opt-row"><span class="opt-n">2台目以降の割引</span><span class="opt-p">-¥2,000/台</span></div>
+        </div>
+        <div style="margin-top:24px">
+          <a href="#cta" class="btn-p" style="width:100%;justify-content:center;font-size:.9rem">このプランで予約する</a>
+        </div>
+      </div>
+      <div class="price-img-wrap fade fade-delay-2">
+        <div class="price-img-main">
+          <img src="images/ac_after.jpg" alt="クリーニング後のエアコン" loading="lazy"
+               onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px\'><div style=\'font-size:72px\'>✨</div><div style=\'font-size:13px;color:#7f7f99;text-align:center;font-weight:700\'>施工後、こんなにキレイになります</div></div>'">
+        </div>
+        <div class="price-float">
+          <div class="pf-t">施工後の満足度</div>
+          <div class="pf-v">98.5<span style="font-size:.9rem">%</span></div>
+          <div class="pf-s">2026年サービス開始予定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ FLOW ━━━ -->
+<section class="sec flow-sec">
+  <div class="container">
+    <div class="sec-head fade" style="text-align:center">
+      <div class="lbl">How It Works</div>
+      <h2 class="h2">たったの<em class="grad-text">4ステップ</em>で完了</h2>
+      <p class="lead" style="margin-top:12px">スマホだけで全部終わります。電話は不要です。</p>
+    </div>
+    <div class="flow-steps fade">
+      <div class="flow-line"></div>
+      <div class="flow-step fade-delay-1">
+        <div class="flow-ic">
+          <div class="flow-ic-placeholder">📱</div>
+        </div>
+        <div class="flow-num">1</div>
+        <div class="flow-lbl">Web予約</div>
+        <p class="flow-desc">空き枠を選んで、スマホで予約。3分で完了します。</p>
+      </div>
+      <div class="flow-step fade-delay-2">
+        <div class="flow-ic">
+          <div class="flow-ic-placeholder">📋</div>
+        </div>
+        <div class="flow-num">2</div>
+        <div class="flow-lbl">スタッフ紹介</div>
+        <p class="flow-desc">担当スタッフのプロフィールを前日にお送りします。</p>
+      </div>
+      <div class="flow-step fade-delay-3">
+        <div class="flow-ic">
+          <div class="flow-ic-placeholder">🧹</div>
+        </div>
+        <div class="flow-num">3</div>
+        <div class="flow-lbl">施工・お掃除</div>
+        <p class="flow-desc">完全養生で丁寧に施工。作業中は安心してお任せを。</p>
+      </div>
+      <div class="flow-step" style="transition-delay:.4s">
+        <div class="flow-ic">
+          <div class="flow-ic-placeholder">✅</div>
+        </div>
+        <div class="flow-num">4</div>
+        <div class="flow-lbl">写真報告・完了</div>
+        <p class="flow-desc">施工前後の写真を送付して完了。支払いもスマホで。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ BEFORE / AFTER ━━━ -->
+<section class="sec ac-sec">
+  <div class="container">
+    <div class="sec-head fade" style="text-align:center">
+      <div class="lbl">Before &amp; After</div>
+      <h2 class="h2">こんなに<em class="grad-text">変わります。</em></h2>
+      <p class="lead" style="margin-top:12px">エアコン内部の汚れは、外からは見えません。だから怖い。</p>
+    </div>
+    <div class="ac-grid">
+      <div class="ac-card before fade">
+        <div class="ac-img-wrap">
+          <img src="images/ac_before.jpg" alt="クリーニング前" loading="lazy"
+               onerror="this.style.display='none';this.parentNode.innerHTML+=`<div class=\'ac-img-placeholder\'><div style=\'font-size:48px\'>😱</div><div>クリーニング前</div></div>`">
+          <div class="ac-badge">BEFORE 清掃前</div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-lbl">Before</div>
+          <h3 class="ac-ttl">カビ・ホコリが内部に蓄積</h3>
+          <p class="ac-desc">エアコン内部にはカビや雑菌が大量に潜んでいます。冷暖房のたびに部屋中に飛散させているかも。臭いや体調不良の原因になることも。</p>
+        </div>
+      </div>
+      <div class="ac-card after fade fade-delay-2">
+        <div class="ac-img-wrap">
+          <img src="images/ac_after.jpg" alt="クリーニング後" loading="lazy"
+               onerror="this.style.display='none';this.parentNode.innerHTML+=`<div class=\'ac-img-placeholder\'><div style=\'font-size:48px\'>✨</div><div>クリーニング後</div></div>`">
+          <div class="ac-badge">AFTER 清掃後</div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-lbl">After</div>
+          <h3 class="ac-ttl">新品同様の清潔さに</h3>
+          <p class="ac-desc">高圧洗浄で見えない汚れも一掃。清潔な空気が循環するようになります。冷暖房効率もアップ、電気代節約にもつながります。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ CARE (安心ポイント) ━━━ -->
+<section class="sec care-sec">
+  <div class="container">
+    <div class="care-in">
+      <div class="care-img-wrap fade">
+        <img src="images/care.jpg" alt="丁寧な作業の様子" loading="lazy"
+             onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'care-img-placeholder\'>🌸</div>'">
+      </div>
+      <div class="fade fade-delay-2">
+        <div class="lbl">Why Us</div>
+        <h2 class="h2" style="margin-bottom:20px">「女性に来てほしい」<br>その気持ちに、<em class="grad-text">全力で応えます。</em></h2>
+        <p class="lead" style="margin-bottom:28px">技術はもちろん、「ここまでやってくれるの？」と感じていただける丁寧さが、なでしこクリーンの誇りです。</p>
+        <div class="care-list">
+          <div class="care-item">
+            <div class="care-chk">✓</div>
+            <div><div class="care-ttl">完全養生で周囲を保護</div><div class="care-d">エアコン下の床・壁をしっかり養生。汚れ・水濡れゼロで施工します。</div></div>
+          </div>
+          <div class="care-item">
+            <div class="care-chk">✓</div>
+            <div><div class="care-ttl">靴下着用・室内スリッパ使用</div><div class="care-d">清潔感にこだわっています。土足で上がることは絶対にありません。</div></div>
+          </div>
+          <div class="care-item">
+            <div class="care-chk">✓</div>
+            <div><div class="care-ttl">施工前後に写真で報告</div><div class="care-d">「ちゃんとやってもらえたか」がひと目でわかります。透明性を大切に。</div></div>
+          </div>
+          <div class="care-item">
+            <div class="care-chk">✓</div>
+            <div><div class="care-ttl">訪問前にスタッフ情報をお送り</div><div class="care-d">顔写真・氏名・資格を事前にお知らせします。「誰が来るの？」の不安を解消。</div></div>
+          </div>
+          <div class="care-item">
+            <div class="care-chk">✓</div>
+            <div><div class="care-ttl">損害保険加入済み</div><div class="care-d">万一の事故にも対応できる損害保険に加入しています。</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ AREA ━━━ -->
+<section class="area-sec">
+  <div class="area-bg"></div>
+  <div class="area-ov"></div>
+  <div class="container">
+    <div class="area-in fade">
+      <div class="lbl">Service Area</div>
+      <h2 class="h2">対応エリア</h2>
+      <p class="lead" style="margin-top:10px;margin-bottom:32px">2026年6月のサービス開始時点での対応エリアです。順次拡大予定。</p>
+      <div class="area-badges">
+        <span class="area-b">東京都</span>
+        <span class="area-b">神奈川県</span>
+        <span class="area-b">埼玉県</span>
+        <span class="area-b">千葉県</span>
+        <span class="area-b" style="opacity:.5">（順次拡大予定）</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ FAQ ━━━ -->
+<section class="sec faq-sec" id="faq">
+  <div class="container">
+    <div class="faq-wrap">
+      <div class="faq-side fade">
+        <div class="lbl">FAQ</div>
+        <h2 class="h2" style="margin-bottom:14px">よくある<br><em class="grad-text">質問</em></h2>
+        <p class="lead" style="margin-bottom:28px">まずは読んでみてください。ほとんどの疑問が解消されます。</p>
+        <div class="faq-side-img">
+          <div class="faq-side-img-placeholder">💬</div>
+        </div>
+      </div>
+      <div class="fade fade-delay-2">
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <button class="faq-q">スタッフが本当に女性かどうか、確認できますか？<span class="faq-tog">+</span></button>
+            <div class="faq-a"><div class="faq-ai">はい、確認できます。ご予約後、訪問前日に担当スタッフの顔写真・氏名・経歴をお送りします。万一ご不安があれば、訪問当日に身分証のご提示も対応いたします。</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">予約後のキャンセルはできますか？<span class="faq-tog">+</span></button>
+            <div class="faq-a"><div class="faq-ai">施工日の3日前まではキャンセル料無料です。2日前以降はキャンセル料（料金の30〜100%）が発生します。詳しくは予約確認メールをご確認ください。</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">作業中、家にいなくてもいいですか？<span class="faq-tog">+</span></button>
+            <div class="faq-a"><div class="faq-ai">立ち会いが必要です。鍵をお預けするサービスは現在対応しておりません。ご了承ください。</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">エアコンの種類に制限はありますか？<span class="faq-tog">+</span></button>
+            <div class="faq-a"><div class="faq-ai">一般的な壁掛けエアコンに対応しています。天吊り型や業務用エアコンは別途オプション料金が発生します。まずはお問い合わせください。</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">支払い方法は何が使えますか？<span class="faq-tog">+</span></button>
+            <div class="faq-a"><div class="faq-ai">クレジットカード（VISA・Mastercard・JCB・AMEX）、PayPay、銀行振込に対応しています。現金払いはお断りしております。</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">クリーニングの所要時間はどれくらいですか？<span class="faq-tog">+</span></button>
+            <div class="faq-a"><div class="faq-ai">一般的な壁掛けエアコン1台で、養生・洗浄・乾燥・後片付けを含め約1.5〜2時間です。機種の状態によって前後します。</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ TESTIMONIALS ━━━ -->
+<section class="sec testi-sec">
+  <div class="container">
+    <div class="sec-head fade" style="text-align:center">
+      <div class="lbl">Reviews</div>
+      <h2 class="h2">「やっと頼めた」<em class="grad-text">お客さまの声</em></h2>
+      <p class="lead" style="margin-top:12px">ずっと頼めなかった女性のお客さまから、喜びの声をいただいています。</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade fade-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">一人暮らしで業者を呼ぶのが怖かったんですが、女性スタッフさんで本当に安心しました。事前に写真と名前も送ってくれたので、初対面でも緊張しませんでした。</p>
+        <div class="testi-user">
+          <div class="testi-avatar"><img src="images/avatar1.jpg" alt="山田さん" onerror="this.style.display='none'"></div>
+          <div><div class="testi-name">山田 Y. さん</div><div class="testi-detail">30代・一人暮らし・東京都</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade fade-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">料金が最初から決まっていて、当日に何も言われなかったのが感動でした。スマホで予約できてとにかく楽。また絶対リピートします！</p>
+        <div class="testi-user">
+          <div class="testi-avatar"><img src="images/avatar2.jpg" alt="鈴木さん" onerror="this.style.display='none'"></div>
+          <div><div class="testi-name">鈴木 S. さん</div><div class="testi-detail">40代・主婦・神奈川県</div></div>
+        </div>
+      </div>
+      <div class="testi-card fade fade-delay-3">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">子どもがアレルギー持ちで、エアコンの清潔さが心配でした。プロにやってもらってから臭いが消えて、子どもの鼻炎も少し改善した気がします。</p>
+        <div class="testi-user">
+          <div class="testi-avatar"><img src="images/avatar3.jpg" alt="田中さん" onerror="this.style.display='none'"></div>
+          <div><div class="testi-name">田中 T. さん</div><div class="testi-detail">30代・2児の母・埼玉県</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ CTA ━━━ -->
+<section class="cta-sec" id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-ov"></div>
+  <div class="container">
+    <div class="cta-in fade">
+      <div class="cta-badge">
+        <span class="badge-dot"></span>
+        2026年6月 サービス開始 ・ 関東エリア対応
+      </div>
+      <h2>部屋に来るのは、<em>女性だけ。</em><br>あなたの不安に、正面から向き合います。</h2>
+      <p>「女性スタッフが来てくれたら頼む」——その選択肢が、ついに生まれました。<br>知らない男性を部屋に入れなくていい。スマホひとつで今すぐ予約できます。</p>
+      <a href="https://line.me/" class="cta-btn" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        無料で予約する（LINE）
+      </a>
+      <p class="cta-sub">キャンセル無料（3日前まで）・電話不要・所要1.5〜2時間</p>
+      <div class="cta-trust">
+        <div class="cta-trust-item"><span class="cta-trust-icon">🛡️</span>女性スタッフ100%</div>
+        <div class="cta-trust-item"><span class="cta-trust-icon">💰</span>明朗会計・追加料金ゼロ</div>
+        <div class="cta-trust-item"><span class="cta-trust-icon">📱</span>スマホ完結・電話不要</div>
+        <div class="cta-trust-item"><span class="cta-trust-icon">📸</span>施工写真報告あり</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ STICKY MOBILE CTA ━━━ -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#cta" class="sticky-cta-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    無料で予約する（女性スタッフが伺います）
+  </a>
+  <p class="sticky-cta-note">追加料金なし・キャンセル無料（3日前まで）</p>
+</div>
+
+<!-- ━━━ FOOTER ━━━ -->
+<footer class="ft">
+  <div class="container">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">
+          <svg width="28" height="28" viewBox="0 0 38 38" fill="none">
+            <defs>
+              <linearGradient id="ftGrad" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#5ECBC5"/>
+                <stop offset="50%" stop-color="#9B7EC8"/>
+                <stop offset="100%" stop-color="#E87BAD"/>
+              </linearGradient>
+            </defs>
+            <rect width="38" height="38" rx="10" fill="url(#ftGrad)"/>
+            <path d="M19 8 L30 17 L30 30 L8 30 L8 17 Z" stroke="white" stroke-width="1.6" fill="rgba(255,255,255,0.15)" stroke-linejoin="round"/>
+            <path d="M14 30 L14 22 L19 22 L19 30" stroke="white" stroke-width="1.4" fill="none"/>
+            <g transform="translate(19,13)">
+              <ellipse rx="2.2" ry="4" fill="white" opacity="0.95"/>
+              <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(72)"/>
+              <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(144)"/>
+              <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(216)"/>
+              <ellipse rx="2.2" ry="4" fill="white" opacity="0.95" transform="rotate(288)"/>
+              <circle r="2.5" fill="white"/>
+            </g>
+          </svg>
+          <span class="ft-logo-text">なでしこクリーン</span>
+        </div>
+        <p class="ft-desc">女性スタッフ100%のエアコンクリーニング専門サービス。安心・明朗会計・スマホ完結。関東エリア対応。</p>
+      </div>
+      <div class="ft-links">
+        <div class="ft-grp">
+          <h4>サービス</h4>
+          <a href="#promise">安心の3つの約束</a>
+          <a href="#staff">スタッフ紹介</a>
+          <a href="#price">料金プラン</a>
+          <a href="#faq">よくある質問</a>
+        </div>
+        <div class="ft-grp">
+          <h4>ご予約・お問い合わせ</h4>
+          <a href="#cta">LINEで予約する</a>
+          <a href="#">特定商取引法に基づく表記</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-btm">© 2026 なでしこクリーン. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// ━━━ SCROLL ANIMATION ━━━
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el))
+
+// ━━━ HEADER ON SCROLL ━━━
+window.addEventListener('scroll',()=>{
+  document.getElementById('hd').classList.toggle('on',window.scrollY>10)
+},{ passive:true })
+
+// ━━━ FAQ ACCORDION ━━━
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item = btn.closest('.faq-item')
+    const ans  = item.querySelector('.faq-a')
+    const open = item.classList.contains('open')
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(i=>{
+      i.classList.remove('open')
+      i.querySelector('.faq-a').style.maxHeight = null
+    })
+    if(!open){
+      item.classList.add('open')
+      ans.style.maxHeight = ans.scrollHeight+'px'
+    }
+  })
+})
+
+// ━━━ TRUST SCROLL DUPLICATE ━━━
+// seamless loop already handled by CSS duplicate items
+</script>
+</body>
+</html>
