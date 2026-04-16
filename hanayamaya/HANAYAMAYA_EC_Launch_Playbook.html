@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANAYAMAYA EC Launch Playbook — 全タスク戦略書</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a08;--bg2:#111110;--bg3:#1a1a17;--bg4:#222220;
+  --gold:#B89450;--gold-lt:#D4B270;--gold-dim:#8a6c38;
+  --white:#F2EFE8;--w8:rgba(242,239,232,.8);--w6:rgba(242,239,232,.6);--w3:rgba(242,239,232,.3);--w1:rgba(242,239,232,.1);
+  --red:#C45B4A;--green:#6B9E5B;--blue:#5B8EC4;--orange:#C4905B;
+}
+body{background:var(--bg);color:var(--white);font-family:'Noto Serif JP',serif;font-weight:300;line-height:1.9;-webkit-font-smoothing:antialiased}
+.container{max-width:900px;margin:0 auto;padding:2rem 2rem 6rem}
+
+/* HEADER */
+.header{text-align:center;padding:5rem 0 4rem;border-bottom:1px solid var(--w1)}
+.header-brand{font-family:'Cormorant Garamond',serif;font-size:.75rem;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+.header h1{font-size:1.6rem;font-weight:400;letter-spacing:.08em;margin-bottom:.5rem}
+.header .sub{font-size:.85rem;color:var(--w3);letter-spacing:.15em}
+.header .date{font-size:.7rem;color:var(--w3);margin-top:1.5rem;letter-spacing:.1em}
+
+/* NAV */
+.toc{padding:3rem 0;border-bottom:1px solid var(--w1)}
+.toc h2{font-family:'Cormorant Garamond',serif;font-size:.7rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.3rem 2rem}
+.toc a{color:var(--w6);text-decoration:none;font-size:.82rem;padding:.4rem 0;display:block;border-bottom:1px solid transparent;transition:all .3s}
+.toc a:hover{color:var(--gold);border-color:var(--gold-dim)}
+.toc .phase-label{color:var(--gold-dim);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;margin-top:1.5rem;margin-bottom:.3rem;grid-column:1/-1}
+
+/* SECTIONS */
+.section{padding:4rem 0;border-bottom:1px solid var(--w1)}
+.section-num{font-family:'Cormorant Garamond',serif;font-size:.65rem;letter-spacing:.3em;color:var(--gold-dim);text-transform:uppercase}
+.section h2{font-size:1.25rem;font-weight:400;margin:.5rem 0 .3rem;letter-spacing:.06em}
+.section .section-hook{font-size:.82rem;color:var(--w3);margin-bottom:2.5rem;font-style:italic}
+
+/* TASK CARDS */
+.task{background:var(--bg2);border:1px solid var(--w1);border-radius:6px;padding:2rem;margin-bottom:1.5rem;transition:border-color .3s}
+.task:hover{border-color:var(--gold-dim)}
+.task-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.task-badge{font-size:.6rem;letter-spacing:.15em;padding:.25rem .7rem;border-radius:3px;text-transform:uppercase;font-weight:500}
+.badge-client{background:rgba(196,91,74,.2);color:var(--red);border:1px solid rgba(196,91,74,.3)}
+.badge-team{background:rgba(91,142,196,.15);color:var(--blue);border:1px solid rgba(91,142,196,.25)}
+.badge-both{background:rgba(196,144,91,.15);color:var(--orange);border:1px solid rgba(196,144,91,.25)}
+.task h3{font-size:1rem;font-weight:400;letter-spacing:.04em}
+.task-body{color:var(--w8);font-size:.88rem;line-height:2}
+.task-body p{margin-bottom:1rem}
+.task-body strong{color:var(--gold-lt);font-weight:500}
+
+/* DETAIL BLOCKS */
+.detail{background:var(--bg3);border-left:2px solid var(--gold-dim);padding:1.2rem 1.5rem;margin:1.2rem 0;border-radius:0 4px 4px 0}
+.detail-label{font-size:.65rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem}
+.detail p,.detail li{font-size:.84rem;color:var(--w6);line-height:1.9}
+.detail ul{padding-left:1.2rem}
+.detail li{margin-bottom:.3rem}
+
+/* DECISION BOX */
+.decision{background:rgba(196,91,74,.06);border:1px solid rgba(196,91,74,.2);border-radius:6px;padding:1.5rem;margin:1.2rem 0}
+.decision-label{font-size:.65rem;letter-spacing:.2em;color:var(--red);text-transform:uppercase;margin-bottom:.5rem}
+.decision p{font-size:.84rem;color:var(--w8);line-height:1.9}
+
+/* WARNING */
+.warning{background:rgba(196,144,91,.06);border:1px solid rgba(196,144,91,.2);border-radius:6px;padding:1.2rem 1.5rem;margin:1.2rem 0}
+.warning-label{font-size:.65rem;letter-spacing:.2em;color:var(--orange);text-transform:uppercase;margin-bottom:.5rem}
+.warning p{font-size:.84rem;color:var(--w8)}
+
+/* COST TABLE */
+.cost-table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.84rem}
+.cost-table th{text-align:left;color:var(--gold-dim);font-weight:400;padding:.6rem .8rem;border-bottom:1px solid var(--w1);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+.cost-table td{padding:.6rem .8rem;border-bottom:1px solid rgba(242,239,232,.05);color:var(--w8)}
+.cost-table .cost-val{color:var(--gold-lt);font-weight:400;text-align:right}
+
+/* TIMELINE */
+.timeline{display:flex;gap:0;margin:2rem 0;overflow-x:auto}
+.timeline-item{flex:1;min-width:120px;text-align:center;position:relative;padding-top:2rem}
+.timeline-item::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--bg3)}
+.timeline-item.active::before{background:var(--gold)}
+.timeline-dot{width:10px;height:10px;border-radius:50%;background:var(--bg3);border:2px solid var(--w3);position:absolute;top:-4px;left:50%;transform:translateX(-50%)}
+.timeline-item.active .timeline-dot{background:var(--gold);border-color:var(--gold)}
+.timeline-month{font-size:.7rem;color:var(--w3);letter-spacing:.1em}
+.timeline-label{font-size:.72rem;color:var(--w6);margin-top:.3rem}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .container{padding:1.5rem 1rem 4rem}
+  .toc-grid{grid-template-columns:1fr}
+  .header h1{font-size:1.3rem}
+  .task{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <p class="header-brand">HANAYAMAYA — Reclaim the center.</p>
+  <h1>EC Launch Playbook</h1>
+  <p class="sub">全タスク戦略書 — 考え抜いた37のアクション</p>
+  <p class="date">2026年4月〜9月 ／ 2kg単一SKU ／ ¥3,800（税込・送料込）</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc" id="toc">
+  <h2>Contents</h2>
+  <div class="toc-grid">
+    <p class="phase-label">Phase 0 — 意思決定（今すぐ）</p>
+    <a href="#t01">01. ドメイン確定・取得</a>
+    <a href="#t02">02. Squareアカウント開設・本人確認</a>
+    <a href="#t03">03. Google Workspace開設</a>
+    <a href="#t04">04. 配送業者の選定</a>
+    <a href="#t05">05. 梱包仕様の最終決定</a>
+
+    <p class="phase-label">Phase 1 — 法務・コンプライアンス</p>
+    <a href="#t06">06. 特定商取引法に基づく表記</a>
+    <a href="#t07">07. プライバシーポリシー策定</a>
+    <a href="#t08">08. 食品表示ラベル作成</a>
+    <a href="#t09">09. 返品・キャンセルポリシー</a>
+    <a href="#t10">10. 利用規約</a>
+
+    <p class="phase-label">Phase 2 — インフラ構築</p>
+    <a href="#t11">11. DNS設定・Netlifyカスタムドメイン</a>
+    <a href="#t12">12. SSL証明書の確認</a>
+    <a href="#t13">13. Square商品登録・決済リンク作成</a>
+    <a href="#t14">14. LP最終調整（法定ページ追加）</a>
+    <a href="#t15">15. テスト購入・決済フロー全体確認</a>
+    <a href="#t16">16. メール設計（注文確認〜フォローアップ）</a>
+    <a href="#t17">17. GA4設置・コンバージョン設計</a>
+
+    <p class="phase-label">Phase 3 — 商品・物流準備</p>
+    <a href="#t18">18. パッケージ印刷最終確認・発注</a>
+    <a href="#t19">19. 食品表示ラベル印刷</a>
+    <a href="#t20">20. 梱包資材の調達</a>
+    <a href="#t21">21. 同梱物の設計・制作</a>
+    <a href="#t22">22. 初回在庫の確保・ロット決定</a>
+    <a href="#t23">23. 配送テスト（通し確認）</a>
+    <a href="#t24">24. 受注〜発送オペレーションフロー構築</a>
+
+    <p class="phase-label">Phase 4 — マーケティング準備</p>
+    <a href="#t25">25. Instagramアカウント設計</a>
+    <a href="#t26">26. 初期コンテンツ制作（6〜9投稿）</a>
+    <a href="#t27">27. ソフトローンチ先行案内リスト作成</a>
+    <a href="#t28">28. 先行案内メッセージの作成・送信</a>
+    <a href="#t29">29. 会計基盤（freee）の設定</a>
+
+    <p class="phase-label">Phase 5 — ローンチ＆初期運用</p>
+    <a href="#t30">30. ソフトローンチ実施</a>
+    <a href="#t31">31. 初期フィードバック収集・LP改善</a>
+    <a href="#t32">32. カスタマーサポート体制構築</a>
+    <a href="#t33">33. 在庫・発送管理の運用定着</a>
+
+    <p class="phase-label">Phase 6 — 広告テスト＆拡大</p>
+    <a href="#t34">34. Meta広告アカウント・ピクセル設定</a>
+    <a href="#t35">35. 広告クリエイティブ制作</a>
+    <a href="#t36">36. Square定期便（サブスク）機能実装</a>
+    <a href="#t37">37. KPI検証・次フェーズ意思決定</a>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 0 -->
+<!-- ============================================================ -->
+
+<div class="section" id="t01">
+  <p class="section-num">Task 01 / Phase 0</p>
+  <h2>ドメイン確定・取得</h2>
+  <p class="section-hook">ブランドの「住所」を決める。これが全ての起点。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>hanayamaya.com をムームードメインで取得</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画では <strong>hanayamaya.com</strong> を想定。年額¥1,408。ムームードメインなら即日取得可能。</p>
+
+      <p>ここで考えるべきことが3つある。</p>
+
+      <p><strong>① .com vs .jp の判断。</strong> .comは国際展開を見据える場合に強い。ただし、高級米という日本ローカル商材の場合、<strong>hanayamaya.jp</strong> のほうが信頼感が高い可能性がある。.jpは年額約¥3,000。コスト差は微少なので、ブランドイメージで判断すべき。事業計画の「Reclaim the center.」という英語タグラインと黒基調の世界観からすると、.comのほうがグローバル感があり合致する。</p>
+
+      <p><strong>② サブドメイン設計。</strong> 現時点では <strong>hanayamaya.com</strong>（LP）+ <strong>shop.hanayamaya.com</strong>（Square）が最もシンプル。メールは <strong>info@hanayamaya.com</strong>。将来的にブログや定期便専用ページが必要になった場合もサブドメインで対応可能。</p>
+
+      <p><strong>③ 取得タイミング。</strong> ドメインは早い者勝ち。「hanayamaya」は一般的な単語ではないため取られるリスクは低いが、事業計画が固まったなら今日取得しても問題ない。DNS反映に最大48時間かかるため、他のインフラ構築に先行して取るべき。</p>
+
+      <div class="decision">
+        <p class="decision-label">意思決定が必要</p>
+        <p><strong>hanayamaya.com</strong> で確定するか、<strong>.jp</strong> を検討するか。推奨は .com（事業計画の世界観との整合性）。</p>
+      </div>
+
+      <div class="detail">
+        <p class="detail-label">具体的な手順</p>
+        <ul>
+          <li>ムームードメイン（muumuu-domain.com）にアクセス</li>
+          <li>「hanayamaya.com」を検索 → 取得可能か確認</li>
+          <li>アカウント作成（クライアントの個人名義 or 法人名義）</li>
+          <li>Whois情報公開代行を「有効」に設定（個人情報非公開のため）</li>
+          <li>支払い方法を設定（クレジットカード推奨・自動更新ON）</li>
+          <li>取得完了後、DNS設定はEC支援チームに引き継ぎ</li>
+        </ul>
+      </div>
+
+      <div class="warning">
+        <p class="warning-label">注意点</p>
+        <p>ドメインの自動更新は必ずONにする。更新を忘れてドメインが失効すると、第三者に取られるリスクがある。ブランドドメインの喪失は致命的。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t02">
+  <p class="section-num">Task 02 / Phase 0</p>
+  <h2>Squareアカウント開設・本人確認</h2>
+  <p class="section-hook">決済インフラ。審査に数営業日かかるため、最優先で着手。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>Square for Retailを開設し、本人確認審査を通す</h3>
+    </div>
+    <div class="task-body">
+      <p>Squareを選んだ理由は明確：<strong>初期費用ゼロ・月額固定費ゼロ・決済手数料3.6%のみ</strong>。初期段階で月額費用が発生するBASEやShopify（月額$39〜）は不要。売上が月50万を超えるまではSquareが最適。</p>
+
+      <p><strong>審査で必要なもの：</strong></p>
+
+      <div class="detail">
+        <p class="detail-label">準備物</p>
+        <ul>
+          <li><strong>メールアドレス</strong> — Google Workspace設定前なので、まずは個人メールでOK。後から法人メールに変更可能</li>
+          <li><strong>本人確認書類</strong> — 運転免許証 or マイナンバーカード</li>
+          <li><strong>銀行口座情報</strong> — 売上入金先。個人口座でもOK（個人事業主として登録する場合）</li>
+          <li><strong>事業情報</strong> — 事業形態（個人事業主 or 法人）、業種（食品小売）、年間売上予測</li>
+        </ul>
+      </div>
+
+      <p><strong>ここで考えるべきこと：個人事業主 vs 法人。</strong></p>
+      <p>テスト販売フェーズ（4月〜9月）は<strong>個人事業主</strong>で始めるのが合理的。法人設立は売上が安定してからでよい。個人事業主でSquareを使う場合、屋号「HANAYAMAYA」で登録できる。インボイス制度への対応は別途freeeで管理する。</p>
+
+      <p><strong>Squareの審査は通常1〜3営業日</strong>だが、食品販売の場合に追加確認が入る可能性がある。最悪1週間を見込んでおく。だからこそ最優先で着手が必要。</p>
+
+      <div class="decision">
+        <p class="decision-label">意思決定が必要</p>
+        <p>① 個人事業主として登録するか、法人を設立してから登録するか（推奨：個人事業主で即開始）<br>
+        ② 入金サイクルの確認（Squareは翌営業日入金。ただし銀行によっては翌週）</p>
+      </div>
+
+      <div class="warning">
+        <p class="warning-label">落とし穴</p>
+        <p>Squareの「オンラインストア」機能と「決済リンク」機能は別物。HANAYAMAYAの場合、LPからの導線は<strong>決済リンク（Square Checkout Link）</strong>を使う。Squareのオンラインストアに独自LP機能があるが、今回は使わない（自前のLP + Netlifyのほうがデザイン自由度が高い）。ただし商品管理はSquareダッシュボードで行う。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t03">
+  <p class="section-num">Task 03 / Phase 0</p>
+  <h2>Google Workspace開設</h2>
+  <p class="section-hook">info@hanayamaya.com — ブランドの「声」をつくる。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>Google Workspace Business Starterを契約（¥825/月）</h3>
+    </div>
+    <div class="task-body">
+      <p>なぜGmailではダメか。<strong>@gmail.comからの注文確認メールは、一瞬で「素人の副業」に見える。</strong>¥3,800の高級米を買った直後に届くメールの差出人が「hanayamaya.rice@gmail.com」では、ブランド体験が台無しになる。</p>
+
+      <p><strong>info@hanayamaya.com</strong> ——この4文字の差が、顧客の「この選択は正しかった」という確信を支える。月¥825の投資対効果は計り知れない。</p>
+
+      <div class="detail">
+        <p class="detail-label">設定するメールアドレス</p>
+        <ul>
+          <li><strong>info@hanayamaya.com</strong> — 一般問い合わせ・注文確認の差出人（メイン）</li>
+          <li><strong>support@hanayamaya.com</strong> — カスタマーサポート用（当面はinfoへの転送で運用可）</li>
+          <li>将来的に <strong>hello@</strong> や <strong>order@</strong> が必要になったら追加（追加費用なし）</li>
+        </ul>
+      </div>
+
+      <p><strong>署名テンプレートも初日に設計する。</strong></p>
+      <p>HANAYAMAYAのトーンは「禅・静寂・余白」。メール署名もそれに合わせる。過剰な装飾は不要。ブランド名 + 一行のタグライン + URL + 連絡先、以上。</p>
+
+      <div class="detail">
+        <p class="detail-label">推奨署名フォーマット</p>
+        <p style="font-family:monospace;font-size:.78rem;white-space:pre;color:var(--w6)">
+—
+HANAYAMAYA
+Reclaim the center.
+https://hanayamaya.com
+info@hanayamaya.com
+        </p>
+      </div>
+
+      <div class="warning">
+        <p class="warning-label">順序の注意</p>
+        <p>Google Workspaceの設定にはドメインのDNS設定（MXレコード）が必要。つまり<strong>Task 01（ドメイン取得）が先</strong>。同日に両方やるのがベスト。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t04">
+  <p class="section-num">Task 04 / Phase 0</p>
+  <h2>配送業者の選定</h2>
+  <p class="section-hook">米2kgの配送。コスト・品質・オペレーション負荷のバランス。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>ヤマト運輸 vs 日本郵便 vs 佐川急便を比較し、確定する</h3>
+    </div>
+    <div class="task-body">
+      <p>米2kgの配送は<strong>60サイズ・2kg以内</strong>で収まる。これは全キャリアの最小サイズ帯。</p>
+
+      <table class="cost-table">
+        <tr><th>配送業者</th><th>サービス</th><th>60サイズ料金（関東→関東）</th><th style="text-align:right">特徴</th></tr>
+        <tr><td>ヤマト運輸</td><td>宅急便</td><td>¥940〜</td><td class="cost-val">追跡◎ 時間指定◎ ブランド印象◎</td></tr>
+        <tr><td>日本郵便</td><td>ゆうパック</td><td>¥870〜</td><td class="cost-val">コンビニ持込割引あり</td></tr>
+        <tr><td>佐川急便</td><td>飛脚宅配便</td><td>¥770〜</td><td class="cost-val">法人契約で最安</td></tr>
+        <tr><td>日本郵便</td><td>レターパックプラス</td><td>¥600（全国一律）</td><td class="cost-val">2kg・A4サイズ 厚さ制限なし</td></tr>
+      </table>
+
+      <p><strong>ここで深く考えるべきこと。</strong></p>
+
+      <p><strong>① 送料は「原価」ではなく「体験」の一部。</strong> 事業計画では送料を¥900と想定。ヤマト宅急便でほぼ原価。だが、ここでケチって佐川にすると「高級ブランドなのに佐川」という印象リスクがある。ヤマトの宅急便は消費者の信頼度が最も高い。¥3,800の高級米にふさわしい配送体験を提供するなら<strong>ヤマト一択</strong>。</p>
+
+      <p><strong>② 法人契約で送料を下げる。</strong> ヤマトは月間出荷数に応じて法人割引がある。ただし、テスト販売段階（月10〜30個）ではまだ交渉力がない。まずは個人契約（ヤマトビジネスメンバーズ or クロネコメンバーズ）で始め、月間50個を超えたら法人契約を交渉。</p>
+
+      <p><strong>③ 配送時の温度管理。</strong> 米は常温配送で問題ないが、真夏（7〜8月）は高温多湿による品質劣化リスクがある。ただし2kgなら消費速度が速い（約2週間分）ため、通常配送でOK。「届いたら冷暗所で保管してください」の一言を同梱物に入れる。</p>
+
+      <p><strong>④ 発送元の住所。</strong> 花山からの発送か、別拠点からの発送か。花山から直送できるなら「産地直送感」が出る。ただし毎日の発送オペレーションが花山で回るかは要確認。</p>
+
+      <div class="decision">
+        <p class="decision-label">意思決定が必要</p>
+        <p>① 配送業者：ヤマト宅急便で確定するか<br>
+        ② 発送拠点：花山から直送か、別拠点から発送か<br>
+        ③ 時間帯指定：購入時に選べるようにするか（推奨：Squareの注文フォームにノート欄を設けて対応）</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t05">
+  <p class="section-num">Task 05 / Phase 0</p>
+  <h2>梱包仕様の最終決定</h2>
+  <p class="section-hook">箱を開けた瞬間が、ブランド体験のクライマックス。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>「開封体験」をブランド体験の一部として設計する</h3>
+    </div>
+    <div class="task-body">
+      <p>Amazonの段ボールを開ける体験と、HANAYAMAYAの箱を開ける体験は、別物でなければならない。¥3,800を払った顧客が箱を開けた瞬間に「これは正しい選択だった」と思える演出が必要。</p>
+
+      <p><strong>梱包の3層設計：</strong></p>
+
+      <div class="detail">
+        <p class="detail-label">第1層：外箱（段ボール）</p>
+        <p>60サイズのクラフト段ボール。外側はシンプルでOK。ただし<strong>テープの色は黒</strong>にする（茶色のOPPテープではなく）。これだけで印象が変わる。できれば箱に小さなHANAYAMAYAロゴのスタンプを押す。コストは最小限で「ここはこだわっている」と伝わる。</p>
+      </div>
+
+      <div class="detail">
+        <p class="detail-label">第2層：薄紙（ティッシュペーパー）</p>
+        <p>箱を開けたとき、商品がむき出しではなく黒い薄紙で包まれている。この「一枚の紙」が開封体験を劇的に変える。黒の薄紙は100枚¥1,000程度。1枚あたり¥10のコストで高級感が3倍になる。</p>
+      </div>
+
+      <div class="detail">
+        <p class="detail-label">第3層：商品パッケージ（黒マット袋）</p>
+        <p>すでにデザイン済みの黒基調パッケージ。これがブランドの「顔」。薄紙を開けた瞬間、この黒い袋が現れる。それだけで「特別なものを手にした」感覚になる。</p>
+      </div>
+
+      <p><strong>原価への影響：</strong></p>
+      <table class="cost-table">
+        <tr><th>梱包資材</th><th>単価</th><th style="text-align:right">備考</th></tr>
+        <tr><td>60サイズ段ボール</td><td>¥80〜120</td><td class="cost-val">ダンボールワン等で50枚〜</td></tr>
+        <tr><td>黒テープ</td><td>¥5</td><td class="cost-val">1巻¥300 / 約60回分</td></tr>
+        <tr><td>黒薄紙</td><td>¥10</td><td class="cost-val">100枚¥1,000</td></tr>
+        <tr><td>緩衝材（紙パッキン）</td><td>¥15</td><td class="cost-val">クラフト紙パッキン推奨</td></tr>
+        <tr><td>サンキューカード</td><td>¥30</td><td class="cost-val">Task 21で設計</td></tr>
+        <tr><td style="color:var(--gold)"><strong>梱包資材合計</strong></td><td style="color:var(--gold)"><strong>¥140〜180</strong></td><td class="cost-val">事業計画の¥250に収まる</td></tr>
+      </table>
+
+      <p>事業計画では梱包費を¥250と見積もっていた。実際は¥140〜180で収まるため、<strong>¥70〜110の余裕</strong>がある。この余裕分で同梱物（花山の景色カードなど）を充実させられる。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 1: 法務・コンプライアンス -->
+<!-- ============================================================ -->
+
+<div class="section" id="t06">
+  <p class="section-num">Task 06 / Phase 1</p>
+  <h2>特定商取引法に基づく表記</h2>
+  <p class="section-hook">EC販売に法的に必須。これがないと違法。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>LPに特商法表記ページを追加する</h3>
+    </div>
+    <div class="task-body">
+      <p>特定商取引法に基づく表記は、EC販売において<strong>法的義務</strong>。表記がないまま販売を開始すると行政処分の対象になる。</p>
+
+      <p><strong>必須記載事項：</strong></p>
+      <div class="detail">
+        <p class="detail-label">記載が必要な項目</p>
+        <ul>
+          <li><strong>販売業者名</strong> — 個人事業主の場合は本名（屋号だけでは不可）</li>
+          <li><strong>代表者名</strong></li>
+          <li><strong>所在地</strong> — 省略不可。ただし個人事業主の場合、請求があれば遅滞なく開示する旨の記載で住所の省略が可能（2022年法改正）</li>
+          <li><strong>電話番号</strong> — 同上。請求時開示でも可</li>
+          <li><strong>メールアドレス</strong> — info@hanayamaya.com</li>
+          <li><strong>商品の販売価格</strong> — ¥3,800（税込）</li>
+          <li><strong>送料</strong> — 送料込み</li>
+          <li><strong>支払方法</strong> — クレジットカード（Square経由）</li>
+          <li><strong>支払時期</strong> — 注文時に決済</li>
+          <li><strong>商品の引き渡し時期</strong> — 注文から◯営業日以内に発送</li>
+          <li><strong>返品・交換について</strong> — 食品のため原則不可。不良品の場合のみ交換</li>
+        </ul>
+      </div>
+
+      <div class="decision">
+        <p class="decision-label">意思決定が必要</p>
+        <p>① 住所・電話番号を公開するか、請求時開示とするか（推奨：プライバシー保護の観点から請求時開示。ただし「請求があれば遅滞なく開示します」の文言は必須）<br>
+        ② 商品の引き渡し時期：注文から何営業日以内に発送するか（推奨：3〜5営業日）</p>
+      </div>
+
+      <div class="warning">
+        <p class="warning-label">よくある失敗</p>
+        <p>「所在地：宮城県」のような都道府県のみの記載はNG。省略する場合は必ず「請求があれば遅滞なく開示します」の文言を入れる。この文言がないと法的要件を満たさない。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t07">
+  <p class="section-num">Task 07 / Phase 1</p>
+  <h2>プライバシーポリシー策定</h2>
+  <p class="section-hook">個人情報保護法対応。顧客の信頼基盤。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>個人情報の取り扱いに関する方針を策定しLPに掲載</h3>
+    </div>
+    <div class="task-body">
+      <p>GA4でアクセス解析をする時点で、Cookie（個人情報）を取得している。プライバシーポリシーなしでのGA4利用は個人情報保護法に抵触するリスクがある。</p>
+
+      <p><strong>記載すべき内容：</strong></p>
+      <div class="detail">
+        <p class="detail-label">必須項目</p>
+        <ul>
+          <li>収集する個人情報の種類（氏名、住所、メール、電話番号、決済情報、アクセスログ）</li>
+          <li>利用目的（商品の発送、注文確認、マーケティング、サービス改善）</li>
+          <li>第三者提供の有無（Square：決済処理、ヤマト運輸：配送、Google：アクセス解析）</li>
+          <li>個人情報の管理方法</li>
+          <li>開示・訂正・削除の請求方法</li>
+          <li>Cookieの使用について（GA4）</li>
+          <li>問い合わせ窓口</li>
+        </ul>
+      </div>
+
+      <p>テンプレートはネット上に多数あるが、<strong>HANAYAMAYAのトーンに合わせて丁寧に書く</strong>。法律文書だからといって無味乾燥にする必要はない。「お客様の大切な情報を、責任を持ってお預かりします」という姿勢が伝わる文面に。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t08">
+  <p class="section-num">Task 08 / Phase 1</p>
+  <h2>食品表示ラベル作成</h2>
+  <p class="section-hook">食品表示法。これを間違えると回収騒ぎになる。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>食品表示法に準拠した表示ラベルを設計する</h3>
+    </div>
+    <div class="task-body">
+      <p>精米の食品表示は<strong>JAS法に基づく玄米及び精米品質表示基準</strong>で定められている。米の場合、一般的な加工食品とは表示ルールが異なる。</p>
+
+      <div class="detail">
+        <p class="detail-label">必須表示項目</p>
+        <ul>
+          <li><strong>名称</strong>：精米</li>
+          <li><strong>原料玄米</strong>：産地（宮城県）、品種（ひとめぼれ）、産年（令和7年産）、使用割合（単一原料米 or ブレンドの場合は割合）</li>
+          <li><strong>内容量</strong>：2kg</li>
+          <li><strong>精米時期</strong>：精米年月日 or 精米時期（◯年◯月上旬/中旬/下旬）</li>
+          <li><strong>販売者</strong>：氏名（法人名）+ 住所 + 電話番号</li>
+        </ul>
+      </div>
+
+      <p><strong>ここで深く考えるべきこと。</strong></p>
+
+      <p><strong>① 「産年」の表示。</strong> 2026年4月にローンチする場合、販売するのは<strong>令和7年（2025年）産</strong>の米。「令和7年産」と明記する必要がある。新米の時期（10月〜）には「令和8年産 新米」と切り替わる。ラベルの印刷を大量に刷ると産年切り替え時に在庫が無駄になる。<strong>ラベルは小ロットで印刷するか、産年部分だけシールで対応</strong>するのが現実的。</p>
+
+      <p><strong>② 精米時期の鮮度管理。</strong> 米は精米後から酸化が始まる。精米時期の表示は消費者の購買判断に直結する。理想は<strong>注文を受けてから精米する「受注精米」</strong>。これが実現できれば「注文後に精米してお届け」という最強の鮮度訴求ができる。ただしオペレーション負荷は上がる。テスト販売段階では、まとめて精米して在庫する方式でも問題ない。</p>
+
+      <p><strong>③ 「単一原料米」の表示。</strong> HANAYAMAYAは花山産ひとめぼれ100%なので「単一原料米」と表記できる。これは品質の証明になる。ブレンド米は割合表示が必要になり、ブランド価値が下がる。</p>
+
+      <div class="warning">
+        <p class="warning-label">法的リスク</p>
+        <p>食品表示の虚偽・誇大表示は食品表示法違反で罰則あり（個人：懲役2年以下 or 罰金200万円以下）。特に産地偽装は社会的信用を完全に失う。表示内容は100%正確でなければならない。確認は必ず複数人で行う。</p>
+      </div>
+
+      <div class="decision">
+        <p class="decision-label">意思決定が必要</p>
+        <p>① 受注精米にするか、在庫精米にするか（推奨：テスト段階は在庫精米。軌道に乗ったら受注精米へ移行）<br>
+        ② ラベル印刷方法：自社プリント（ラベルシール）vs 印刷会社発注</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t09">
+  <p class="section-num">Task 09 / Phase 1</p>
+  <h2>返品・キャンセルポリシー</h2>
+  <p class="section-hook">食品ECの返品は「原則不可」。だが、書き方が信頼を左右する。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>食品ECとして適切な返品ポリシーを策定する</h3>
+    </div>
+    <div class="task-body">
+      <p>食品は衛生上の理由から<strong>お客様都合の返品は受け付けないのが業界標準</strong>。ただし「返品不可」とだけ書くと冷たい印象になる。HANAYAMAYAのブランドトーンに合わせて、<strong>誠実さが伝わる表現</strong>にする。</p>
+
+      <div class="detail">
+        <p class="detail-label">ポリシー骨子</p>
+        <ul>
+          <li><strong>お客様都合の返品</strong>：食品の特性上、ご容赦いただいております</li>
+          <li><strong>商品不良・配送事故の場合</strong>：到着後7日以内にご連絡いただければ、交換または全額返金で対応</li>
+          <li><strong>キャンセル</strong>：発送前であれば対応可能。発送後のキャンセルは返品扱い</li>
+          <li><strong>定期便の解約</strong>：次回発送日の7日前までにメールで連絡。解約手数料なし</li>
+        </ul>
+      </div>
+
+      <p><strong>重要：不良品対応は「即座に・気持ちよく」。</strong> 高級ブランドの不良品対応は、ブランドの真価が問われる瞬間。配送事故で袋が破損していた場合、面倒な手続きを要求するのではなく、写真1枚メールで送ってもらうだけで即交換。この体験が口コミを生む。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t10">
+  <p class="section-num">Task 10 / Phase 1</p>
+  <h2>利用規約</h2>
+  <p class="section-hook">万が一のトラブルに備える法的な盾。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>EC販売の利用規約を策定する</h3>
+    </div>
+    <div class="task-body">
+      <p>特商法表記やプライバシーポリシーとは別に、<strong>サービス利用の条件</strong>を定めたもの。テスト販売段階では簡潔なもので十分。</p>
+
+      <div class="detail">
+        <p class="detail-label">盛り込むべき内容</p>
+        <ul>
+          <li>適用範囲（本サイトでの商品購入に適用）</li>
+          <li>売買契約の成立時期（決済完了時に契約成立）</li>
+          <li>禁止事項（転売目的の購入等）</li>
+          <li>免責事項（天候・災害による配送遅延等）</li>
+          <li>知的財産権（サイトコンテンツの著作権）</li>
+          <li>準拠法・管轄裁判所</li>
+        </ul>
+      </div>
+      <p>テスト販売の初期フェーズでは、特商法表記・プラポリ・返品ポリシーが揃っていれば運用上は十分。利用規約はローンチまでに用意する優先度は中程度。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 2: インフラ構築 -->
+<!-- ============================================================ -->
+
+<div class="section" id="t11">
+  <p class="section-num">Task 11 / Phase 2</p>
+  <h2>DNS設定・Netlifyカスタムドメイン</h2>
+  <p class="section-hook">ドメインとサーバーを繋ぐ。技術的だが手順は明確。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>ムームードメインのDNSをNetlify + Google Workspaceに設定</h3>
+    </div>
+    <div class="task-body">
+      <p>DNSは「ドメインをどのサーバーに向けるか」を設定するもの。HANAYAMAYAの場合、1つのドメインで2つのサービスを動かす：</p>
+
+      <div class="detail">
+        <p class="detail-label">DNS設定内容</p>
+        <ul>
+          <li><strong>Aレコード / CNAMEレコード</strong>：hanayamaya.com → Netlify（LP表示用）</li>
+          <li><strong>MXレコード</strong>：hanayamaya.com → Google Workspace（メール用）</li>
+          <li><strong>TXTレコード</strong>：SPF / DKIM / DMARC（メールの迷惑メール対策）</li>
+        </ul>
+      </div>
+
+      <p><strong>SPF / DKIM / DMARCの設定は超重要。</strong> これを怠ると、info@hanayamaya.comから送った注文確認メールが顧客のスパムフォルダに入る。¥3,800払ったのに注文確認メールが届かない（実はスパムに入っている）——これは最悪の顧客体験。設定手順はGoogleが公式に案内しているので、それに従えばよい。</p>
+
+      <p>Netlify側では「Domain settings」で hanayamaya.com を追加し、表示されるDNS設定をムームードメイン側に反映。反映まで最大48時間（実際は数時間で完了することが多い）。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t12">
+  <p class="section-num">Task 12 / Phase 2</p>
+  <h2>SSL証明書の確認</h2>
+  <p class="section-hook">https:// は信頼の証。Netlifyなら自動。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>カスタムドメイン適用後にSSLが有効になっていることを確認</h3>
+    </div>
+    <div class="task-body">
+      <p>Netlifyはカスタムドメイン設定後、<strong>Let's Encryptで無料のSSL証明書を自動発行</strong>する。特別な操作は不要。DNS反映後にhttps://hanayamaya.com にアクセスし、ブラウザのアドレスバーに鍵マークが表示されればOK。</p>
+      <p><strong>http:// から https:// への自動リダイレクトも確認。</strong> Netlifyの設定画面で「Force HTTPS」をONにする（デフォルトでONのはず）。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t13">
+  <p class="section-num">Task 13 / Phase 2</p>
+  <h2>Square商品登録・決済リンク作成</h2>
+  <p class="section-hook">LPの「購入する」ボタンの先。ここが売上の入口。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>Squareダッシュボードで商品を登録し、Checkout Linkを生成する</h3>
+    </div>
+    <div class="task-body">
+      <p><strong>商品登録の設計は意外と深い。</strong></p>
+
+      <div class="detail">
+        <p class="detail-label">商品情報</p>
+        <ul>
+          <li><strong>商品名</strong>：HANAYAMAYA ひとめぼれ 2kg</li>
+          <li><strong>価格</strong>：¥3,800（税込）</li>
+          <li><strong>税設定</strong>：内税（消費税8% — 食品は軽減税率対象）</li>
+          <li><strong>在庫管理</strong>：ON（在庫数を設定し、売り切れ時は自動で購入不可に）</li>
+          <li><strong>商品画像</strong>：黒パッケージの正面写真</li>
+          <li><strong>商品説明</strong>：LPの商品コピーを簡潔にしたもの</li>
+        </ul>
+      </div>
+
+      <p><strong>消費税率の注意。</strong> 米は<strong>軽減税率（8%）</strong>の対象。10%ではない。Squareの税率設定で8%に設定する。これを間違えると、顧客に過大請求するか、利益が減るかのどちらか。</p>
+
+      <p><strong>Checkout Linkの設計。</strong> LPの「購入する」ボタンをクリックすると、Squareの決済ページに遷移する。このリンクでは以下を設定：</p>
+      <div class="detail">
+        <p class="detail-label">Checkout Link設定</p>
+        <ul>
+          <li>配送先住所の入力：<strong>必須</strong></li>
+          <li>電話番号の入力：<strong>必須</strong>（配送時の連絡用）</li>
+          <li>メールアドレス：<strong>必須</strong>（注文確認メール送信用）</li>
+          <li>注文メモ欄：有効化（配送時間帯指定などの要望受付用）</li>
+          <li>数量選択：有効化（1〜3個まで等の制限を検討）</li>
+        </ul>
+      </div>
+
+      <p><strong>購入後の導線も設計する。</strong> 決済完了後に表示される「サンキューページ」のURLをLP側に用意し、Squareの設定で指定。「ご注文ありがとうございます。花山からあなたの食卓へ、心を込めてお届けします。」というメッセージとともに、Instagramフォローへの誘導を入れる。</p>
+
+      <div class="warning">
+        <p class="warning-label">テスト必須</p>
+        <p>本番公開前に必ず<strong>テスト購入</strong>を行う（Task 15）。実際に自分のカードで決済し、注文確認メールが届くか、Squareダッシュボードに反映されるか、在庫数が減るかを確認。Squareはテストモードがないため、実際に決済して後からキャンセル・返金する方式でテストする。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t14">
+  <p class="section-num">Task 14 / Phase 2</p>
+  <h2>LP最終調整（法定ページ追加）</h2>
+  <p class="section-hook">LPを「かっこいいページ」から「販売可能な状態」にする。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>特商法表記・プラポリ・返品ポリシーをLPフッターにリンク追加</h3>
+    </div>
+    <div class="task-body">
+      <p>現在のLPは販促コンテンツとしては完成しているが、EC販売に必要な法定ページがない。追加が必要なもの：</p>
+
+      <div class="detail">
+        <p class="detail-label">追加すべきページ / セクション</p>
+        <ul>
+          <li><strong>特定商取引法に基づく表記</strong>（別ページ or LPフッター展開）</li>
+          <li><strong>プライバシーポリシー</strong>（別ページ推奨）</li>
+          <li><strong>返品・交換について</strong>（FAQ内 + フッターリンク）</li>
+          <li><strong>CTAボタンのリンク先</strong>をSquare Checkout Linkに接続</li>
+          <li><strong>Cookieバナー</strong>（GA4使用のため推奨。法的義務は日本では未確定だが、信頼感向上のため設置推奨）</li>
+        </ul>
+      </div>
+
+      <p><strong>スマホでの購入体験を最優先で確認。</strong> EC購入の70%以上はスマホから。LPのCTAボタン→Squareの決済ページ→決済完了→サンキューページまでの流れが、スマホでスムーズに動くかを徹底検証。特に、Squareの決済ページへの遷移時にフォームが見切れたり、入力欄が小さすぎたりしないかを確認。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t15">
+  <p class="section-num">Task 15 / Phase 2</p>
+  <h2>テスト購入・決済フロー全体確認</h2>
+  <p class="section-hook">顧客が体験するすべてのステップを、自分で体験する。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>LP→Square→決済→確認メール→管理画面の一連の流れを通しテスト</h3>
+    </div>
+    <div class="task-body">
+      <p>これは単なる「動作確認」ではない。<strong>¥3,800を払う顧客の体験を、自分の目と指で検証する</strong>こと。</p>
+
+      <div class="detail">
+        <p class="detail-label">テスト項目チェックリスト</p>
+        <ul>
+          <li>LP → CTAボタンクリック → Square決済ページへの遷移がスムーズか</li>
+          <li>スマホ（iPhone / Android）での表示・操作に問題がないか</li>
+          <li>住所入力・カード入力がストレスなくできるか</li>
+          <li>決済完了後、サンキューページが正しく表示されるか</li>
+          <li>注文確認メールが即座に届くか（スパムに入っていないか）</li>
+          <li>メールの差出人が info@hanayamaya.com になっているか</li>
+          <li>メールの内容（商品名、金額、配送先）が正しいか</li>
+          <li>Squareダッシュボードに注文が反映されているか</li>
+          <li>在庫数が正しく減っているか</li>
+          <li>テスト注文を返金処理し、返金が正常に行われるか</li>
+        </ul>
+      </div>
+
+      <p><strong>最低3回はテスト購入する。</strong> 1回目は自分のスマホ（iPhone）、2回目はPC、3回目は別のスマホ（Android）。異なるデバイスで異なる問題が出ることは珍しくない。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t16">
+  <p class="section-num">Task 16 / Phase 2</p>
+  <h2>メール設計（注文確認〜フォローアップ）</h2>
+  <p class="section-hook">メールは「通知」ではない。ブランド体験の延長線。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>注文確認・発送通知・到着後フォローアップの3種のメールを設計</h3>
+    </div>
+    <div class="task-body">
+      <p>HANAYAMAYAの顧客が購入後に受け取るメールは、ブランドの「声」そのもの。Amazonの自動メールのような事務的なものではなく、<strong>一膳の米を届ける人間の温かさ</strong>が伝わるものに。</p>
+
+      <div class="detail">
+        <p class="detail-label">メール① 注文確認（決済直後・自動送信）</p>
+        <p>Squareの自動送信メール。カスタマイズ範囲は限られるが、商品説明欄に一言添える。</p>
+        <p>「ご注文ありがとうございます。花山の水と土が育てた一膳を、心を込めてお届けいたします。」</p>
+      </div>
+
+      <div class="detail">
+        <p class="detail-label">メール② 発送通知（発送時・手動 or 自動）</p>
+        <p>追跡番号とともに送る。ここで<strong>花山の「今」</strong>を一言添えると、ブランド体験が深まる。</p>
+        <p>「本日、花山からお届けの準備が整いました。今日の花山は春霞がかかり、田んぼに水が張られ始めています。」</p>
+      </div>
+
+      <div class="detail">
+        <p class="detail-label">メール③ 到着後フォローアップ（到着3日後・手動）</p>
+        <p>到着確認 + 食べ方の提案 + レビューのお願い。</p>
+        <p>「お届けから数日が経ちましたが、いかがでしょうか。HANAYAMAYAのひとめぼれは、炊きたてはもちろん、冷めてからのおにぎりも格別です。もしよろしければ、ご感想をお聞かせください。」</p>
+      </div>
+
+      <p><strong>テスト販売段階では手動で送って全く問題ない。</strong> 月30件の注文に対して手動でフォローアップメールを送るのは、1日1〜2件。むしろ手動のほうが個別対応ができて顧客満足度が高い。自動化は月100件を超えてからで良い。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t17">
+  <p class="section-num">Task 17 / Phase 2</p>
+  <h2>GA4設置・コンバージョン設計</h2>
+  <p class="section-hook">数字のないマーケティングは、暗闇で弓を射るようなもの。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>GA4でLP→Squareの購入導線を計測する基盤を構築</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画のKPIは「LPのCVR 1.5%以上」。これを計測するにはGA4が必須。</p>
+
+      <div class="detail">
+        <p class="detail-label">計測すべきイベント</p>
+        <ul>
+          <li><strong>ページビュー</strong>：LPの各セクションのスクロール到達率（10%, 25%, 50%, 75%, 90%）</li>
+          <li><strong>CTAクリック</strong>：「購入する」ボタンのクリック数（=Square遷移数）</li>
+          <li><strong>外部リンククリック</strong>：Squareへの遷移をイベントとして記録</li>
+          <li><strong>流入経路</strong>：オーガニック / SNS / 広告 / リファラル別のアクセス数</li>
+        </ul>
+      </div>
+
+      <p><strong>Squareの購入完了はGA4では直接計測できない</strong>（ドメインが異なるため）。代替策として：</p>
+      <div class="detail">
+        <p class="detail-label">CVR計測の方法</p>
+        <ul>
+          <li>GA4で「CTAクリック数」を計測（これがSquare遷移数 = 購入意欲のある人数）</li>
+          <li>Squareダッシュボードで「実際の注文数」を確認</li>
+          <li>CVR = 注文数 ÷ LPアクセス数 × 100</li>
+          <li>CTA→購入転換率 = 注文数 ÷ CTAクリック数 × 100（Square側の離脱率がわかる）</li>
+        </ul>
+      </div>
+
+      <p><strong>UTMパラメータの設計も初日にやる。</strong> Instagram投稿からのリンク、広告からのリンク、知人への案内リンク——それぞれ異なるUTMパラメータをつけることで「どこから来た人が買っているか」が一目瞭然になる。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 3: 商品・物流 -->
+<!-- ============================================================ -->
+
+<div class="section" id="t18">
+  <p class="section-num">Task 18 / Phase 3</p>
+  <h2>パッケージ印刷最終確認・発注</h2>
+  <p class="section-hook">デザインは完成している。あとは「実物」にする。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>黒マットパッケージの印刷データ最終確認と発注</h3>
+    </div>
+    <div class="task-body">
+      <p>LPで使用しているパッケージデザイン（黒マット×金文字）が実際の印刷データとして完成しているか確認。入稿データの解像度（350dpi以上）、カラーモード（CMYK）、トンボの有無を印刷会社と擦り合わせる。</p>
+
+      <p><strong>初回ロット数の判断が重要。</strong> テスト販売（目標30〜50人）に対して、パッケージを何枚発注するか。印刷は小ロット（100枚〜）でも対応可能な業者を選ぶ。大ロット（500枚〜）にすると単価は下がるが、デザイン変更ができなくなる。<strong>推奨は初回200枚</strong>。テスト販売＋予備分として十分で、単価もそこまで高くならない。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t19">
+  <p class="section-num">Task 19 / Phase 3</p>
+  <h2>食品表示ラベル印刷</h2>
+  <p class="section-hook">法的必須。パッケージに貼付して出荷する。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>Task 08で設計した表示内容をラベルシールとして印刷</h3>
+    </div>
+    <div class="task-body">
+      <p>パッケージ裏面に直接印刷する方式と、ラベルシールを貼付する方式がある。テスト段階では<strong>ラベルシール方式</strong>が柔軟性が高い（精米日・産年の変更に対応しやすい）。</p>
+
+      <p>ラベルプリンターを使えば自社で印刷可能（ブラザーQL-820NWB等、¥15,000〜）。外注なら1枚¥10〜20程度。200枚で¥2,000〜4,000。</p>
+
+      <p><strong>フォントサイズに注意。</strong> JAS法では食品表示の文字サイズは<strong>8pt以上</strong>が義務。小さなラベルに無理に詰め込むと読めなくなり、法的要件を満たさない。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t20">
+  <p class="section-num">Task 20 / Phase 3</p>
+  <h2>梱包資材の調達</h2>
+  <p class="section-hook">Task 05で設計した梱包仕様を、実際に調達する。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>段ボール・黒薄紙・緩衝材・テープを一括調達</h3>
+    </div>
+    <div class="task-body">
+      <table class="cost-table">
+        <tr><th>資材</th><th>数量</th><th>調達先</th><th style="text-align:right">概算コスト</th></tr>
+        <tr><td>60サイズ段ボール</td><td>100枚</td><td>ダンボールワン / モノタロウ</td><td class="cost-val">¥8,000〜10,000</td></tr>
+        <tr><td>黒テープ</td><td>5巻</td><td>Amazon / ASKUL</td><td class="cost-val">¥1,500</td></tr>
+        <tr><td>黒薄紙</td><td>200枚</td><td>シモジマ / パッケージ通販</td><td class="cost-val">¥2,000</td></tr>
+        <tr><td>クラフト紙パッキン</td><td>1kg</td><td>Amazon</td><td class="cost-val">¥1,500</td></tr>
+        <tr><td style="color:var(--gold)"><strong>合計</strong></td><td></td><td></td><td class="cost-val" style="color:var(--gold)"><strong>¥13,000〜15,000</strong></td></tr>
+      </table>
+
+      <p>これで約100〜200回分の発送に対応。テスト販売フェーズでは十分な量。不足が出たら都度追加発注。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t21">
+  <p class="section-num">Task 21 / Phase 3</p>
+  <h2>同梱物の設計・制作</h2>
+  <p class="section-hook">箱の中に「物語」を入れる。これがリピートの種。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>サンキューカード＋花山の景色カードを制作</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画に「初回購入者への同梱物（花山の景色カード等）」とある。これはブランド体験の中でも<strong>最もコスパの高い施策</strong>。</p>
+
+      <p><strong>同梱物の設計思想：</strong> HANAYAMAYAの世界観を「手に取れる形」で届ける。スマホの画面越しではなく、実際の紙で。</p>
+
+      <div class="detail">
+        <p class="detail-label">① サンキューカード</p>
+        <ul>
+          <li>サイズ：名刺サイズ or ポストカードサイズ</li>
+          <li>デザイン：黒背景に金文字。LPのデザイントーンを踏襲</li>
+          <li>表面：「ありがとうございます。」+ HANAYAMAYAロゴ</li>
+          <li>裏面：美味しい炊き方の簡潔なガイド（水加減・浸水時間）+ QRコード（Instagram or LP）</li>
+          <li>印刷：名刺印刷サービスで100枚¥2,000〜3,000</li>
+        </ul>
+      </div>
+
+      <div class="detail">
+        <p class="detail-label">② 花山の景色カード</p>
+        <ul>
+          <li>サイズ：ポストカードサイズ</li>
+          <li>内容：花山の四季の写真（田んぼ、湧き水、山並み、朝霧）</li>
+          <li>裏面に短い一文：「この景色が、あなたの一膳を育てました。」</li>
+          <li>定期便では毎回異なる季節の写真を封入 → コレクション要素</li>
+          <li>印刷：ネット印刷で200枚¥3,000〜5,000</li>
+        </ul>
+      </div>
+
+      <p><strong>この景色カードが「Instagram投稿のネタ」になる。</strong> 顧客がカードを写真に撮ってSNSに投稿する → 自然な口コミが生まれる。コスト¥25/枚の投資で得られるUGC（ユーザー生成コンテンツ）としては最高の費用対効果。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t22">
+  <p class="section-num">Task 22 / Phase 3</p>
+  <h2>初回在庫の確保・ロット決定</h2>
+  <p class="section-hook">売れ残りリスク vs 機会損失リスクのバランス。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>精米済み在庫の初回ロットを決定し、精米を手配する</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画では「投入在庫500kg（2kg × 250袋分）」。ただし、これは4月〜9月の6ヶ月分。<strong>全量を4月に精米するのは品質面で危険</strong>。</p>
+
+      <p><strong>精米後の賞味期限の目安：</strong></p>
+      <div class="detail">
+        <p class="detail-label">精米後の鮮度管理</p>
+        <ul>
+          <li>春・秋：精米後約1ヶ月が美味しく食べられる目安</li>
+          <li>夏：精米後約2〜3週間（高温多湿で劣化が早い）</li>
+          <li>冬：精米後約2ヶ月</li>
+        </ul>
+      </div>
+
+      <p>つまり、<strong>毎月の販売予測に合わせて月次で精米する</strong>のが正解。</p>
+
+      <div class="detail">
+        <p class="detail-label">推奨在庫計画</p>
+        <ul>
+          <li><strong>4月（プレ在庫）</strong>：20袋（40kg）— テスト購入＋先行案内分</li>
+          <li><strong>5月（ソフトローンチ）</strong>：30袋（60kg）— 知人案内＋初期オーガニック</li>
+          <li><strong>6月</strong>：30袋（60kg）— リピート＋口コミ</li>
+          <li><strong>7月〜（広告開始後）</strong>：50袋（100kg）— 広告流入に対応</li>
+          <li><strong>合計</strong>：約260kg（130袋）が6ヶ月の現実的な見込み</li>
+        </ul>
+      </div>
+
+      <p>玄米の状態では長期保存可能（低温倉庫で1年以上）。精米のタイミングだけ管理すればよい。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t23">
+  <p class="section-num">Task 23 / Phase 3</p>
+  <h2>配送テスト（通し確認）</h2>
+  <p class="section-hook">実際に箱を作って、実際に送ってみる。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>梱包→発送→受け取りまでの全工程を実際にテストする</h3>
+    </div>
+    <div class="task-body">
+      <p>自分宛に実際に商品を送る。テストすべきこと：</p>
+      <div class="detail">
+        <p class="detail-label">確認ポイント</p>
+        <ul>
+          <li>梱包作業にかかる時間（1個あたり何分か → 日次処理能力の見積もり）</li>
+          <li>段ボール内で商品が動かないか（緩衝材の量は適切か）</li>
+          <li>到着時のパッケージの状態（破損・汚れ・シワがないか）</li>
+          <li>開封体験は期待通りか（薄紙→パッケージの順序が崩れていないか）</li>
+          <li>同梱物の配置は自然か</li>
+          <li>重量が60サイズ・2kg以内に収まっているか</li>
+        </ul>
+      </div>
+      <p>このテストで梱包手順を確立し、写真付きのマニュアルを作成する。将来的にアルバイトやパートに梱包を任せる場合に備える。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t24">
+  <p class="section-num">Task 24 / Phase 3</p>
+  <h2>受注〜発送オペレーションフロー構築</h2>
+  <p class="section-hook">注文が入ってから商品が届くまでの「工場ライン」を設計する。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>日次の受注確認→梱包→発送→通知の標準フローを確立</h3>
+    </div>
+    <div class="task-body">
+      <div class="detail">
+        <p class="detail-label">標準オペレーションフロー</p>
+        <ul>
+          <li><strong>毎朝9:00</strong> — Squareダッシュボードで新規注文を確認</li>
+          <li><strong>9:00〜10:00</strong> — 注文分の梱包作業</li>
+          <li><strong>10:00〜11:00</strong> — ヤマト集荷 or 営業所持込</li>
+          <li><strong>集荷後</strong> — 発送通知メール送信（追跡番号記載）</li>
+          <li><strong>到着3日後</strong> — フォローアップメール送信</li>
+        </ul>
+      </div>
+
+      <p><strong>「3営業日以内に発送」をコミットライン</strong>として設定し、特商法表記にも明記する。テスト段階では日次処理で十分。月50件なら1日あたり約2件。梱包15分/件として、1日30分のオペレーション。</p>
+
+      <p><strong>注文管理はSquareダッシュボード + スプレッドシートで十分。</strong> 注文日、顧客名、配送先、追跡番号、発送日、フォローアップ送信済みフラグを記録。月100件を超えたら在庫管理ツールの導入を検討。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 4: マーケティング準備 -->
+<!-- ============================================================ -->
+
+<div class="section" id="t25">
+  <p class="section-num">Task 25 / Phase 4</p>
+  <h2>Instagramアカウント設計</h2>
+  <p class="section-hook">「ギャラリー」としてのInstagram。投稿はブランドの展覧会。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>ビジネスアカウントを開設し、プロフィールを世界観に合わせて設計</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画の戦略：「グリッド投稿で、プロフィール画面全体を一つの静寂なアートにする」。</p>
+
+      <div class="detail">
+        <p class="detail-label">プロフィール設計</p>
+        <ul>
+          <li><strong>ユーザー名</strong>：@hanayamaya（簡潔・覚えやすい）</li>
+          <li><strong>表示名</strong>：HANAYAMAYA</li>
+          <li><strong>アイコン</strong>：黒背景に金の書道ロゴ（LPのファビコンと統一）</li>
+          <li><strong>プロフィール文</strong>：<br>
+            「Reclaim the center. — 米を生活の中心へ。<br>
+            宮城県栗原市花山｜最上流の湧き水で育つひとめぼれ<br>
+            hanayamaya.com」</li>
+          <li><strong>アカウント種別</strong>：ビジネスアカウント（インサイト閲覧のため必須）</li>
+          <li><strong>カテゴリ</strong>：食料品店 or 農産物</li>
+          <li><strong>リンク</strong>：hanayamaya.com（UTMパラメータ付き）</li>
+        </ul>
+      </div>
+
+      <p><strong>ハイライトの設計。</strong> プロフィール下のハイライトも世界観の一部。</p>
+      <div class="detail">
+        <p class="detail-label">推奨ハイライト構成</p>
+        <ul>
+          <li><strong>「花山」</strong> — 産地の景色・水・自然のストーリーズ</li>
+          <li><strong>「儀式」</strong> — 米を研ぐ・炊く・味わう一連の所作</li>
+          <li><strong>「声」</strong> — お客様の感想・レビュー（ローンチ後に追加）</li>
+          <li><strong>「購入」</strong> — 商品情報・購入方法</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t26">
+  <p class="section-num">Task 26 / Phase 4</p>
+  <h2>初期コンテンツ制作（6〜9投稿）</h2>
+  <p class="section-hook">アカウント開設時に「空っぽ」は許されない。初期投稿で世界観を確立。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>グリッドとして美しい6〜9投稿を事前制作してから公開</h3>
+    </div>
+    <div class="task-body">
+      <p>Instagramは「最初の9投稿」がプロフィール訪問者に与える第一印象のすべて。<strong>投稿が3つ以下の状態で公開しない。</strong></p>
+
+      <div class="detail">
+        <p class="detail-label">推奨9投稿構成（3×3グリッド）</p>
+        <ul>
+          <li><strong>1</strong>：花山の朝霧の風景（ワイドショット）</li>
+          <li><strong>2</strong>：パッケージのクローズアップ（金文字フォーカス）</li>
+          <li><strong>3</strong>：炊きたてご飯のアップ（湯気立ち）</li>
+          <li><strong>4</strong>：湧き水のクローズアップ</li>
+          <li><strong>5</strong>：パッケージ全体 × キッチン（Nano Bananaで生成した画像）</li>
+          <li><strong>6</strong>：米粒のマクロ撮影（一粒の美しさ）</li>
+          <li><strong>7</strong>：田んぼと山並みのワイドショット</li>
+          <li><strong>8</strong>：ブランドメッセージ（テキスト投稿：「Reclaim the center.」黒背景金文字）</li>
+          <li><strong>9</strong>：お茶碗に盛られたご飯 × 箸 × 和の食器</li>
+        </ul>
+      </div>
+
+      <p><strong>キャプションのトーン：</strong> 短く、詩的に。説明的にならない。余白を残す。</p>
+      <p>例：「研ぐ。待つ。味わう。——それだけで、食卓が変わる。」</p>
+      <p>ハッシュタグは10個以内。<strong>#HANAYAMAYA #花山 #ひとめぼれ #一膳 #宮城県 #栗原市 #高級米 #米 #整う #マインドフルネス</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t27">
+  <p class="section-num">Task 27 / Phase 4</p>
+  <h2>ソフトローンチ先行案内リスト作成</h2>
+  <p class="section-hook">最初の顧客は「知人」。最もフィードバックをくれる人たち。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>先行案内を送る10〜20名のリストを作成</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画：「知人・関係者への先行案内（10〜20名）」。この10〜20名の選定は極めて重要。<strong>「買ってくれそうな人」ではなく「正直にフィードバックしてくれる人」</strong>を選ぶ。</p>
+
+      <div class="detail">
+        <p class="detail-label">理想的なリスト構成</p>
+        <ul>
+          <li><strong>食にこだわりのある友人</strong>（3〜5名） — 味・品質の正直な評価</li>
+          <li><strong>EC購入経験が豊富な人</strong>（2〜3名） — 購入体験の課題発見</li>
+          <li><strong>花山ゆかりの人</strong>（2〜3名） — ストーリーへの共感度確認</li>
+          <li><strong>マーケティング / デザイン関係者</strong>（2〜3名） — LP・ブランディングへの専門的フィードバック</li>
+          <li><strong>ターゲット像に近い人</strong>（30〜40代都市部在住）（3〜5名） — 購買動機の検証</li>
+        </ul>
+      </div>
+      <p>全員に「正直な感想を聞かせてほしい」と伝える。お世辞よりも改善点のほうが100倍価値がある。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t28">
+  <p class="section-num">Task 28 / Phase 4</p>
+  <h2>先行案内メッセージの作成・送信</h2>
+  <p class="section-hook">最初の「セールス」ではなく、最初の「招待」。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>先行案内メッセージを作成し、リストの10〜20名に送信する</h3>
+    </div>
+    <div class="task-body">
+      <p>先行案内は「売り込み」ではなく<strong>「あなたにだけ先に伝えたい」</strong>というトーン。</p>
+
+      <p><strong>メッセージに含めるべき要素：</strong></p>
+      <div class="detail">
+        <p class="detail-label">構成</p>
+        <ul>
+          <li>個人的な挨拶（一斉送信感を出さない）</li>
+          <li>何を始めたか（花山の米をEC販売する）</li>
+          <li>なぜあなたに伝えたいか（食へのこだわり / 花山との縁 / 正直な感想がほしい）</li>
+          <li>LPへのリンク</li>
+          <li>先行購入特典があれば（初回送料無料 or おまけ付き等 — 任意）</li>
+          <li>フィードバックをお願いするひと言</li>
+        </ul>
+      </div>
+      <p>LINE / DM / メールなど、<strong>その人との普段の連絡手段</strong>で送る。フォーマルなメールを普段LINEでやりとりしている友人に送ると距離感がおかしくなる。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t29">
+  <p class="section-num">Task 29 / Phase 4</p>
+  <h2>会計基盤（freee）の設定</h2>
+  <p class="section-hook">売上が立つ前に、帳簿の仕組みを作っておく。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>freee会計に登録し、Squareとの連携を設定する</h3>
+    </div>
+    <div class="task-body">
+      <p>個人事業主として開業届を出し、freee会計（月¥1,480〜）で帳簿管理。<strong>Squareとfreeeは自動連携が可能</strong>（API連携）で、売上・入金が自動で仕訳される。</p>
+
+      <div class="detail">
+        <p class="detail-label">初期設定すべきこと</p>
+        <ul>
+          <li>開業届の提出（freee開業で無料作成→税務署に提出）</li>
+          <li>青色申告承認申請書の提出（65万円控除のため。開業から2ヶ月以内）</li>
+          <li>freee会計アカウント作成 → Square連携設定</li>
+          <li>銀行口座連携（事業用口座を分けることを推奨）</li>
+          <li>経費カテゴリの設定（梱包資材、送料、広告費、ドメイン費用、ツール利用料等）</li>
+          <li>インボイス登録番号の取得（任意だが、法人顧客への販売を視野に入れるなら取得推奨）</li>
+        </ul>
+      </div>
+
+      <div class="warning">
+        <p class="warning-label">税務上の注意</p>
+        <p>米は<strong>軽減税率（8%）</strong>の対象。売上の消費税率を10%で計算すると、確定申告時にズレが生じる。freeeの消費税設定で「食品（軽減税率）」を正しく設定しておく。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 5: ローンチ -->
+<!-- ============================================================ -->
+
+<div class="section" id="t30">
+  <p class="section-num">Task 30 / Phase 5</p>
+  <h2>ソフトローンチ実施</h2>
+  <p class="section-hook">静かに始める。最初の1件の注文が、すべての始まり。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>LPを公開し、先行案内リストに告知。一般購入受付を開始する</h3>
+    </div>
+    <div class="task-body">
+      <p><strong>ソフトローンチ = グランドオープンではない。</strong> 広告は打たない。SNSでの大々的な告知もしない。まずは先行案内リストの10〜20名から注文を受け、<strong>受注→発送→到着→フォローアップの全工程を小規模で回す</strong>。</p>
+
+      <p>この段階で検証すべきこと：</p>
+      <div class="detail">
+        <p class="detail-label">ソフトローンチの検証ポイント</p>
+        <ul>
+          <li>注文から発送までのリードタイム（コミット通り3営業日以内で出せるか）</li>
+          <li>梱包の品質（到着時の状態）</li>
+          <li>メールの到達率（スパム判定されていないか）</li>
+          <li>顧客からのフィードバック内容</li>
+          <li>想定外のトラブル（住所不備、決済エラー、在庫管理ミス等）</li>
+        </ul>
+      </div>
+
+      <p><strong>最初の10件は「売上」ではなく「授業料」。</strong> ここで出たすべての課題を修正してから、一般公開・広告投入に進む。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t31">
+  <p class="section-num">Task 31 / Phase 5</p>
+  <h2>初期フィードバック収集・LP改善</h2>
+  <p class="section-hook">最初の顧客の声が、最も貴重なマーケティング素材。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>先行購入者のフィードバックを収集し、LPとオペレーションを改善する</h3>
+    </div>
+    <div class="task-body">
+      <p>先行購入者には必ず以下を聞く：</p>
+      <div class="detail">
+        <p class="detail-label">フィードバック質問項目</p>
+        <ul>
+          <li>LPを見て最初に感じたことは？</li>
+          <li>¥3,800という価格について率直にどう思ったか？</li>
+          <li>購入手続き（LP→Square→決済）でストレスを感じた点はあったか？</li>
+          <li>届いた商品の第一印象は？</li>
+          <li>実際に食べてみてどうだったか？</li>
+          <li>友人に勧めたいと思うか？勧めるなら何と言って勧めるか？</li>
+          <li>改善してほしい点は？</li>
+        </ul>
+      </div>
+
+      <p><strong>特に6番目の回答が重要。</strong>「友人に何と言って勧めるか」——この言葉が、顧客が自然に使う「ブランドの説明」であり、最も刺さるコピーのヒントになる。LP改善はこの言葉をベースに行う。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t32">
+  <p class="section-num">Task 32 / Phase 5</p>
+  <h2>カスタマーサポート体制構築</h2>
+  <p class="section-hook">問い合わせが来る前に、対応の型を決めておく。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>FAQ整備 + 問い合わせ対応フロー + 対応テンプレートを準備</h3>
+    </div>
+    <div class="task-body">
+      <div class="detail">
+        <p class="detail-label">想定される問い合わせとFAQ</p>
+        <ul>
+          <li><strong>Q: いつ届きますか？</strong> → A: ご注文から3営業日以内に発送。到着は発送翌日〜翌々日（地域による）</li>
+          <li><strong>Q: 送料はかかりますか？</strong> → A: 送料込みの価格です</li>
+          <li><strong>Q: 定期便はありますか？</strong> → A: 準備中です（8月予定）。ご興味があればメールでお知らせします</li>
+          <li><strong>Q: 返品できますか？</strong> → A: 食品のためお客様都合の返品は承っておりませんが、不良品は交換対応いたします</li>
+          <li><strong>Q: 贈答用のラッピングはできますか？</strong> → A: 現在は対応しておりません（将来的に検討）</li>
+          <li><strong>Q: 精米日はいつですか？</strong> → A: パッケージに記載の精米時期をご確認ください</li>
+        </ul>
+      </div>
+
+      <p><strong>対応チャネルはメール一択でスタート。</strong> 電話対応は人的リソースを食うため、テスト段階では不要。info@hanayamaya.com への問い合わせに24時間以内に返信するコミットメントを設定。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t33">
+  <p class="section-num">Task 33 / Phase 5</p>
+  <h2>在庫・発送管理の運用定着</h2>
+  <p class="section-hook">日次の地味な作業こそ、EC事業の生命線。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-client">クライアント</span>
+      <h3>Task 24で構築したオペレーションフローを日常業務として定着させる</h3>
+    </div>
+    <div class="task-body">
+      <p>ソフトローンチ後の最初の2週間は、意識的にオペレーションを「回す練習」をする期間。注文が少ない今のうちに、フローの穴を見つけて塞ぐ。</p>
+
+      <p><strong>スプレッドシートによる在庫管理表：</strong></p>
+      <div class="detail">
+        <p class="detail-label">管理すべき項目</p>
+        <ul>
+          <li>現在の在庫数（袋数）</li>
+          <li>精米済み在庫の精米日（鮮度管理）</li>
+          <li>今月の販売数（累計）</li>
+          <li>残り在庫で何日持つか（日次消化ペースから逆算）</li>
+          <li>次回精米の発注タイミング（在庫が◯袋を切ったら発注）</li>
+        </ul>
+      </div>
+      <p>「在庫が10袋を切ったら次の精米を手配」というルールを決めておけば、品切れを防げる。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PHASE 6: 広告テスト・拡大 -->
+<!-- ============================================================ -->
+
+<div class="section" id="t34">
+  <p class="section-num">Task 34 / Phase 6</p>
+  <h2>Meta広告アカウント・ピクセル設定</h2>
+  <p class="section-hook">7月からの広告テストに向けた準備。5月中に完了させる。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>Meta Business Suite開設 → 広告アカウント作成 → ピクセル設置</h3>
+    </div>
+    <div class="task-body">
+      <p>広告配信開始は7月だが、<strong>Metaピクセルは5月中にLPに設置する</strong>。ソフトローンチ後のLP訪問者データを2ヶ月分蓄積し、リマーケティングリストを構築してから広告を打つ。これが事業計画の「認知5万→リマーケ5万」戦略の前提条件。</p>
+
+      <div class="detail">
+        <p class="detail-label">設定手順</p>
+        <ul>
+          <li>Meta Business Suite（business.facebook.com）でビジネスアカウント作成</li>
+          <li>広告アカウント作成</li>
+          <li>Metaピクセル生成 → LPのheadタグ内に設置</li>
+          <li>イベント設定：ページビュー（自動）、CTAクリック（カスタムイベント）</li>
+          <li>カスタムオーディエンス作成：LP訪問者（過去60日）</li>
+          <li>支払い方法設定（クレジットカード）</li>
+        </ul>
+      </div>
+
+      <p><strong>事業計画のターゲティング設計を再掲：</strong> 「米・グルメ」はあえて外す。<strong>マインドフルネス・禅・サウナ・高級インテリア・バルミューダ・一汁一菜</strong>でターゲティングする。この「あえて米好きを狙わない」戦略が、HANAYAMAYAのポジショニングの核心。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t35">
+  <p class="section-num">Task 35 / Phase 6</p>
+  <h2>広告クリエイティブ制作</h2>
+  <p class="section-hook">「止まる」広告を作る。スクロールの手を止める3秒の勝負。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>テスト用クリエイティブ3パターン以上を制作する</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画のクリエイティブ方針：「ベネフィット（味）ではなく<strong>意味（体験）</strong>」を訴求する。</p>
+
+      <div class="detail">
+        <p class="detail-label">推奨3パターン</p>
+        <ul>
+          <li><strong>パターンA「禅」</strong>：黒背景 × 湯気の立つ白飯 × 「10分、スマホを置く。米を研ぐ。」のテキストオーバーレイ。静的画像。</li>
+          <li><strong>パターンB「整う」</strong>：米を研ぐ手元のショート動画（リール形式）× 「食卓で、整う。」のテキスト。水の音をASMR的に活かす。</li>
+          <li><strong>パターンC「デザイン」</strong>：黒パッケージ × キッチン（Nano Banana生成画像）× 「置く場所が、変わる。」のテキスト。パッケージデザインの美しさ訴求。</li>
+        </ul>
+      </div>
+
+      <p>各パターンを<strong>CPC（クリック単価）で比較テスト</strong>。最もCPCが低いクリエイティブに予算を集中。テスト期間は各パターン最低3日、予算は各¥5,000〜10,000。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t36">
+  <p class="section-num">Task 36 / Phase 6</p>
+  <h2>Square定期便（サブスク）機能実装</h2>
+  <p class="section-hook">事業モデルの核心。「LTVの最大化」はここにかかっている。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-team">ECチーム</span>
+      <h3>Squareのサブスクリプション機能で定期便を構築する</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画：「LTV粗利49,800円（毎月配送・2年継続）」。この数字を実現するのがサブスク機能。</p>
+
+      <div class="detail">
+        <p class="detail-label">定期便の設計</p>
+        <ul>
+          <li><strong>配送頻度</strong>：毎月 / 隔月の2択を用意</li>
+          <li><strong>価格</strong>：単発と同じ¥3,800 or 定期便割引（¥3,600等）→ 割引するかは要検討</li>
+          <li><strong>初回特典</strong>：花山の季節の手紙 + 特別同梱物（定期便だけの体験）</li>
+          <li><strong>解約条件</strong>：縛りなし。次回発送7日前までに連絡。解約手数料ゼロ</li>
+          <li><strong>休止機能</strong>：旅行や一時的に不要な場合の「1回スキップ」を許可</li>
+        </ul>
+      </div>
+
+      <p><strong>定期便の「割引」はするべきか？</strong></p>
+      <p>議論が分かれるところ。割引すると「安くなるから定期便にする」というコスト動機になる。HANAYAMAYAが目指す「心理的依存（このお米が切れると生活のリズムが乱れる）」とは相性が悪い。<strong>推奨は同額で、定期便限定の「特別体験」（季節の手紙・花山の景色カード）で差別化する。</strong> 値引きではなく体験の付加価値で定期便への転換を促す。</p>
+
+      <p><strong>実装時期は8月。</strong> ソフトローンチから3ヶ月間の単発販売データ（リピート率）を見てから定期便の設計を最終確定する。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="t37">
+  <p class="section-num">Task 37 / Phase 6</p>
+  <h2>KPI検証・次フェーズ意思決定</h2>
+  <p class="section-hook">9月末。数字は嘘をつかない。ここで次の一手を決める。</p>
+
+  <div class="task">
+    <div class="task-header">
+      <span class="task-badge badge-both">クライアント＋チーム</span>
+      <h3>6ヶ月間のデータを分析し、継続・拡大・撤退を判断する</h3>
+    </div>
+    <div class="task-body">
+      <p>事業計画のKPI基準を再掲：</p>
+
+      <table class="cost-table">
+        <tr><th>KPI</th><th>目標値</th><th style="text-align:right">撤退ライン</th></tr>
+        <tr><td>累計新規顧客数</td><td>30〜50人</td><td class="cost-val">20人未満</td></tr>
+        <tr><td>初回→2回目リピート率</td><td>30%以上</td><td class="cost-val">15%未満</td></tr>
+        <tr><td>定期便転換率</td><td>20%以上</td><td class="cost-val">—</td></tr>
+        <tr><td>実CPA</td><td>¥5,000以下</td><td class="cost-val">¥8,000超</td></tr>
+        <tr><td>LPのCVR</td><td>1.5%以上</td><td class="cost-val">—</td></tr>
+      </table>
+
+      <p><strong>撤退判断：上記のうち2つ以上が赤信号なら、モデルの根本見直し or 撤退。</strong></p>
+
+      <p>ただし、<strong>「撤退」と「ピボット」は違う。</strong> 数字が悪い場合、「高級米ECそのものがダメ」なのか、「ターゲティング / 価格 / チャネルがズレているだけ」なのかを見極める。たとえば：</p>
+      <div class="detail">
+        <p class="detail-label">データから読み解くべきこと</p>
+        <ul>
+          <li>LPへの流入はあるのにCVRが低い → LP or 価格の問題。コピー・デザイン改善で対応可能</li>
+          <li>CVRは高いがリピートしない → 商品力 or 体験の問題。味・梱包・フォローアップを見直す</li>
+          <li>そもそも流入がない → 集客チャネルの問題。広告設計 or SNS戦略を抜本的に変える</li>
+          <li>CPAが高すぎる → ターゲティングが広すぎる。ニッチに絞って再テスト</li>
+        </ul>
+      </div>
+
+      <p><strong>目標を達成した場合の次フェーズ：</strong></p>
+      <div class="detail">
+        <p class="detail-label">拡大フェーズのアクション</p>
+        <ul>
+          <li>SKU拡張：450gギフトパック / 3kg / 5kgの追加</li>
+          <li>広告予算の増額：月¥50,000 → ¥150,000〜</li>
+          <li>ギフト需要の取り込み（お歳暮・お中元シーズンに向けた特別パッケージ）</li>
+          <li>法人営業：飲食店への卸売、企業ギフト</li>
+          <li>コミュニティ構築：花山の田植え / 収穫体験イベント</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- COST SUMMARY -->
+<!-- ============================================================ -->
+
+<div class="section" id="cost">
+  <p class="section-num">Appendix</p>
+  <h2>初期投資・月次コスト総覧</h2>
+  <p class="section-hook">「いくらあれば始められるか」の答え。</p>
+
+  <div class="task">
+    <div class="task-body">
+      <p><strong>初期投資（一度きり）：</strong></p>
+      <table class="cost-table">
+        <tr><th>項目</th><th style="text-align:right">金額</th></tr>
+        <tr><td>ドメイン取得（hanayamaya.com / 年額）</td><td class="cost-val">¥1,408</td></tr>
+        <tr><td>梱包資材（100回分）</td><td class="cost-val">¥13,000〜15,000</td></tr>
+        <tr><td>同梱物印刷（サンキューカード + 景色カード 200枚）</td><td class="cost-val">¥5,000〜8,000</td></tr>
+        <tr><td>パッケージ印刷（200枚・既にデザイン済み前提）</td><td class="cost-val">要確認</td></tr>
+        <tr><td style="color:var(--gold)"><strong>合計（パッケージ印刷除く）</strong></td><td class="cost-val" style="color:var(--gold)"><strong>約¥20,000〜25,000</strong></td></tr>
+      </table>
+
+      <p><strong>月次固定費：</strong></p>
+      <table class="cost-table">
+        <tr><th>項目</th><th style="text-align:right">月額</th></tr>
+        <tr><td>Google Workspace</td><td class="cost-val">¥825</td></tr>
+        <tr><td>freee会計</td><td class="cost-val">¥1,480</td></tr>
+        <tr><td>Netlify（ホスティング）</td><td class="cost-val">¥0</td></tr>
+        <tr><td>Square（決済）</td><td class="cost-val">¥0（手数料3.6%は変動費）</td></tr>
+        <tr><td>GA4</td><td class="cost-val">¥0</td></tr>
+        <tr><td>Instagram</td><td class="cost-val">¥0</td></tr>
+        <tr><td style="color:var(--gold)"><strong>合計</strong></td><td class="cost-val" style="color:var(--gold)"><strong>¥2,305 / 月</strong></td></tr>
+      </table>
+
+      <p><strong>変動費（1件あたり）：</strong></p>
+      <table class="cost-table">
+        <tr><th>項目</th><th style="text-align:right">金額</th></tr>
+        <tr><td>米原価（2kg）</td><td class="cost-val">¥438</td></tr>
+        <tr><td>パッケージ + ラベル</td><td class="cost-val">¥100〜150</td></tr>
+        <tr><td>梱包資材</td><td class="cost-val">¥140〜180</td></tr>
+        <tr><td>送料（ヤマト60サイズ）</td><td class="cost-val">¥900〜</td></tr>
+        <tr><td>決済手数料（3.6%）</td><td class="cost-val">¥137</td></tr>
+        <tr><td style="color:var(--gold)"><strong>変動費合計</strong></td><td class="cost-val" style="color:var(--gold)"><strong>約¥1,715〜1,805</strong></td></tr>
+        <tr><td style="color:var(--green)"><strong>粗利</strong></td><td class="cost-val" style="color:var(--green)"><strong>約¥1,995〜2,085（52〜55%）</strong></td></tr>
+      </table>
+
+      <p style="margin-top:2rem;color:var(--w3);font-size:.82rem;text-align:center;letter-spacing:.1em">パッケージ印刷コストは未確定のため上記試算から除外。確定後に原価を再計算すること。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /.container -->
+
+</body>
+</html>

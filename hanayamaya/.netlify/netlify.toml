@@ -1,0 +1,25 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/sessions/relaxed-stoic-heisenberg/mnt/PJT：HANAYAMAYA"
+publishOrigin = "config"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
