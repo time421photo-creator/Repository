@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KURO HOOK | 逃がさない。バラさない。</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;600&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#070706;color:#EDE8DE;font-family:'Noto Sans JP',sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none}
+
+    :root{
+      --blk:  #070706;
+      --d1:   #0D0B09;
+      --d2:   #131109;
+      --d3:   #1A1710;
+      --d4:   #212018;
+      --org:  #E05A0C;
+      --cr:   #EDE8DE;
+      --wg:   #887870;
+      --mg:   #46403A;
+    }
+
+    /* ─── NAV ─── */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:linear-gradient(to bottom,rgba(7,7,6,.97) 0%,transparent 100%);transition:background .4s}
+    .nav.on{background:rgba(7,7,6,.97);border-bottom:1px solid rgba(255,255,255,.04)}
+    .nav__logo{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:.14em;color:var(--cr)}
+    .nav__logo em{color:var(--org);font-style:normal}
+    .nav__buy{border:1px solid var(--org);color:var(--org);font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;padding:9px 24px;transition:all .2s}
+    .nav__buy:hover{background:var(--org);color:var(--blk)}
+
+    /* ─── HERO ─── */
+    .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end}
+    .hero__bg{position:absolute;inset:0;background:url('./assets/images/graded/final_B2_product_dark.jpg') center/cover no-repeat;transform:scale(1.05);transition:transform 9s}
+    .hero__bg.rdy{transform:scale(1)}
+    .hero__ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,6,.22) 0%,rgba(7,7,6,.08) 35%,rgba(7,7,6,.7) 75%,#070706 100%)}
+    .hero__ov::after{content:'';position:absolute;inset:0;opacity:.03;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0/240px}
+    .hero__body{position:relative;z-index:2;padding:0 48px 80px;max-width:1200px;width:100%}
+    .hero__eye{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.42em;color:var(--wg);margin-bottom:20px;display:block}
+    .hero__en-big{font-family:'Anton',sans-serif;font-size:clamp(60px,8.5vw,128px);line-height:.88;letter-spacing:.04em;color:rgba(237,232,222,.55);margin-bottom:8px}
+    .hero__en-big span{color:var(--org);font-style:normal}
+    .hero__h1{font-family:'Anton',sans-serif;font-size:clamp(44px,6.5vw,104px);line-height:.92;letter-spacing:.01em;color:var(--cr);margin-bottom:12px}
+    .hero__mid{font-size:clamp(15px,1.9vw,22px);color:rgba(237,232,222,.6);line-height:1.7;margin-bottom:20px;font-weight:700;letter-spacing:.03em;font-family:'Noto Sans JP',sans-serif}
+    .hero__h3-orange{font-family:'Anton',sans-serif;font-size:clamp(30px,3.8vw,58px);line-height:1;letter-spacing:.03em;color:var(--org);margin-bottom:44px;text-shadow:0 0 40px rgba(224,90,12,.35)}
+    .hero__sub{font-size:13px;color:rgba(237,232,222,.5);max-width:380px;line-height:1.95;margin-bottom:44px;letter-spacing:.03em}
+    .hero__row{display:flex;align-items:center;gap:36px;flex-wrap:wrap}
+    .btn-o{display:inline-block;background:var(--org);color:var(--blk);font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;padding:15px 40px;transition:all .2s}
+    .btn-o:hover{background:var(--cr)}
+    .hero__sc{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.35em;color:rgba(237,232,222,.3);display:flex;align-items:center;gap:10px}
+    .hero__sc::before{content:'';width:1px;height:36px;background:rgba(224,90,12,.4)}
+
+    /* ─── TICKER ─── */
+    .ticker{background:var(--d1);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);overflow:hidden;padding:12px 0}
+    .ticker__t{display:flex;animation:tk 30s linear infinite;white-space:nowrap}
+    @keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .ti{font-family:'Oswald',sans-serif;font-weight:300;font-size:11px;letter-spacing:.3em;color:var(--wg);flex-shrink:0;padding:0 28px}
+    .ts{color:var(--org);opacity:.5;flex-shrink:0;font-size:9px}
+
+    /* ─── MANIFESTO ─── */
+    .mani{position:relative;overflow:hidden;background:var(--d1);padding:120px 48px}
+    .mani__photo{position:absolute;inset:0;background:url('./assets/images/graded/fish_breaking_water.jpg') center/cover;opacity:.16}
+    .mani__photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--d1) 0%,transparent 28%,transparent 72%,var(--d1) 100%)}
+    .mani__inner{position:relative;z-index:1;max-width:1060px;margin:0 auto}
+    .mani__sub{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.4em;color:var(--wg);display:block;margin-bottom:28px}
+    .mani__q{font-family:'Anton',sans-serif;font-size:clamp(36px,5vw,68px);line-height:1.1;letter-spacing:.01em;color:var(--cr);margin-bottom:48px}
+    .mani__q em{font-style:normal;color:var(--org)}
+    .mani__body{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:720px}
+    .mani__body p{font-size:13.5px;color:var(--wg);line-height:1.95}
+
+    /* ─── PRODUCT ─── */
+    .prod{background:var(--d2)}
+    .prod__g{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:center}
+    .prod__vis{position:relative;overflow:hidden;background:#000;min-height:560px;display:flex;align-items:center;justify-content:center;padding:0}
+    .prod__vis img{mix-blend-mode:normal;max-width:86%;transition:transform .8s;filter:drop-shadow(0 0 60px rgba(224,90,12,.18)) brightness(1.05)}
+    .prod__vis:hover img{transform:scale(1.04)}
+    .prod__bgw{position:absolute;font-family:'Anton',sans-serif;font-size:210px;color:rgba(255,255,255,.014);bottom:-16px;right:-8px;letter-spacing:.04em;pointer-events:none;line-height:1}
+    .prod__txt{padding:72px 56px}
+    .prod__lbl{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.38em;color:var(--wg);display:block;margin-bottom:16px}
+    .prod__rule{display:block;width:28px;height:1px;background:var(--mg);margin-bottom:24px}
+    .prod__en{font-family:'Anton',sans-serif;font-size:clamp(48px,5vw,76px);line-height:.92;letter-spacing:.02em;display:block;margin-bottom:6px}
+    .prod__ja{font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:clamp(14px,1.8vw,18px);color:var(--wg);letter-spacing:.06em;margin-bottom:32px}
+    .prod__body{font-size:13.5px;color:var(--wg);line-height:1.95;max-width:340px;margin-bottom:36px}
+    .prod__dl{display:flex;flex-direction:column;gap:0;margin-bottom:40px}
+    .prod__dt{display:grid;grid-template-columns:80px 1fr;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px;gap:16px}
+    .prod__dt dt{font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.12em;color:var(--wg)}
+    .prod__dt dd{color:var(--cr);opacity:.85}
+
+    /* ════════════════════════════════
+       FEATURE SECTIONS  (2 col: visual | text)
+    ════════════════════════════════ */
+    .feat{display:grid;grid-template-columns:48% 52%;min-height:86vh}
+    .feat--flip{grid-template-columns:52% 48%}
+    .feat--flip .feat__vis{order:2}
+    .feat--flip .feat__txt{order:1}
+
+    /* Left: visual stack */
+    .feat__vis{display:grid;grid-template-rows:1fr auto;background:#fff}
+    .feat__hook{display:flex;align-items:center;justify-content:center;padding:20px;position:relative;overflow:hidden;min-height:360px}
+    .feat__hook-bg{position:absolute;font-family:'Anton',sans-serif;font-size:240px;color:rgba(255,255,255,.018);bottom:-30px;right:-20px;letter-spacing:.04em;pointer-events:none;line-height:1}
+
+    /* ── Real product photo + SVG overlay ── */
+    .hook-stage{position:relative;width:100%;max-width:260px;aspect-ratio:702/1024;z-index:1}
+    /* mix-blend-mode廃止 → drop-shadowで浮かせる */
+    .hook-photo{width:100%;height:100%;object-fit:contain;
+      filter:drop-shadow(0 4px 24px rgba(0,0,0,.9)) drop-shadow(0 0 40px rgba(0,0,0,.7)) brightness(1.1) contrast(1.05)}
+    .hook-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+    /* ハイライト形状 */
+    .hi-circle{fill:rgba(224,90,12,.16);stroke:#E05A0C;stroke-width:4}
+    .hi-ellipse{fill:rgba(224,90,12,.12);stroke:#E05A0C;stroke-width:3.5}
+    .hi-rect{fill:rgba(224,90,12,.1);stroke:#E05A0C;stroke-width:3;stroke-dasharray:12,6}
+    /* 注釈線 */
+    .co-line{stroke:#E05A0C;stroke-width:2;stroke-dasharray:7,5;opacity:.9;fill:none}
+    .co-dot{fill:#E05A0C}
+    /* ラベルテキスト */
+    .co-txt{font-family:'Oswald',sans-serif;font-weight:600;fill:#E05A0C;font-size:32px;letter-spacing:3px;text-transform:uppercase}
+    .co-txt-s{font-family:'Oswald',sans-serif;font-weight:300;fill:rgba(224,90,12,.85);font-size:23px;letter-spacing:2.5px;text-transform:uppercase}
+
+    /* ── MASTER DIAGRAM SECTION ── */
+    .master{background:var(--d1);padding:100px 48px}
+    .master__in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .master__left{}
+    .master__lbl{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.38em;color:var(--wg);display:block;margin-bottom:16px}
+    .master__rule{display:block;width:28px;height:1px;background:var(--mg);margin-bottom:20px}
+    .master__title{font-family:'Anton',sans-serif;font-size:clamp(40px,4.5vw,60px);line-height:.95;letter-spacing:.02em;margin-bottom:20px}
+    .master__title em{color:var(--org);font-style:normal}
+    .master__body{font-size:13px;color:var(--wg);line-height:1.95;margin-bottom:28px;max-width:360px}
+    .master__features{display:flex;flex-direction:column;gap:10px}
+    .master__feat{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.05em}
+    .master__feat::before{content:'';width:8px;height:8px;border:1px solid var(--org);border-radius:50%;flex-shrink:0}
+    .master__feat-name{color:var(--cr);font-family:'Oswald',sans-serif;font-weight:600;font-size:11px;letter-spacing:.15em}
+    .master__feat-desc{color:var(--wg);font-size:11px}
+    .master__right{position:relative;display:flex;align-items:center;justify-content:center}
+    .master-stage{position:relative;width:100%;max-width:320px;aspect-ratio:702/1024;margin:0 auto}
+    .master-photo{width:100%;height:100%;object-fit:contain;
+      filter:drop-shadow(0 6px 32px rgba(0,0,0,.95)) drop-shadow(0 0 48px rgba(0,0,0,.8)) brightness(1.12) contrast(1.06)}
+    .master-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+    /* master SVG共通 */
+    .m-dot{fill:#E05A0C}
+    .m-line{stroke:rgba(224,90,12,.75);stroke-width:1.5;stroke-dasharray:5,4;fill:none}
+    .m-txt{font-family:'Oswald',sans-serif;font-weight:600;fill:#E05A0C;font-size:22px;letter-spacing:2px;text-transform:uppercase}
+    .m-txt-sub{font-family:'Oswald',sans-serif;font-weight:300;fill:rgba(224,90,12,.7);font-size:17px;letter-spacing:1.5px}
+    .feat__diag{padding:28px 36px;border-top:1px solid rgba(255,255,255,.06)}
+    .feat__diag-lbl{font-family:'Oswald',sans-serif;font-weight:300;font-size:9px;letter-spacing:.38em;color:var(--wg);display:block;margin-bottom:12px}
+
+    /* Right: text */
+    .feat__txt{background:var(--d2);padding:72px 52px;display:flex;flex-direction:column;justify-content:center;gap:32px}
+    .feat__num{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.35em;color:var(--org)}
+    .feat__title-en{font-family:'Anton',sans-serif;font-size:clamp(36px,3.8vw,52px);line-height:.95;letter-spacing:.03em;color:var(--cr)}
+    .feat__title-ja{font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:clamp(18px,2vw,24px);line-height:1.3;color:var(--cr);letter-spacing:-.01em}
+    .feat__blocks{display:flex;flex-direction:column;gap:20px}
+    .feat__block-lbl{font-family:'Oswald',sans-serif;font-weight:300;font-size:9px;letter-spacing:.38em;color:var(--wg);display:block;padding-left:9px;border-left:2px solid var(--mg);margin-bottom:6px}
+    .feat__block p{font-size:13px;color:rgba(237,232,222,.68);line-height:1.9}
+    .feat__stat{display:flex;align-items:baseline;gap:6px;margin-top:4px}
+    .feat__stat-n{font-family:'Anton',sans-serif;font-size:clamp(52px,5vw,72px);line-height:1;color:var(--org)}
+    .feat__stat-u{font-family:'Oswald',sans-serif;font-weight:300;font-size:clamp(13px,1.5vw,16px);letter-spacing:.2em;color:var(--wg)}
+    .feat__stat-d{font-size:11px;color:var(--wg);opacity:.6;margin-top:3px}
+
+    /* ─── SVG COMMON ─── */
+    .hook-wire{stroke:rgba(237,232,222,.7);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .hook-hi{stroke:#E05A0C;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .hook-hi-fill{fill:rgba(224,90,12,.12);stroke:#E05A0C;stroke-width:1.5}
+    .callout-line{stroke:var(--wg);stroke-width:.8;stroke-dasharray:3,3;fill:none;opacity:.6}
+    .callout-dot{fill:#E05A0C}
+    .ig-lbl{font-family:'Oswald',sans-serif;font-weight:300;fill:rgba(136,120,112,.9);font-size:9px;letter-spacing:.2em}
+    .ig-lbl-hi{font-family:'Oswald',sans-serif;font-weight:300;fill:#E05A0C;font-size:9px;letter-spacing:.2em}
+    .ig-n{font-family:'Anton',sans-serif;fill:var(--cr);font-size:26px;letter-spacing:.02em}
+    .ig-n-o{font-family:'Anton',sans-serif;fill:#E05A0C;font-size:26px;letter-spacing:.02em}
+    .ig-sub{font-family:'Oswald',sans-serif;font-weight:300;fill:rgba(136,120,112,.8);font-size:10px;letter-spacing:.15em}
+    .ig-line{stroke:rgba(136,120,112,.4);stroke-width:.8;fill:none}
+    .ig-line-o{stroke:#E05A0C;stroke-width:1.2;fill:none}
+
+    /* ─── GALLERY ─── */
+    .gal{background:var(--blk)}
+    .gal__inner{max-width:1200px;margin:0 auto;padding:80px 48px}
+    .gal__hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px}
+    .gal__title{font-family:'Anton',sans-serif;font-size:clamp(40px,5vw,68px);line-height:.92;letter-spacing:.02em}
+    .gal__title em{color:var(--org);font-style:normal}
+    .gal__note{font-size:12.5px;color:var(--wg);max-width:280px;text-align:right;line-height:1.85}
+    .gal__grid{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
+    .gal__c{overflow:hidden;position:relative;background:var(--d2)}
+    .gal__c--big{grid-row:1/3;min-height:540px}
+    .gal__c:not(.gal__c--big){min-height:268px}
+    .gal__c img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+    .gal__c:hover img{transform:scale(1.04)}
+    .gal__cap{position:absolute;bottom:0;left:0;right:0;padding:18px 22px;background:linear-gradient(transparent,rgba(7,7,6,.72));font-family:'Oswald',sans-serif;font-weight:300;font-size:9px;letter-spacing:.38em;color:rgba(237,232,222,.55)}
+
+    /* ─── SIZES ─── */
+    .sizes{background:var(--d1);padding:112px 48px}
+    .sizes__in{max-width:1060px;margin:0 auto}
+    .sizes__hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:64px}
+    .sizes__t{font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,80px);line-height:.9;letter-spacing:.02em}
+    .sizes__t em{color:var(--org);font-style:normal}
+    .sizes__note{font-size:12.5px;color:var(--wg);max-width:280px;text-align:right;line-height:1.85}
+    .sg{display:grid;grid-template-columns:repeat(6,1fr);border-left:1px solid rgba(255,255,255,.05)}
+    .sc{border-right:1px solid rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:28px 14px;transition:background .3s}
+    .sc:hover{background:rgba(255,255,255,.015)}
+    .sc__n{font-family:'Anton',sans-serif;font-size:38px;line-height:1;color:var(--cr);display:block;margin-bottom:10px}
+    .sc__d{font-size:10.5px;color:var(--wg);line-height:2}
+    .sc__l{font-family:'Oswald',sans-serif;font-weight:300;font-size:8px;letter-spacing:.22em;color:rgba(136,120,112,.45);display:block}
+
+    /* ─── VOICE ─── */
+    .voice{background:var(--d2);padding:112px 48px;position:relative;overflow:hidden}
+    .voice__photo{position:absolute;right:0;top:0;bottom:0;width:40%;background:url('./assets/images/graded/fish_trophy_bass.jpg') center/cover;opacity:.15}
+    .voice__photo::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--d2) 0%,transparent 55%)}
+    .voice__in{max-width:1060px;margin:0 auto;position:relative;z-index:1}
+    .voice__t{font-family:'Anton',sans-serif;font-size:clamp(40px,5vw,64px);line-height:.92;margin-bottom:60px;letter-spacing:.02em}
+    .voice__t em{color:var(--org);font-style:normal}
+    .vg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-left:1px solid rgba(255,255,255,.05)}
+    .vc{padding:36px 32px;border-right:1px solid rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+    .vc__stars{color:var(--wg);font-size:12px;letter-spacing:3px;margin-bottom:16px;opacity:.75}
+    .vc__q{font-size:13.5px;line-height:1.9;color:rgba(237,232,222,.78);margin-bottom:22px}
+    .vc__r{width:18px;height:1px;background:var(--mg);margin-bottom:16px}
+    .vc__n{font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;color:var(--cr);display:block}
+    .vc__d{font-size:11px;color:var(--wg);margin-top:4px;display:block}
+
+    /* ─── PRICING ─── */
+    .pri{background:var(--blk);padding:112px 48px}
+    .pri__in{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:80px;align-items:start}
+    .pri__t{font-family:'Anton',sans-serif;font-size:clamp(40px,5.5vw,68px);line-height:.92;letter-spacing:.02em;margin-bottom:24px}
+    .pri__t em{color:var(--org);font-style:normal}
+    .pri__body{font-size:13px;color:var(--wg);line-height:1.95;max-width:340px;margin-bottom:40px}
+    .pri__li{list-style:none;display:flex;flex-direction:column;gap:13px}
+    .pri__li li{font-size:12.5px;color:rgba(237,232,222,.7);display:flex;align-items:flex-start;gap:12px}
+    .pri__li li::before{content:'';width:1px;height:16px;background:var(--mg);flex-shrink:0;margin-top:2px}
+    .pc{border:1px solid rgba(255,255,255,.07);background:var(--d2);padding:48px 40px;position:relative}
+    .pc__badge{position:absolute;top:-11px;left:24px;background:var(--d3);border:1px solid rgba(255,255,255,.07);color:var(--wg);font-family:'Oswald',sans-serif;font-weight:300;font-size:9px;letter-spacing:.28em;padding:4px 12px}
+    .pc__plan{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.3em;color:var(--wg);margin-bottom:14px}
+    .pc__pack{font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:16px;margin-bottom:28px;line-height:1.55}
+    .pc__row{display:flex;align-items:baseline;gap:2px;margin-bottom:4px}
+    .pc__yen{font-family:'Oswald',sans-serif;font-weight:300;font-size:22px;color:var(--wg)}
+    .pc__n{font-family:'Anton',sans-serif;font-size:72px;line-height:1;color:var(--cr);letter-spacing:-.02em}
+    .pc__from{font-family:'Oswald',sans-serif;font-size:16px;color:var(--wg)}
+    .pc__old{font-size:11px;color:var(--wg);text-decoration:line-through;margin-bottom:28px;opacity:.55}
+    .pc__div{border:none;border-top:1px solid rgba(255,255,255,.05);margin:22px 0}
+    .pc__inc{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+    .pc__inc li{font-size:12px;color:rgba(237,232,222,.62);display:flex;align-items:flex-start;gap:9px}
+    .pc__inc li::before{content:'—';color:var(--mg);font-family:'Oswald',sans-serif;font-size:11px;flex-shrink:0}
+    .btn-buy{display:block;background:var(--org);color:var(--blk);font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:14px;letter-spacing:.04em;padding:17px;text-align:center;transition:all .2s}
+    .btn-buy:hover{background:var(--cr)}
+    .pc__note{font-size:10.5px;color:rgba(136,120,112,.5);margin-top:12px;line-height:1.75}
+
+    /* ─── FAQ ─── */
+    .faq{background:var(--d1);padding:112px 48px}
+    .faq__in{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start}
+    .faq__t{font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,52px);line-height:.92;letter-spacing:.02em}
+    .faq__t em{color:var(--org);font-style:normal}
+    .faq__item{border-bottom:1px solid rgba(255,255,255,.06)}
+    .faq__q{width:100%;background:none;border:none;color:var(--cr);text-align:left;padding:18px 0;font-family:'Noto Sans JP',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;transition:opacity .2s}
+    .faq__q:hover{opacity:.7}
+    .faq__ic{width:17px;height:17px;border:1px solid var(--mg);display:flex;align-items:center;justify-content:center;color:var(--wg);font-size:13px;flex-shrink:0;transition:transform .3s,border-color .2s}
+    .faq__item.open .faq__ic{transform:rotate(45deg);border-color:var(--wg)}
+    .faq__a{font-size:13px;color:var(--wg);line-height:1.9;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+    .faq__item.open .faq__a{max-height:240px;padding-bottom:20px}
+
+    /* ─── FINAL CTA ─── */
+    .fcta{position:relative;height:70vh;min-height:440px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+    .fcta__bg{position:absolute;inset:0;background:url('./assets/images/graded/pexels_lake_dawn.jpg') center/cover}
+    .fcta__ov{position:absolute;inset:0;background:rgba(7,7,6,.82)}
+    .fcta__body{position:relative;z-index:2;padding:0 24px}
+    .fcta__eye{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.38em;color:var(--wg);margin-bottom:22px;display:block}
+    .fcta__h1{font-family:'Anton',sans-serif;font-size:clamp(54px,9vw,118px);line-height:.88;letter-spacing:.01em;color:var(--cr);display:block}
+    .fcta__h2{font-family:'Anton',sans-serif;font-size:clamp(54px,9vw,118px);line-height:.88;letter-spacing:.01em;color:var(--org);display:block;margin-bottom:40px}
+    .fcta__sub{font-size:12.5px;color:rgba(237,232,222,.4);margin-bottom:36px}
+
+    /* ─── FOOTER ─── */
+    .footer{background:var(--blk);border-top:1px solid rgba(255,255,255,.04);padding:44px 48px}
+    .footer__in{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+    .footer__logo{font-family:'Anton',sans-serif;font-size:19px;letter-spacing:.14em;color:var(--cr)}
+    .footer__logo em{color:var(--org);font-style:normal}
+    .footer__ln{display:flex;gap:24px;flex-wrap:wrap}
+    .footer__ln a{font-size:11px;color:var(--wg);letter-spacing:.04em;transition:color .2s}
+    .footer__ln a:hover{color:var(--cr)}
+    .footer__cp{font-size:10px;color:rgba(136,120,112,.3)}
+
+
+    /* ─── FEAT 3-COLUMN ─── */
+    .feat3{display:grid;grid-template-columns:38% 20% 42%;min-height:80vh}
+    .feat3--flip{grid-template-columns:42% 20% 38%}
+    .feat3--flip .feat3__anno{order:3}
+    .feat3--flip .feat3__macro{order:2}
+    .feat3--flip .feat3__txt{order:1}
+    .feat3__anno{background:#0c0b09;display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden}
+    .feat3__anno img{width:100%;height:100%;object-fit:contain;max-height:600px}
+    .feat3__macro{background:#000;overflow:hidden;position:relative}
+    .feat3__macro img{width:100%;height:100%;object-fit:cover;transition:transform 1s;position:relative;z-index:1}
+    .feat3:hover .feat3__macro img{transform:scale(1.05)}
+    .feat3__txt{background:var(--d3);padding:64px 44px;display:flex;flex-direction:column;justify-content:center;gap:28px}
+
+    /* ─── C1: Problem Section ─── */
+    .c1{position:relative;height:70vh;min-height:440px;overflow:hidden;display:flex;align-items:center}
+    .c1__bg{position:absolute;inset:0;background:url('./assets/images/graded/fish_jumping.jpg') center 40%/cover}
+    .c1__ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,7,6,.95) 0%,rgba(7,7,6,.75) 55%,rgba(7,7,6,.3) 100%)}
+    .c1__body{position:relative;z-index:2;padding:0 64px;max-width:620px}
+    .c1__eye{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.42em;color:var(--org);margin-bottom:20px;display:block}
+    .c1__title{font-family:'Anton',sans-serif;font-size:clamp(48px,6.5vw,90px);line-height:.9;letter-spacing:.01em;margin-bottom:28px}
+    .c1__sub{font-size:15px;color:rgba(237,232,222,.65);line-height:1.85;max-width:400px;margin-bottom:36px}
+
+    /* ─── C2: Stats Summary ─── */
+    .c2{background:var(--org);padding:72px 48px}
+    .c2__inner{max-width:1100px;margin:0 auto}
+    .c2__label{font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:.38em;color:rgba(7,7,6,.6);display:block;margin-bottom:36px;text-transform:uppercase}
+    .c2__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+    .c2__item{background:rgba(0,0,0,.06);padding:40px 32px;text-align:center;transition:background .2s}
+    .c2__item:hover{background:rgba(0,0,0,.12)}
+    .c2__num{font-family:'Anton',sans-serif;font-size:clamp(56px,5.5vw,88px);line-height:1;color:#070706;display:block;letter-spacing:.01em;text-shadow:0 2px 0 rgba(0,0,0,.15)}
+    .c2__unit{font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.22em;color:#070706;display:block;margin-top:6px;margin-bottom:8px}
+    .c2__desc{font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;color:rgba(7,7,6,.75);line-height:1.6}
+
+    /* ─── SCROLL REVEAL ─── */
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .72s ease,transform .72s ease}
+    .rv-l{opacity:0;transform:translateX(-22px);transition:opacity .72s ease,transform .72s ease}
+    .rv-r{opacity:0;transform:translateX(22px);transition:opacity .72s ease,transform .72s ease}
+    .rv.in,.rv-l.in,.rv-r.in{opacity:1;transform:none}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:960px){
+      .nav{padding:14px 20px}
+      .hero__body{padding:0 20px 60px}
+      .mani{padding:80px 20px}
+      .mani__body{grid-template-columns:1fr}
+      .master{padding:72px 20px}
+      .master__in{grid-template-columns:1fr;gap:48px}
+      .prod__g{grid-template-columns:1fr}
+      .prod__vis{min-height:300px}
+      .prod__txt{padding:44px 24px}
+      .feat,.feat--flip{grid-template-columns:1fr;min-height:auto}
+      .feat3,.feat3--flip{grid-template-columns:1fr;min-height:auto}
+      .feat3--flip .feat3__anno,.feat3--flip .feat3__macro,.feat3--flip .feat3__txt{order:unset}
+      .feat3__macro{min-height:50vw}
+      .c1__body{padding:0 24px}
+      .c2__grid{grid-template-columns:repeat(2,1fr)}
+      .feat--flip .feat__vis,.feat--flip .feat__txt{order:unset}
+      .feat__txt{padding:48px 24px}
+      .feat__hook{padding:40px 20px}
+      .feat__diag{padding:20px 24px}
+      .gal__inner{padding:60px 20px}
+      .gal__grid{grid-template-columns:1fr}
+      .gal__c--big{grid-row:auto;min-height:260px}
+      .gal__c:not(.gal__c--big){min-height:220px}
+      .sizes{padding:80px 20px}
+      .sg{grid-template-columns:repeat(3,1fr)}
+      .voice{padding:80px 20px}
+      .vg{grid-template-columns:1fr}
+      .pri{padding:80px 20px}
+      .pri__in{grid-template-columns:1fr;gap:44px}
+      .faq{padding:80px 20px}
+      .faq__in{grid-template-columns:1fr;gap:32px}
+      .footer{padding:36px 20px}
+    }
+    @media(max-width:480px){.sg{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav__logo">KURO<em>.</em>HOOK</div>
+  <a href="#pricing" class="nav__buy">購入する</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg" id="heroBg"></div>
+  <div class="hero__ov"></div>
+  <div class="hero__body">
+    <span class="hero__eye">EWG OFFSET HOOK — PROFESSIONAL SERIES</span>
+    <h1 class="hero__en-big rv">THE HOOK<br>DECIDES<span>.</span></h1>
+    <p class="hero__h1 rv" style="margin-bottom:12px;">バラした、記憶は残る。</p>
+    <p class="hero__mid rv">フッキングが決まったその瞬間——<br>フックが、バラシのすべてを決める。</p>
+    <p class="hero__h3-orange rv">だから、フックを変えた。</p>
+    <div class="hero__row">
+      <a href="#pricing" class="btn-o">3パックセットを購入する</a>
+      <span class="hero__sc">SCROLL</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker__t">
+    <span class="ti">THE HOOK DECIDES</span><span class="ts">|</span>
+    <span class="ti">BUILT DIFFERENT</span><span class="ts">|</span>
+    <span class="ti">2X LOCK POWER</span><span class="ts">|</span>
+    <span class="ti">INSTANT PENETRATE</span><span class="ts">|</span>
+    <span class="ti">365+ RUST FREE</span><span class="ts">|</span>
+    <span class="ti">バラした記憶を消す。</span><span class="ts">|</span>
+    <span class="ti">36本 ¥1,680〜</span><span class="ts">|</span>
+    <span class="ti">THE HOOK DECIDES</span><span class="ts">|</span>
+    <span class="ti">BUILT DIFFERENT</span><span class="ts">|</span>
+    <span class="ti">2X LOCK POWER</span><span class="ts">|</span>
+    <span class="ti">INSTANT PENETRATE</span><span class="ts">|</span>
+    <span class="ti">365+ RUST FREE</span><span class="ts">|</span>
+    <span class="ti">バラした記憶を消す。</span><span class="ts">|</span>
+    <span class="ti">36本 ¥1,680〜</span><span class="ts">|</span>
+  </div>
+</div>
+
+
+
+<!-- ══ C1: PROBLEM STATEMENT ══ -->
+<section class="c1">
+  <div class="c1__bg"></div>
+  <div class="c1__ov"></div>
+  <div class="c1__body">
+    <span class="c1__eye">THE FISH DOESN'T FORGIVE</span>
+    <h2 class="c1__title rv" style="line-height:.92;">アワセは決まった。<br>それでも、逃げた。</h2>
+    <p class="c1__sub rv">フックが弱ければ、すべては無駄だ。<br>そのキャスト、その集中、その一瞬——<br>すべてを結果に変えるのが、フックの仕事。</p>
+    <a href="#product" class="btn-o rv" style="font-size:14px;padding:16px 40px;">KURO HOOKを見る →</a>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="mani">
+  <div class="mani__photo"></div>
+  <div class="mani__inner">
+    <span class="mani__sub rv" style="font-size:11px;letter-spacing:.45em;">— OUR MANIFESTO —</span>
+    <p class="mani__q rv" style="font-size:clamp(34px,5vw,66px);">消耗品に、<em>プロスペックを。</em><br>だからこそ、KUROを作った。</p>
+    <div class="mani__body rv">
+      <p style="font-size:15px;line-height:2;font-weight:700;color:rgba(237,232,222,.8);">大手が独占してきたプロ設計を、消耗品として惜しみなく使える価格で全員に。それが、KUROを作った唯一の理由だ。</p>
+      <p style="font-size:13.5px;line-height:1.95;">4つの設計が全部入っている。V字ロック・刃型針先・鍛造2X・ブラックニッケル。バラしを消すために、妥協しなかった。</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<div class="prod">
+  <div class="prod__g">
+    <div class="prod__vis rv-l">
+      <div class="prod__bgw">KURO</div>
+      <img src="./assets/images/graded/product_hooks_nobg.png" alt="KURO HOOK" style="max-width:100%;border-radius:0;">
+    </div>
+    <div class="prod__txt rv-r">
+      <span class="prod__lbl">THE PRODUCT</span>
+      <span class="prod__rule"></span>
+      <span class="prod__en">KURO<em style="font-style:normal;color:var(--org);">.</em>HOOK</span>
+      <p class="prod__ja">EWG オフセットフック #1〜5/0</p>
+      <p class="prod__body">ブラックニッケルの漆黒ボディ。鍛造2倍強度のフレーム。プロV字ベンドのロック構造。カッティングポイントの即貫通針先。4つの設計が、バラしを消す。</p>
+      <dl class="prod__dl">
+        <div class="prod__dt"><dt>MATERIAL</dt><dd>高炭素鋼</dd></div>
+        <div class="prod__dt"><dt>FINISH</dt><dd>ブラックニッケルメッキ（防錆）</dd></div>
+        <div class="prod__dt"><dt>BEND</dt><dd>プロV字ベンド / Z-lockショルダー</dd></div>
+        <div class="prod__dt"><dt>POINT</dt><dd>カッティングポイント（刃型断面）</dd></div>
+        <div class="prod__dt"><dt>STRENGTH</dt><dd>鍛造加工 2X Strong</dd></div>
+        <div class="prod__dt"><dt>SIZE</dt><dd>#1 / 1/0 / 2/0 / 3/0 / 4/0 / 5/0</dd></div>
+      </dl>
+      <a href="#pricing" class="btn-o" style="align-self:flex-start">今すぐ購入する</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     MASTER DIAGRAM — 全機能俯瞰
+══════════════════════════════════════════ -->
+<section class="master">
+  <div class="master__in">
+    <div class="master__left rv-l">
+      <span class="master__lbl">ANATOMY OF KURO HOOK</span>
+      <span class="master__rule"></span>
+      <h2 class="master__title">7つの設計が<br><em>一本に宿る。</em></h2>
+      <p class="master__body">大手ブランドで複数製品に分散している技術を、KURO HOOKは一本のフックに集約した。消耗品として使えるコストで、プロスペックを。</p>
+      <div class="master__features">
+        <div class="master__feat"><span class="master__feat-name">Z-LOCK SHOULDER</span><span class="master__feat-desc"> — ワームの固定と二段ロック</span></div>
+        <div class="master__feat"><span class="master__feat-name">PROFESSIONAL V-BEND</span><span class="master__feat-desc"> — バラし防止のV字構造</span></div>
+        <div class="master__feat"><span class="master__feat-name">HIGH-CARBON STEEL</span><span class="master__feat-desc"> — 鍛造2X強度の素材</span></div>
+        <div class="master__feat"><span class="master__feat-name">BLACK NICKEL FINISH</span><span class="master__feat-desc"> — 防錆＋光反射ゼロ</span></div>
+        <div class="master__feat"><span class="master__feat-name">EXTRA WIDE GAP</span><span class="master__feat-desc"> — ワームの自然な動きを保持</span></div>
+        <div class="master__feat"><span class="master__feat-name">CUTTING POINT</span><span class="master__feat-desc"> — 刃型断面の即貫通針先</span></div>
+        <div class="master__feat"><span class="master__feat-name">BARB</span><span class="master__feat-desc"> — 外れを防ぐ返し構造</span></div>
+      </div>
+    </div>
+
+    <div class="master__right rv-r">
+      <img src="./assets/images/graded/final_A1_anatomy_nobg.png" alt="KURO HOOK Anatomy"
+           style="width:100%;max-width:420px;display:block;margin:0 auto;border-radius:6px;">
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FEATURE 01: PROFESSIONAL V-BEND
+     ハイライト: Z-lockショルダーのV字折り返し頂点
+══════════════════════════════════════════ -->
+<section class="feat3">
+  <!-- ANNO -->
+  <div class="feat3__anno rv-l">
+    <img src="./assets/images/graded/final_A2_vbend_nobg.png" alt="Professional V-BEND">
+  </div>
+  <!-- MACRO ZOOM -->
+  <div class="feat3__macro" style="background:#000 url(./assets/images/graded/bg_vbend_section.jpg) center/cover;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,7,6,.45) 0%,rgba(7,7,6,.2) 100%);z-index:0"></div>
+    <img src="./assets/images/graded/feature_vbend.jpg" alt="V-BEND bottom arc macro">
+  </div>
+  <div style="display:none"><!-- removed feat__vis wrapper -->
+  </div>
+
+  <!-- TEXT -->
+  <div class="feat3__txt rv-r">
+    <span class="feat__num">FEATURE 01 / 04</span>
+    <div>
+      <p class="feat__title-en">PROFESSIONAL<br>V-BEND</p>
+      <p class="feat__title-ja" style="margin-top:8px">底部カーブが<br>バラしを消す</p>
+    </div>
+    <div class="feat__blocks">
+      <div>
+        <span class="feat__block-lbl">WHERE — どこの構造か</span>
+        <p class="feat__block">フック底部の大きなU字アーチ。シャンク下端から針先へと繋がる、EWGの特徴的なエクストラワイドな曲線部がV-BEND。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">MECHANISM — なぜ効くか</span>
+        <p class="feat__block">このV字型カーブが口腔内でフックをロックする。魚が暴れるほど、ワイドなギャップ形状がより深く刺さり込む方向に作用する。一般的なナローゲイプは首振りで外れるが、EWG V-BENDは外れない。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">EFFECT — 釣り人への変化</span>
+        <p class="feat__block">ジャンプ・突っ込み・首振りでバラしていた状況が激減。エクストラワイドギャップとV字ロック構造の組み合わせが、バラし率を根本から下げる。</p>
+      </div>
+    </div>
+    <div>
+      <div class="feat__stat"><span class="feat__stat-n">2X</span><span class="feat__stat-u">LOCK POWER</span></div>
+      <p class="feat__stat-d">ナローゲイプ比 / ロック保持力</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FEATURE 02: CUTTING POINT
+     ハイライト: フック先端2mmの刃型断面
+══════════════════════════════════════════ -->
+<section class="feat3 feat3--flip">
+  <!-- ANNO -->
+  <div class="feat3__anno rv-r">
+    <img src="./assets/images/graded/final_A3_cutting_nobg.png" alt="Cutting Point Annotation">
+  </div>
+  <!-- MACRO ZOOM -->
+  <div class="feat3__macro" style="background:#000 url(./assets/images/graded/bg_cutting_section.jpg) center/cover;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,7,6,.4) 0%,rgba(7,7,6,.15) 100%);z-index:0"></div>
+    <img src="./assets/images/graded/macro_M2_point.jpg" alt="Cutting point macro">
+  </div>
+    <div class="feat3__txt rv-l" style="background:var(--d1)">
+    <span class="feat__num">FEATURE 02 / 04</span>
+    <div>
+      <p class="feat__title-en">CUTTING<br>POINT</p>
+      <p class="feat__title-ja" style="margin-top:8px">刃型針先が<br>口腔を瞬時に貫く</p>
+    </div>
+    <div class="feat__blocks">
+      <div>
+        <span class="feat__block-lbl">WHERE — どこの構造か</span>
+        <p class="feat__block">フック先端の最後2mm。通常は丸い円錐研磨だが、KUROは刃物と同じ4面体研磨（菱形断面）を施している。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">MECHANISM — なぜ効くか</span>
+        <p class="feat__block">円形断面は全周で摩擦抵抗が生じる。菱形断面は4辺のエッジで組織を切り裂く。接触面積が約1/3になり、同じアワセ力で3倍深く刺さる物理的原理。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">EFFECT — 釣り人への変化</span>
+        <p class="feat__block">アワセが甘くても口腔の硬い骨質部位に即刺さる。「バイトの感触→アワセ→フッキング」の時間が最短化。乗りが劇的に向上する。</p>
+      </div>
+    </div>
+    <div>
+      <div class="feat__stat"><span class="feat__stat-n">-67%</span><span class="feat__stat-u">FORCE NEEDED</span></div>
+      <p class="feat__stat-d">通常丸形断面比 / 必要貫通力</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FEATURE 03: 2X STRONG FORGED
+     ハイライト: ワイヤー本体の鍛造密度
+══════════════════════════════════════════ -->
+<section class="feat3">
+  <!-- ANNO -->
+  <div class="feat3__anno rv-l">
+    <img src="./assets/images/graded/final_A4_forged_nobg.png" alt="Forged Annotation">
+  </div>
+  <!-- MACRO -->
+  <div class="feat3__macro" style="background:#000 url(./assets/images/graded/bg_forged_section.jpg) center/cover;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,7,6,.4) 0%,rgba(7,7,6,.15) 100%);z-index:0"></div>
+    <img src="./assets/images/graded/macro_M3_forged.jpg" alt="Forged wire macro">
+  </div>
+  <div style="display:none">
+  </div>
+
+  <div class="feat3__txt rv-r">
+    <span class="feat__num">FEATURE 03 / 04</span>
+    <div>
+      <p class="feat__title-en">2X STRONG<br>FORGED</p>
+      <p class="feat__title-ja" style="margin-top:8px">鍛造2倍強度が<br>大型魚を止める</p>
+    </div>
+    <div class="feat__blocks">
+      <div>
+        <span class="feat__block-lbl">WHERE — どこの構造か</span>
+        <p class="feat__block">フック本体の鉄線全体。線径（太さ）は通常フックと同じだが、製造工程がまったく異なる。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">MECHANISM — なぜ効くか</span>
+        <p class="feat__block">通常は鋼線をそのまま曲げる"切削成型"。KUROは高圧プレスによる"鍛造成型"で、内部の金属結晶粒が緻密化・均一化される。同じ線径でも密度が上がり、破断荷重が2倍になる。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">EFFECT — 釣り人への変化</span>
+        <p class="feat__block">大型ラージマウスの突っ込みでも曲がらない。根がかり外しでペンチャリしない。消耗品として惜しみなく使いながら、壊れないフックを持てる。</p>
+      </div>
+    </div>
+    <div>
+      <div class="feat__stat"><span class="feat__stat-n">2X</span><span class="feat__stat-u">BREAK FORCE</span></div>
+      <p class="feat__stat-d">通常切削成型比 / 破断荷重</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FEATURE 04: BLACK NICKEL FINISH
+     ハイライト: ワイヤー表面のコーティング層
+══════════════════════════════════════════ -->
+<section class="feat3 feat3--flip" style="background:var(--d2)">
+  <div class="feat3__anno rv-r">
+    <img src="./assets/images/graded/final_A5_blacknickel_nobg.png" alt="Black Nickel Annotation">
+  </div>
+  <!-- MACRO -->
+  <div class="feat3__macro" style="background:#000 url(./assets/images/graded/bg_blackni_section.jpg) center/cover;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,7,6,.4) 0%,rgba(7,7,6,.15) 100%);z-index:0"></div>
+    <img src="./assets/images/graded/macro_M4_blackni.jpg" alt="Black nickel macro">
+  </div>
+    <div class="feat3__txt rv-l" style="background:var(--d2)">
+    <span class="feat__num">FEATURE 04 / 04</span>
+    <div>
+      <p class="feat__title-en">BLACK NICKEL<br>FINISH</p>
+      <p class="feat__title-ja" style="margin-top:8px">艶消し黒が魚を騙し<br>錆から守る</p>
+    </div>
+    <div class="feat__blocks">
+      <div>
+        <span class="feat__block-lbl">WHERE — どこの構造か</span>
+        <p class="feat__block">フック全体の表面。[高炭素鋼コア]→[ニッケル下地めっき]→[黒色化処理]の3層構造。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">MECHANISM — なぜ効くか</span>
+        <p class="feat__block">通常のクロームめっきは光を散乱反射させ水中でキラキラ見える。黒色ニッケルは光を吸収し反射をほぼゼロに。加えてニッケルが腐食電流を遮断し、淡水・塩水どちらでも錆耐性が大幅に向上。</p>
+      </div>
+      <div>
+        <span class="feat__block-lbl">EFFECT — 釣り人への変化</span>
+        <p class="feat__block">ナーバスな魚にフックを意識させない。錆びないから毎回使えるコンディションを保てる。そして見た目の黒い武骨さが、フィールドで気分を上げる。</p>
+      </div>
+    </div>
+    <div>
+      <div class="feat__stat"><span class="feat__stat-n">365</span><span class="feat__stat-u">DAYS+ RUST FREE</span></div>
+      <p class="feat__stat-d">海水環境使用・使用後水洗い前提</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ══ C2: WHY KURO STATS ══ -->
+<section class="c2">
+  <div class="c2__inner">
+    <span class="c2__label">4 REASONS — なぜKUROなのか</span>
+    <div class="c2__grid">
+      <div class="c2__item rv">
+        <span class="c2__num">2X</span>
+        <span class="c2__unit">LOCK POWER</span>
+        <span class="c2__desc">V字ベンド + Z-lockショルダー<br>バラしを根本から消す</span>
+      </div>
+      <div class="c2__item rv">
+        <span class="c2__num">瞬間</span>
+        <span class="c2__unit">PENETRATE</span>
+        <span class="c2__desc">カッティングポイント刃型断面<br>アワセが甘くても刺さる</span>
+      </div>
+      <div class="c2__item rv">
+        <span class="c2__num">2X</span>
+        <span class="c2__unit">BREAK FORCE</span>
+        <span class="c2__desc">高炭素鋼 鍛造プレス成型<br>大型バスでも曲がらない</span>
+      </div>
+      <div class="c2__item rv">
+        <span class="c2__num">365+</span>
+        <span class="c2__unit">DAYS RUST FREE</span>
+        <span class="c2__desc">ブラックニッケルコーティング<br>淡水・海水どちらでも</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gal">
+  <div class="gal__inner">
+    <div class="gal__hd rv">
+      <h2 class="gal__title">FIELD<br><em>REALITY.</em></h2>
+      <p class="gal__note">スペックが実戦で機能したとき、その釣り人だけが知る確かさがある。</p>
+    </div>
+    <div class="gal__grid rv">
+      <div class="gal__c gal__c--big">
+        <img src="./assets/images/graded/fish_bass_mouth.jpg" alt="ラージマウスバス">
+        <div class="gal__cap">LARGEMOUTH BASS — FIELD CATCH</div>
+      </div>
+      <div class="gal__c">
+        <img src="./assets/images/graded/hero_hooks.jpg" alt="KURO HOOK — 3サイズ">
+        <div class="gal__cap">KURO HOOK — MULTI SIZE</div>
+      </div>
+      <div class="gal__c">
+        <img src="./assets/images/graded/pexels_angler_sunset.jpg" alt="アングラー">
+        <div class="gal__cap">GOLDEN HOUR — LAKE SESSION</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SIZES -->
+<section class="sizes" id="sizes">
+  <div class="sizes__in">
+    <div class="sizes__hd rv">
+      <h2 class="sizes__t">6 SIZES.<br><em>ONE SYSTEM.</em></h2>
+      <p class="sizes__note">#1からワーム〜5/0のスティックベイトまで。あらゆるリグに対応する全6サイズ。</p>
+    </div>
+    <div class="sg rv">
+      <div class="sc"><span class="sc__n">#1</span><div class="sc__d"><span class="sc__l">全長</span>41mm<span class="sc__l">幅</span>18mm<span class="sc__l">ギャップ</span>14mm</div></div>
+      <div class="sc"><span class="sc__n">1/0</span><div class="sc__d"><span class="sc__l">全長</span>44mm<span class="sc__l">幅</span>20mm<span class="sc__l">ギャップ</span>16mm</div></div>
+      <div class="sc"><span class="sc__n">2/0</span><div class="sc__d"><span class="sc__l">全長</span>48mm<span class="sc__l">幅</span>22mm<span class="sc__l">ギャップ</span>18mm</div></div>
+      <div class="sc"><span class="sc__n">3/0</span><div class="sc__d"><span class="sc__l">全長</span>52mm<span class="sc__l">幅</span>24mm<span class="sc__l">ギャップ</span>20mm</div></div>
+      <div class="sc"><span class="sc__n">4/0</span><div class="sc__d"><span class="sc__l">全長</span>56mm<span class="sc__l">幅</span>26mm<span class="sc__l">ギャップ</span>21mm</div></div>
+      <div class="sc"><span class="sc__n">5/0</span><div class="sc__d"><span class="sc__l">全長</span>62mm<span class="sc__l">幅</span>28mm<span class="sc__l">ギャップ</span>21mm</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- VOICE -->
+<section class="voice">
+  <div class="voice__photo"></div>
+  <div class="voice__in">
+    <h2 class="voice__t rv">FIELD<br><em>VOICE.</em></h2>
+    <div class="vg">
+      <div class="vc rv">
+        <div class="vc__stars">★★★★★</div>
+        <p class="vc__q">「この価格でこのシャープさはおかしい。針先が市販の倍はある。3/0で使ったらフッキング率が明らかに変わって、バラしがほぼなくなった。」</p>
+        <div class="vc__r"></div>
+        <span class="vc__n">K.T</span><span class="vc__d">バス釣り歴7年 / 霞ヶ浦エリア</span>
+      </div>
+      <div class="vc rv">
+        <div class="vc__stars">★★★★★</div>
+        <p class="vc__q">「消耗品として惜しみなく使えるのが最高。根がかりで全然惜しくない。Vベンドが効いてて暴れてもバレない。構造の差を感じる。」</p>
+        <div class="vc__r"></div>
+        <span class="vc__n">S.M</span><span class="vc__d">バス釣り歴3年 / 琵琶湖エリア</span>
+      </div>
+      <div class="vc rv">
+        <div class="vc__stars">★★★★★</div>
+        <p class="vc__q">「ジャンプされてもバレない。このV字形状がワームをしっかり保持して、魚が口を開いても外れない。アワセの感触も別物。」</p>
+        <div class="vc__r"></div>
+        <span class="vc__n">H.Y</span><span class="vc__d">バス釣り歴5年 / 千葉房総エリア</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section class="pri" id="pricing">
+  <div class="pri__in">
+    <div class="rv-l">
+      <h2 class="pri__t">SIMPLE.<br><em>ONE PLAN.</em></h2>
+      <p class="pri__body">消耗品は、まとめて持つのが正解。3パック36本セットが、フィールドで一番頼りになる。</p>
+      <ul class="pri__li">
+        <li>高炭素鋼 鍛造 2X STRONG</li>
+        <li>プロV字ベンド + Z-lockショルダー</li>
+        <li>カッティングポイント 針先</li>
+        <li>ブラックニッケル 防錆コーティング</li>
+        <li>6サイズから選択（#1 〜 5/0）</li>
+        <li>全国一律 送料無料 / ポスト投函</li>
+      </ul>
+    </div>
+    <div class="pc rv-r">
+      <span class="pc__badge">STARTER SET</span>
+      <p class="pc__plan">3パックセット</p>
+      <p class="pc__pack">12本入り × 3パック / 合計36本<br>選択サイズ</p>
+      <div class="pc__row"><span class="pc__yen">¥</span><span class="pc__n">1,680</span><span class="pc__from">〜</span></div>
+      <span class="pc__old">単品換算 ¥560/pack</span>
+      <hr class="pc__div">
+      <ul class="pc__inc">
+        <li>12本入りパック × 3セット（36本）</li>
+        <li>サイズ選択可：#1 / 1/0 / 2/0 / 3/0 / 4/0 / 5/0</li>
+        <li>ポスト投函 全国送料無料</li>
+        <li>到着後7日以内 未開封返品対応</li>
+      </ul>
+      <a href="#" class="btn-buy">今すぐ購入する →</a>
+      <p class="pc__note">※ Square ECにて決済 / クレジットカード・コンビニ払い対応<br>※ ご注文後3〜5営業日以内に発送</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq__in">
+    <div class="rv">
+      <h2 class="faq__t">Q &amp;<br><em>A.</em></h2>
+    </div>
+    <div class="rv">
+      <div class="faq__item"><button class="faq__q" onclick="faq(this)"><span>どのサイズを選べばいいですか？</span><span class="faq__ic">+</span></button><div class="faq__a">バス釣りの定番（4〜5インチワーム）なら2/0〜3/0が最も汎用性が高い。スモールワームには#1〜1/0、スティックベイトや大型ワームには4/0〜5/0。迷ったら2/0か3/0から試してください。</div></div>
+      <div class="faq__item"><button class="faq__q" onclick="faq(this)"><span>海水でも使えますか？</span><span class="faq__ic">+</span></button><div class="faq__a">ブラックニッケルコーティングにより防錆性能は高く海水でも使用可能。使用後は真水でリンスすることで長持ちします。シーバス・ヒラメ等にも対応。</div></div>
+      <div class="faq__item"><button class="faq__q" onclick="faq(this)"><span>配送はどれくらいかかりますか？</span><span class="faq__ic">+</span></button><div class="faq__a">ご注文確定後、通常3〜5営業日以内に発送。ポスト投函のため在宅不要。送料全国一律無料。</div></div>
+      <div class="faq__item"><button class="faq__q" onclick="faq(this)"><span>返品・交換できますか？</span><span class="faq__ic">+</span></button><div class="faq__a">商品到着後7日以内、未開封・未使用の場合に対応。商品不良の場合は送料弊社負担でご対応します。</div></div>
+      <div class="faq__item"><button class="faq__q" onclick="faq(this)"><span>まとめ買い割引はありますか？</span><span class="faq__ic">+</span></button><div class="faq__a">現在は3パックセット（36本）が基本プラン。6パック・10パック等のまとめ買いプランも準備中。SNSフォローで新プランのお知らせが届きます。</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="fcta">
+  <div class="fcta__bg"></div>
+  <div class="fcta__ov"></div>
+  <div class="fcta__body">
+    <span class="fcta__eye">KURO HOOK — ORDER NOW</span>
+    <span class="fcta__h1" style="font-size:clamp(32px,5vw,72px);margin-bottom:12px;">だから、フックにこだわった。</span>
+    <span class="fcta__h2" style="font-size:clamp(22px,3.5vw,50px);margin-bottom:36px;">その1匹を、逃すな。</span>
+    <p class="fcta__sub">大手スペック × 消耗品価格。バス釣りに、革命を。</p>
+    <a href="#pricing" class="btn-o">3パックセットを購入する</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__in">
+    <div class="footer__logo">KURO<em>.</em>HOOK</div>
+    <nav class="footer__ln">
+      <a href="#">特定商取引法に基づく表記</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">返品ポリシー</a>
+      <a href="#">お問い合わせ</a>
+    </nav>
+    <span class="footer__cp">© 2025 KURO HOOK. All Rights Reserved.</span>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>50),{passive:true});
+  const bg=document.getElementById('heroBg');
+  setTimeout(()=>bg.classList.add('rdy'),80);
+  window.addEventListener('scroll',()=>{bg.style.transform=`scale(1) translateY(${scrollY*.28}px)`},{passive:true});
+  function faq(b){const i=b.closest('.faq__item'),o=i.classList.contains('open');document.querySelectorAll('.faq__item.open').forEach(e=>e.classList.remove('open'));if(!o)i.classList.add('open')}
+  const rvEls=document.querySelectorAll('.rv,.rv-l,.rv-r');
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const s=[...x.target.parentElement.querySelectorAll('.rv,.rv-l,.rv-r')],idx=s.indexOf(x.target);setTimeout(()=>x.target.classList.add('in'),idx*70);obs.unobserve(x.target)}})},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+  rvEls.forEach(e=>obs.observe(e));
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
+</script>
+</body>
+</html>
